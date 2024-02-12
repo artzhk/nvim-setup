@@ -12,13 +12,15 @@ vim.keymap.set("n", "gb", "<C-^>")
 
 vim.keymap.set({ "n", "v" }, "<leader>e", "<S-$>")
 
-vim.keymap.set("n", "<leader>rn", ":set rnu!<CR>")
+vim.keymap.set("n", "<leader>nr", ":set rnu!<CR>")
 
 -- windows managing
 vim.keymap.set("n", "=", [[<cmd>vertical resize +5<cr>]])
 vim.keymap.set("n", "-", [[<cmd>vertical resize -5<cr>]])
 vim.keymap.set("n", "+", [[<cmd>horizontal resize +2<cr>]])
 vim.keymap.set("n", "_", [[<cmd>horizontal resize -2<cr>]])
+vim.keymap.set("n", "<leader>q", "_")
+
 
 vim.keymap.set({ "v", "n" }, "<leader>w", "<C-w>")
 vim.keymap.set({ "v", "n" }, "<C-w>", "<leader>w")
@@ -39,7 +41,12 @@ vim.keymap.set("n", "<C-c>", "<cmd>cnext<CR>zz")
 vim.keymap.set("n", "<C-x>", "<cmd>cprev<CR>zz")
 vim.keymap.set("n", "<leader>K", "<cmd>lnext<CR>zz")
 vim.keymap.set("n", "<leader>J", "<cmd>lprev<CR>zz")
+
 vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-session<CR>", { silent = true })
+vim.keymap.set("n", "<C-S><C-w>", function()
+    local input = vim.fn.input("New window > ")
+    vim.cmd("silent !tmux neww tmux-window " .. input)
+end)
 
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })

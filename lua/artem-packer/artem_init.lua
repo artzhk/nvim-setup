@@ -7,3 +7,5 @@ require("artem-packer.after.plugin.undotree")
 require("artem-packer.after.plugin.fugitive")
 require("artem-packer.after.plugin.lsp")
 require("artem-packer.remap")
+require("artem-packer.after.plugin.copilot")
+
