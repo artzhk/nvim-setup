@@ -13,9 +13,9 @@ lsp_zero.on_attach(function(client, bufnr)
     vim.keymap.set("n", "<leader>vd", function() vim.lsp.buf.open_float() end, opts)
     vim.keymap.set("n", "]e", function() vim.diagnostic.goto_next() end, opts)
     vim.keymap.set("n", "[e", function() vim.diagnostic.goto_prev() end, opts)
-    vim.keymap.set("n", "<leader>vca", function() vim.lsp.buf.code_action() end, opts)
+    vim.keymap.set("n", "<leader>va", function() vim.lsp.buf.code_action() end, opts)
     vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
-    vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
+    vim.keymap.set("n", "<leader>rn", function() vim.lsp.buf.rename() end, opts)
     vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
 end)
 
@@ -33,23 +33,21 @@ local capabilities = vim.tbl_deep_extend(
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
-    ensure_installed = { "lua_ls", "tsserver", "angularls", "pyright", "html" },
+    ensure_installed = { "lua_ls", "angularls", "pyright", "html" },
     handlers = {
         lsp_zero.default_setup,
         function(server)
             lsp_config[server].setup({
                 capabilities = capabilities,
+                on_attach = lsp_zero.on_attach,
             })
         end,
 
-        ["tsserver"] = function()
-            lsp_config.tsserver.setup({
+        ["angularls"] = function()
+            lsp_config.angularls.setup({
                 capabilities = capabilities,
-                settings = {
-                    completions = {
-                        completeFuncitonCalls = true
-                    }
-                }
+                on_attach = lsp_zero.on_attach,
+                root_dir = lsp_config.util.root_pattern("angular.json"),
             })
         end,
         ["lua_ls"] = function()
@@ -68,9 +66,6 @@ require('mason-lspconfig').setup({
         end,
     }
 })
-
-
-require('luasnip.loaders.from_vscode').lazy_load()
 
 cmp.setup({
     sources = {

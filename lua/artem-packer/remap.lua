@@ -7,20 +7,20 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
--- go next file
+-- go prev file
 vim.keymap.set("n", "gb", "<C-^>")
 
+-- beginnging and end of a line
 vim.keymap.set({ "n", "v" }, "<leader>e", "<S-$>")
+vim.keymap.set({ "n", "v" }, "<leader>q", "_")
 
 vim.keymap.set("n", "<leader>nr", ":set rnu!<CR>")
 
 -- windows managing
-vim.keymap.set("n", "=", [[<cmd>vertical resize +5<cr>]])
-vim.keymap.set("n", "-", [[<cmd>vertical resize -5<cr>]])
-vim.keymap.set("n", "+", [[<cmd>horizontal resize +2<cr>]])
-vim.keymap.set("n", "_", [[<cmd>horizontal resize -2<cr>]])
-vim.keymap.set("n", "<leader>q", "_")
-
+vim.keymap.set("n", "=", [[<cmd>vertical resize +10<cr>]])
+vim.keymap.set("n", "-", [[<cmd>vertical resize -10<cr>]])
+vim.keymap.set("n", "+", [[<cmd>horizontal resize +5<cr>]])
+vim.keymap.set("n", "_", [[<cmd>horizontal resize -5<cr>]])
 
 vim.keymap.set({ "v", "n" }, "<leader>w", "<C-w>")
 vim.keymap.set({ "v", "n" }, "<C-w>", "<leader>w")
@@ -52,10 +52,13 @@ vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
 vim.keymap.set("n", "<leader>vsr", "<cmd>e ~/.config/nvim/lua/artem-packer/remap.lua<CR>")
-vim.keymap.set("n", "<leader>vsp", "<cmd>e ~/.config/nvim/lua/artem-packer/packer.lua<CR>")
 
 vim.keymap.set("n", "<leader><leader>", function()
     vim.cmd("so")
 end)
 
+
+vim.keymap.set("n", "<leader>tmi", "<cmd>TSToolsAddMissingImports<CR>")
+
 vim.keymap.set("n", "<leader>jf", vim.cmd.Ex)
+
