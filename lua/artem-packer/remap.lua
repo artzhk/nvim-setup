@@ -57,8 +57,4 @@ vim.keymap.set("n", "<leader><leader>", function()
     vim.cmd("so")
 end)
 
-
-vim.keymap.set("n", "<leader>tmi", "<cmd>TSToolsAddMissingImports<CR>")
-
 vim.keymap.set("n", "<leader>jf", vim.cmd.Ex)
-
