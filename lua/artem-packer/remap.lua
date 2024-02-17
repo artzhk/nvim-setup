@@ -24,6 +24,8 @@ vim.keymap.set("n", "_", [[<cmd>horizontal resize -5<cr>]])
 
 vim.keymap.set({ "v", "n" }, "<leader>w", "<C-w>")
 vim.keymap.set({ "v", "n" }, "<C-w>", "<leader>w")
+vim.keymap.set({ "v", "n" }, "<leader>nv", "<C-w>v")
+vim.keymap.set({ "v", "n" }, "<leader>nh", "<C-w>s")
 
 -- greatest remap ever
 vim.keymap.set("x", "<leader>p", [["_dP]])
@@ -50,6 +52,28 @@ end)
 
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
+-- run c++ current file 
+vim.keymap.set("n", "<leader>rc", function ()
+    local file = vim.api.nvim_buf_get_name(0)
+    vim.cmd("vsplit")
+    vim.cmd("cc " .. file)
+    vim.cmd("term ./a.out")
+end)
+
+vim.keymap.set("n", "<leader>rp", function ()
+    local file = vim.api.nvim_buf_get_name(0)
+    print(file);
+    vim.cmd("vsplit")
+    vim.cmd("term g++ " .. file)
+    vim.cmd("term ./a.out")
+end)
+
+vim.keymap.set("n", "<leader>cp", function ()
+    local file = vim.api.nvim_buf_get_name(0)
+    print(file);
+    vim.cmd("vsplit")
+    vim.cmd("term g++ " .. file)
+end)
 
 vim.keymap.set("n", "<leader>vsr", "<cmd>e ~/.config/nvim/lua/artem-packer/remap.lua<CR>")
 

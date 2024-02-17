@@ -9,7 +9,7 @@ lsp_zero.on_attach(function(client, bufnr)
 
     vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
     vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
-    vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol({ search = vim.fin.input("Grep > ")}) end, opts)
+    vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol({ search = vim.fin.input("Grep > ") }) end, opts)
     vim.keymap.set("n", "<leader>vd", function() vim.lsp.buf.open_float() end, opts)
     vim.keymap.set("n", "]e", function() vim.diagnostic.goto_next() end, opts)
     vim.keymap.set("n", "[e", function() vim.diagnostic.goto_prev() end, opts)
@@ -33,7 +33,7 @@ local capabilities = vim.tbl_deep_extend(
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
-    ensure_installed = { "lua_ls", "angularls", "pyright", "html" },
+    ensure_installed = { "lua_ls", "angularls", "pyright", "html", "clangd" },
     handlers = {
         lsp_zero.default_setup,
         function(server)
@@ -43,6 +43,11 @@ require('mason-lspconfig').setup({
             })
         end,
 
+--        ["clangd"] = function()
+--            lsp_config.clangd.setup({
+--                root_dir = lsp_config.util.root_pattern("compile_commands.json", "compile_flags.txt"),
+--            })
+--        end,
         ["angularls"] = function()
             lsp_config.angularls.setup({
                 capabilities = capabilities,
@@ -66,8 +71,6 @@ require('mason-lspconfig').setup({
         end,
     }
 })
-
--- Configure sourcekit lsp config
 
 cmp.setup({
     sources = {

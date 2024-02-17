@@ -65,4 +65,17 @@ return require('packer').startup(function(use)
             }
         end,
     }
+    use {
+        'xbase-lab/xbase',
+        run = 'make install',
+        requires = {
+            "neovim/nvim-lspconfig",
+            "nvim-telescope/telescope.nvim",
+            "nvim-lua/plenary.nvim",
+        },
+        config = function()
+            require'xbase'.setup({})
+        end
+    }
 end)
+
