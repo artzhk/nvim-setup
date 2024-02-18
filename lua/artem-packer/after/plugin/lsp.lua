@@ -43,11 +43,6 @@ require('mason-lspconfig').setup({
             })
         end,
 
---        ["clangd"] = function()
---            lsp_config.clangd.setup({
---                root_dir = lsp_config.util.root_pattern("compile_commands.json", "compile_flags.txt"),
---            })
---        end,
         ["angularls"] = function()
             lsp_config.angularls.setup({
                 capabilities = capabilities,

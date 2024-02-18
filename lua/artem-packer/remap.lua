@@ -6,6 +6,10 @@ vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
+-- delete all buffers except current
+vim.keymap.set("n", "<leader>da", function ()
+    vim.cmd(":%bd|e#|bd#")
+end)
 
 -- go prev file
 vim.keymap.set("n", "gb", "<C-^>")
@@ -22,6 +26,7 @@ vim.keymap.set("n", "-", [[<cmd>vertical resize -10<cr>]])
 vim.keymap.set("n", "+", [[<cmd>horizontal resize +5<cr>]])
 vim.keymap.set("n", "_", [[<cmd>horizontal resize -5<cr>]])
 
+-- windows navigation
 vim.keymap.set({ "v", "n" }, "<leader>w", "<C-w>")
 vim.keymap.set({ "v", "n" }, "<C-w>", "<leader>w")
 vim.keymap.set({ "v", "n" }, "<leader>nv", "<C-w>v")
@@ -50,31 +55,11 @@ vim.keymap.set("n", "<C-S><C-w>", function()
     vim.cmd("silent !tmux neww tmux-window " .. input)
 end)
 
+-- extremely useful
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
--- run c++ current file 
-vim.keymap.set("n", "<leader>rc", function ()
-    local file = vim.api.nvim_buf_get_name(0)
-    vim.cmd("vsplit")
-    vim.cmd("cc " .. file)
-    vim.cmd("term ./a.out")
-end)
 
-vim.keymap.set("n", "<leader>rp", function ()
-    local file = vim.api.nvim_buf_get_name(0)
-    print(file);
-    vim.cmd("vsplit")
-    vim.cmd("term g++ " .. file)
-    vim.cmd("term ./a.out")
-end)
-
-vim.keymap.set("n", "<leader>cp", function ()
-    local file = vim.api.nvim_buf_get_name(0)
-    print(file);
-    vim.cmd("vsplit")
-    vim.cmd("term g++ " .. file)
-end)
-
+-- quick navigation to remaps
 vim.keymap.set("n", "<leader>vsr", "<cmd>e ~/.config/nvim/lua/artem-packer/remap.lua<CR>")
 
 vim.keymap.set("n", "<leader><leader>", function()
@@ -82,3 +67,4 @@ vim.keymap.set("n", "<leader><leader>", function()
 end)
 
 vim.keymap.set("n", "<leader>jf", vim.cmd.Ex)
+
