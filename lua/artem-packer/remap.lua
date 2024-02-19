@@ -32,6 +32,11 @@ vim.keymap.set({ "v", "n" }, "<C-w>", "<leader>w")
 vim.keymap.set({ "v", "n" }, "<leader>nv", "<C-w>v")
 vim.keymap.set({ "v", "n" }, "<leader>nh", "<C-w>s")
 
+-- close all windows except current
+vim.keymap.set("n", "<leader>wo", function ()
+    vim.cmd(":only")
+end)
+
 -- greatest remap ever
 vim.keymap.set("x", "<leader>p", [["_dP]])
 
