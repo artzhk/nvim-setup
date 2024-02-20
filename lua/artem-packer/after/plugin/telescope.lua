@@ -21,7 +21,7 @@ vim.keymap.set('n', '<leader>gS', function()
     builtin.grep_string({ search = word })
 end)
 
--- Grep relative to current directory
+-- Grep relative to opened project directory
 vim.keymap.set('n', '<leader>mg', function()
     builtin.grep_string({ search = vim.fn.input("Grep > ") })
 end)
