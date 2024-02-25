@@ -1,3 +1,4 @@
+require("artem-packer.after.plugin.colorscheme")
 require("artem-packer.packer")
 require("artem-packer.set")
 require("artem-packer.after.plugin.telescope")

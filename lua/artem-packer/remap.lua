@@ -26,6 +26,14 @@ vim.keymap.set("n", "-", [[<cmd>vertical resize -10<cr>]])
 vim.keymap.set("n", "+", [[<cmd>horizontal resize +5<cr>]])
 vim.keymap.set("n", "_", [[<cmd>horizontal resize -5<cr>]])
 
+vim.keymap.set("n", "<leader>BG", function ()
+    if vim.o.background == "dark" then
+        vim.o.background = "light"
+    else
+        vim.o.background = "dark"
+    end
+end)
+
 -- windows navigation
 vim.keymap.set({ "v", "n" }, "<leader>w", "<C-w>")
 vim.keymap.set({ "v", "n" }, "<C-w>", "<leader>w")
@@ -66,6 +74,7 @@ vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
 -- quick navigation to remaps
 vim.keymap.set("n", "<leader>vsr", "<cmd>e ~/.config/nvim/lua/artem-packer/remap.lua<CR>")
+vim.keymap.set("n", "<leader>vscs", "<cmd>e ~/.config/nvim/lua/artem-packer/after/plugin/colorscheme.lua<CR>")
 
 vim.keymap.set("n", "<leader><leader>", function()
     vim.cmd("so")
