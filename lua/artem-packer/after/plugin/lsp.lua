@@ -43,7 +43,6 @@ require('mason-lspconfig').setup({
             })
         end,
 
-
         ["clangd"] = function()
             lsp_config.clangd.setup({
                 capabilities = capabilities,
@@ -55,7 +54,7 @@ require('mason-lspconfig').setup({
             lsp_config.angularls.setup({
                 capabilities = capabilities,
                 on_attach = lsp_zero.on_attach,
-                root_dir = lsp_config.util.root_pattern("angular.json"),
+                root_dir = lsp_config.util.root_pattern("angular.json", "package.json"),
             })
         end,
         ["lua_ls"] = function()

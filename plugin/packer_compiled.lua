@@ -149,6 +149,14 @@ _G.packer_plugins = {
     path = "/Users/artem/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
+  prettier = {
+    commands = { "yarn install --frozen-lockfile --production" },
+    loaded = false,
+    needs_bufread = true,
+    only_cond = false,
+    path = "/Users/artem/.local/share/nvim/site/pack/packer/opt/prettier",
+    url = "https://github.com/prettier/vim-prettier"
+  },
   telescope = {
     loaded = true,
     path = "/Users/artem/.local/share/nvim/site/pack/packer/start/telescope",
@@ -172,6 +180,12 @@ time([[Defining packer_plugins]], false)
 time([[Config for typescript-tools.nvim]], true)
 try_loadstring("\27LJ\2\n≈\1\0\0\5\0\b\0\v6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\6\0005\3\4\0005\4\3\0=\4\5\3=\3\a\2B\0\2\1K\0\1\0\rsettings\1\0\0\30tsserver_file_preferences\1\0\1\26expose_as_code_action\ball\1\0\1$importModuleSpecifierPreference\17non-relative\nsetup\21typescript-tools\frequire\0", "config", "typescript-tools.nvim")
 time([[Config for typescript-tools.nvim]], false)
+
+-- Command lazy-loads
+time([[Defining lazy-load commands]], true)
+pcall(vim.cmd, [[au CmdUndefined yarn install --frozen-lockfile --production ++once lua require"packer.load"({'prettier'}, {}, _G.packer_plugins)]])
+time([[Defining lazy-load commands]], false)
+
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then

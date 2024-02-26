@@ -43,7 +43,9 @@ return require('packer').startup(function(use)
             { 'hrsh7th/cmp-nvim-lsp' },
 
             -- Snippets
-            { 'L3MON4D3/LuaSnip', requires = { 'rafamadriz/friendly-snippets' } },
+            { 'L3MON4D3/LuaSnip',
+                requires = { 'rafamadriz/friendly-snippets' }
+            },
         }
     }
 
@@ -63,4 +65,3 @@ return require('packer').startup(function(use)
         end,
     }
 end)
-

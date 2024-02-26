@@ -26,7 +26,8 @@ vim.keymap.set("n", "-", [[<cmd>vertical resize -10<cr>]])
 vim.keymap.set("n", "+", [[<cmd>horizontal resize +5<cr>]])
 vim.keymap.set("n", "_", [[<cmd>horizontal resize -5<cr>]])
 
-vim.keymap.set("n", "<leader>BG", function ()
+-- toggle background
+vim.keymap.set("n", "<leader>BB", function ()
     if vim.o.background == "dark" then
         vim.o.background = "light"
     else
@@ -63,7 +64,7 @@ vim.keymap.set("n", "<leader>K", "<cmd>lnext<CR>zz")
 vim.keymap.set("n", "<leader>J", "<cmd>lprev<CR>zz")
 
 vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-session<CR>", { silent = true })
-vim.keymap.set("n", "<C-S><C-w>", function()
+vim.keymap.set("n", "<C-n><C-w>", function()
     local input = vim.fn.input("New window > ")
     vim.cmd("silent !tmux neww tmux-window " .. input)
 end)
