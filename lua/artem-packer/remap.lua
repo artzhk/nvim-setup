@@ -38,8 +38,6 @@ end)
 -- windows navigation
 vim.keymap.set({ "v", "n" }, "<leader>w", "<C-w>")
 vim.keymap.set({ "v", "n" }, "<C-w>", "<leader>w")
-vim.keymap.set({ "v", "n" }, "<leader>nv", "<C-w>v")
-vim.keymap.set({ "v", "n" }, "<leader>nh", "<C-w>s")
 
 -- close all windows except current
 vim.keymap.set("n", "<leader>wo", function ()
