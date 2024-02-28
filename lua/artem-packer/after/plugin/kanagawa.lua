@@ -10,7 +10,7 @@ require('kanagawa').setup({
         }
     },
     background = {
-        dark = "dragon", -- wave, dragon, lotus
+        dark = "dragon", -- wave, dragon, lotus, current theme, I figure out later how to setup theme autochange
         light = "lotus"
     },
     overrides = function(colors)
@@ -35,6 +35,4 @@ require('kanagawa').setup({
         }
     end,
 })
-
 vim.cmd('colorscheme kanagawa')
-print(vim.o.background);

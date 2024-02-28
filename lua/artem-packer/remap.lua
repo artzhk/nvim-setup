@@ -73,7 +73,7 @@ vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
 -- quick navigation to remaps
 vim.keymap.set("n", "<leader>vsr", "<cmd>e ~/.config/nvim/lua/artem-packer/remap.lua<CR>")
-vim.keymap.set("n", "<leader>vscs", "<cmd>e ~/.config/nvim/lua/artem-packer/after/plugin/colorscheme.lua<CR>")
+vim.keymap.set("n", "<leader>vscs", "<cmd>e ~/.config/nvim/lua/artem-packer/after/plugin/kanagawa.lua<CR>")
 
 vim.keymap.set("n", "<leader><leader>", function()
     vim.cmd("so")
