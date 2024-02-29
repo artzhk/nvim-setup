@@ -1,8 +1,15 @@
 local builtin = require('telescope.builtin')
 local utils = require('telescope.utils')
 
+require('telescope').setup({
+    defaults = {
+        layout_strategy = 'vertical',
+    },
+})
+-- View current buffers
 vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
 
+-- Files search 
 vim.keymap.set('n', '<leader>fj', builtin.find_files, {})
 vim.keymap.set('n', '<leader>lg', builtin.live_grep, {})
 
@@ -32,4 +39,3 @@ vim.keymap.set('n', '<leader>rdf', function()
 end)
 
 vim.keymap.set('n', '<leader>vh', builtin.help_tags, {})
-
