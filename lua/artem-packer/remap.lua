@@ -24,19 +24,10 @@ vim.keymap.set({ "n", "v" }, "<leader>q", "_")
 vim.keymap.set("n", "<leader>nr", ":set rnu!<CR>")
 
 -- windows managing
-vim.keymap.set("n", "+", [[<cmd>vertical resize +10<cr>]])
-vim.keymap.set("n", "_", [[<cmd>vertical resize -10<cr>]])
-vim.keymap.set("n", "=", [[<cmd>horizontal resize +5<cr>]])
-vim.keymap.set("n", "-", [[<cmd>horizontal resize -5<cr>]])
-
--- toggle background
-vim.keymap.set("n", "<leader>BB", function ()
-    if vim.o.background == "dark" then
-        vim.o.background = "light"
-    else
-        vim.o.background = "dark"
-    end
-end)
+vim.keymap.set("n", "=", [[<cmd>vertical resize +10<cr>]])
+vim.keymap.set("n", "-", [[<cmd>vertical resize -10<cr>]])
+vim.keymap.set("n", "+", [[<cmd>horizontal resize +5<cr>]])
+vim.keymap.set("n", "_", [[<cmd>horizontal resize -5<cr>]])
 
 -- windows navigation
 vim.keymap.set({ "v", "n" }, "<leader>w", "<C-w>")

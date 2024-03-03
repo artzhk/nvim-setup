@@ -3,7 +3,7 @@ local utils = require('telescope.utils')
 
 require('telescope').setup({
     defaults = {
-        layout_strategy = 'vertical',
+        file_ignore_patterns = { "node_modules", ".git", "lib/*", "assets/*"},
     },
 })
 -- View current buffers

@@ -10,8 +10,7 @@ require('kanagawa').setup({
         }
     },
     background = {
-        dark = "dragon", -- wave, dragon, lotus, current theme, I figure out later how to setup theme autochange
-        light = "lotus"
+        dark = "lotus", -- wave, dragon, lotus, current theme, I figure out later how to setup theme autochange
     },
     overrides = function(colors)
         local theme = colors.theme
