@@ -14,9 +14,6 @@ vim.keymap.set("n", "<leader>da", function ()
     vim.cmd(":%bd|e#|bd#")
 end)
 
--- go prev file
-vim.keymap.set("n", "gb", "<C-^>")
-
 -- beginnging and end of a line
 vim.keymap.set({ "n", "v" }, "<leader>e", "<S-$>")
 vim.keymap.set({ "n", "v" }, "<leader>q", "_")
