@@ -1,15 +1,32 @@
 local builtin = require('telescope.builtin')
 local utils = require('telescope.utils')
+local actions = require('telescope.actions')
+local action_layout = require('telescope.actions.layout')
 
 require('telescope').setup({
     defaults = {
-        file_ignore_patterns = { "node_modules", ".git", "lib/*", "assets/*"},
+        layout_strategy = 'vertical',
+        file_ignore_patterns = { "node_modules", ".git", "lib/*", "assets/*" },
+        mappings = {
+            i = {
+                ["<C-c>"] = { "<esc>", type = "command" },
+                ["<esc>"] = actions.close,
+                ["<C-o>"] = action_layout.toggle_preview,
+                ["<C-d>"] = actions.delete_buffer,
+           },
+            n = {
+                ["<C-d>"] = actions.delete_buffer,
+                ["<C-o>"] = action_layout.toggle_preview,
+                ["q"] = actions.close,
+            },
+        },
     },
 })
+
 -- View current buffers
 vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
 
--- Files search 
+-- Files search
 vim.keymap.set('n', '<leader>fj', builtin.find_files, {})
 vim.keymap.set('n', '<leader>lg', builtin.live_grep, {})
 
