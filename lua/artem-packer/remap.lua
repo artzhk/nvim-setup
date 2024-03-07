@@ -2,7 +2,7 @@
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
--- I would love to find inverse version of this 
+-- I would love to find inverse version of this
 vim.keymap.set("n", "J", "mzJ`z")
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
@@ -10,7 +10,7 @@ vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
 -- delete all buffers except current
-vim.keymap.set("n", "<leader>da", function ()
+vim.keymap.set("n", "<leader>da", function()
     vim.cmd(":%bd|e#|bd#")
 end)
 
@@ -18,6 +18,7 @@ end)
 vim.keymap.set({ "n", "v" }, "<leader>e", "<S-$>")
 vim.keymap.set({ "n", "v" }, "<leader>q", "_")
 
+-- enable/disable relative line numbers
 vim.keymap.set("n", "<leader>nr", ":set rnu!<CR>")
 
 -- windows managing
@@ -31,7 +32,7 @@ vim.keymap.set({ "v", "n" }, "<leader>w", "<C-w>")
 vim.keymap.set({ "v", "n" }, "<C-w>", "<leader>w")
 
 -- close all windows except current
-vim.keymap.set("n", "<leader>wo", function ()
+vim.keymap.set("n", "<leader>wo", function()
     vim.cmd(":only")
 end)
 
@@ -71,4 +72,3 @@ vim.keymap.set("n", "<leader>vscs", "<cmd>e ~/.config/nvim/lua/artem-packer/afte
 
 -- pretty clear imho
 vim.keymap.set("n", "<leader>jf", vim.cmd.Ex)
-
