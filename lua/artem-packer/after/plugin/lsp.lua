@@ -38,7 +38,9 @@ local capabilities = vim.tbl_deep_extend(
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
-    ensure_installed = { "lua_ls", "angularls", "pyright", "html", "clangd" },
+    -- for web 
+    -- ensure_installed = { "lua_ls", "angularls", "pyright", "html", "clangd" },
+    ensure_installed = { "lua_ls", "pyright", "clangd" },
     handlers = {
         lsp_zero.default_setup,
         function(server)

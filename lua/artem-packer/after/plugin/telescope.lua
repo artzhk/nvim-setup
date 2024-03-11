@@ -12,10 +12,10 @@ require('telescope').setup({
                 ["<C-c>"] = { "<esc>", type = "command" },
                 ["<esc>"] = actions.close,
                 ["<C-o>"] = action_layout.toggle_preview,
-                ["<C-d>"] = actions.delete_buffer,
+                ["<C-r>"] = actions.delete_buffer,
            },
             n = {
-                ["<C-d>"] = actions.delete_buffer,
+                ["<C-r>"] = actions.delete_buffer,
                 ["<C-o>"] = action_layout.toggle_preview,
                 ["q"] = actions.close,
             },
