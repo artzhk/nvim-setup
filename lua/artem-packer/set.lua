@@ -1,4 +1,9 @@
 vim.opt.guicursor = ""
+vim.opt.cursorline = true
+
+-- Better disable for non-transparent bg
+--vim.cmd('highlight CursorLine guibg=NONE guifg=NONE gui=reverse')
+--vim.api.nvim_set_hl(0, "Visual", { nil,  nil, reverse = true })
 
 vim.opt.nu = true
 vim.opt.relativenumber = true
