@@ -3,19 +3,20 @@ require('kanagawa').setup({
         theme = {
             all = {
                 ui = {
-                    bg = "none",
-                    bg_gutter = "none"
-                }
+                    bg        = "none",
+                    bg_visual = "#c5c9c5",
+                    bg_gutter = "none",
+                },
             }
         }
     },
     background = {
-        dark = "lotus", -- wave, dragon, lotus, current theme, I figure out later how to setup theme autochange
+        dark = "dragon", -- wave, dragon, lotus, current theme, I figure out later how to setup theme autochange
     },
     overrides = function(colors)
         local theme = colors.theme
         return {
-            NormalFloat = { bg = "none" },
+            normalfloat = { bg = "none" },
             FloatBorder = { bg = "none" },
             FloatTitle = { bg = "none" },
 
@@ -31,6 +32,9 @@ require('kanagawa').setup({
             PmenuSel = { fg = "NONE", bg = theme.ui.bg_p2 },
             PmenuSbar = { bg = theme.ui.bg_m1 },
             PmenuThumb = { bg = theme.ui.bg_p2 },
+
+            --ColorColumn = { bg = theme.ui.fg },
+            CursorLine = { bg = theme.ui.fg },
         }
     end,
 })
