@@ -7,10 +7,7 @@ return require('packer').startup(function(use)
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
 
-    use({
-        "rebelot/kanagawa.nvim",
-        as = "kanagawa",
-    })
+    use { "rose-pine/neovim", as = "rose-pine" }
 
     use({ 'nvim-treesitter/nvim-treesitter', as = 'treesitter', { run = ':TSUpdate' } })
 

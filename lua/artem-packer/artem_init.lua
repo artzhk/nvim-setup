@@ -1,5 +1,5 @@
 vim.opt.termguicolors = true
-require("artem-packer.after.plugin.kanagawa")
+require("artem-packer.after.plugin.rose-pine")
 require("artem-packer.packer")
 require("artem-packer.set")
 ---@diagnostic disable-next-line: different-requires
