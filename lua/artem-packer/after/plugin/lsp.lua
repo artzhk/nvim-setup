@@ -98,7 +98,6 @@ cmp.setup({
         ['<S-Tab>'] = cmp_action.luasnip_shift_supertab(),
         ['<CR>'] = cmp.mapping.confirm({ select = true }),
     }),
-    formatting = lsp_zero.cmp_format(),
     window = {
         completion = cmp.config.window.bordered(),
         documentation = cmp.config.window.bordered(),
