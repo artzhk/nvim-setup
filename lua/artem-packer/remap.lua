@@ -31,7 +31,7 @@ vim.keymap.set("n", "_", [[<cmd>horizontal resize -5<cr>]])
 vim.keymap.set({ "v", "n" }, "<leader>w", "<C-w>")
 vim.keymap.set({ "v", "n" }, "<C-w>", "<leader>w")
 
--- close all windows except current
+-- close all windows but current
 vim.keymap.set("n", "<leader>wo", function()
     vim.cmd(":only")
 end)
