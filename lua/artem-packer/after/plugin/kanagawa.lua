@@ -33,7 +33,7 @@ require('kanagawa').setup({
             PmenuSbar = { bg = theme.ui.bg_m1 },
             PmenuThumb = { bg = theme.ui.bg_p2 },
 
-            CursorLine = { bg = theme.ui.fg },
+--            CursorLine = { bg = theme.ui.fg },
         }
     end,
 })
