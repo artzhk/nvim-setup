@@ -3,19 +3,20 @@ require('kanagawa').setup({
         theme = {
             all = {
                 ui = {
-                    bg = "none",
-                    bg_gutter = "none"
-                }
+                    bg        = "none",
+                    bg_visual = "#c5c9c5",
+                    bg_gutter = "none",
+                },
             }
         }
     },
     background = {
-        dark = "lotus", -- wave, dragon, lotus, current theme, I figure out later how to setup theme autochange
+        dark = "dragon", -- wave, dragon, lotus, current theme, I figure out later how to setup theme autochange
     },
     overrides = function(colors)
         local theme = colors.theme
         return {
-            NormalFloat = { bg = "none" },
+            normalfloat = { bg = "none" },
             FloatBorder = { bg = "none" },
             FloatTitle = { bg = "none" },
 
@@ -26,11 +27,13 @@ require('kanagawa').setup({
 
             -- Popular plugins that open floats will link to NormalFloat by default;
             -- set their background accordingly if you wish to keep them dark and borderless
-            MasonNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
+            --MasonNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
             Pmenu = { fg = theme.ui.shade0, bg = theme.ui.bg_p1 }, -- add `blend = vim.o.pumblend` to enable transparency
             PmenuSel = { fg = "NONE", bg = theme.ui.bg_p2 },
             PmenuSbar = { bg = theme.ui.bg_m1 },
             PmenuThumb = { bg = theme.ui.bg_p2 },
+
+--            CursorLine = { bg = theme.ui.fg },
         }
     end,
 })

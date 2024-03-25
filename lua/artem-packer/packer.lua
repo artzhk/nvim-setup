@@ -7,10 +7,7 @@ return require('packer').startup(function(use)
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
 
-    use({
-        "rebelot/kanagawa.nvim",
-        as = "kanagawa",
-    })
+    use { "rose-pine/neovim", as = "rose-pine" }
 
     use({ 'nvim-treesitter/nvim-treesitter', as = 'treesitter', { run = ':TSUpdate' } })
 
@@ -52,6 +49,7 @@ return require('packer').startup(function(use)
     }
 
     use { "github/copilot.vim", as = "copilot" }
+
     use {
         "pmizio/typescript-tools.nvim",
         requires = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
@@ -65,5 +63,22 @@ return require('packer').startup(function(use)
                 }
             }
         end,
+    }
+
+    -- jupyter like run in py
+    use { 'dccsillag/magma-nvim',
+
+        { run = ':UpdateRemotePlugins' },
+
+        -- Image display
+        requires = {
+            { 'edluffy/hologram.nvim', as = 'hologram',
+                config = function()
+                    require('hologram').setup() {
+                        auto_display = true,
+                    }
+                end,
+            }
+        }
     }
 end)
