@@ -104,6 +104,12 @@ _G.packer_plugins = {
     path = "/Users/artem/.local/share/nvim/site/pack/packer/start/harpoon",
     url = "https://github.com/ThePrimeagen/harpoon"
   },
+  hologram = {
+    config = { "\27LJ\2\nO\0\0\3\0\4\0\b6\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\0025\2\3\0B\0\2\1K\0\1\0\1\0\1\17auto_display\2\nsetup\rhologram\frequire\0" },
+    loaded = true,
+    path = "/Users/artem/.local/share/nvim/site/pack/packer/start/hologram",
+    url = "https://github.com/edluffy/hologram.nvim"
+  },
   kanagawa = {
     loaded = true,
     path = "/Users/artem/.local/share/nvim/site/pack/packer/start/kanagawa",
@@ -113,6 +119,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/artem/.local/share/nvim/site/pack/packer/start/lsp-zero.nvim",
     url = "https://github.com/VonHeikemen/lsp-zero.nvim"
+  },
+  ["magma-nvim"] = {
+    loaded = true,
+    path = "/Users/artem/.local/share/nvim/site/pack/packer/start/magma-nvim",
+    url = "https://github.com/dccsillag/magma-nvim"
   },
   ["mason-lspconfig.nvim"] = {
     loaded = true,
@@ -172,6 +183,10 @@ time([[Defining packer_plugins]], false)
 time([[Config for typescript-tools.nvim]], true)
 try_loadstring("\27LJ\2\n≈\1\0\0\5\0\b\0\v6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\6\0005\3\4\0005\4\3\0=\4\5\3=\3\a\2B\0\2\1K\0\1\0\rsettings\1\0\0\30tsserver_file_preferences\1\0\1\26expose_as_code_action\ball\1\0\1$importModuleSpecifierPreference\17non-relative\nsetup\21typescript-tools\frequire\0", "config", "typescript-tools.nvim")
 time([[Config for typescript-tools.nvim]], false)
+-- Config for: hologram
+time([[Config for hologram]], true)
+try_loadstring("\27LJ\2\nO\0\0\3\0\4\0\b6\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\0025\2\3\0B\0\2\1K\0\1\0\1\0\1\17auto_display\2\nsetup\rhologram\frequire\0", "config", "hologram")
+time([[Config for hologram]], false)
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then
