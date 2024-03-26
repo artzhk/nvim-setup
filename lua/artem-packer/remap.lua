@@ -73,3 +73,4 @@ vim.keymap.set("n", "<leader>vscs", "<cmd>e ~/.config/nvim/lua/artem-packer/afte
 
 -- pretty clear imho
 vim.keymap.set("n", "<leader>jf", vim.cmd.Ex)
+

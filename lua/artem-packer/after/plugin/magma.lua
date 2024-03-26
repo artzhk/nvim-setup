@@ -5,7 +5,9 @@ vim.keymap.set('x', '<leader>e', ':<C-u>MagmaEvaluateVisual<CR>', { silent = tru
 vim.keymap.set('n', '<leader>ec', ':MagmaReevaluateCell<CR>', { silent = true })
 vim.keymap.set('n', '<leader>ed', ':MagmaDelete<CR>', { silent = true })
 vim.keymap.set('n', '<leader>eo', ':MagmaShowOutput<CR>', { silent = true })
+vim.keymap.set('n', '<leader>mi', ':MagmaInit<CR>', { silent = true })
 
 -- Settings
 vim.g.magma_automatically_open_output = true
+vim.g.magma_image_provider = 'kitty'
 
