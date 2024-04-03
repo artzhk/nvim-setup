@@ -1,4 +1,5 @@
 vim.opt.termguicolors = true
+require("artem-packer.after.plugin.magma")
 require("artem-packer.after.plugin.rose-pine")
 require("artem-packer.packer")
 require("artem-packer.set")

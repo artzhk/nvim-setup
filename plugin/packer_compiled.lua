@@ -109,6 +109,11 @@ _G.packer_plugins = {
     path = "/home/negr3/.local/share/nvim/site/pack/packer/start/lsp-zero.nvim",
     url = "https://github.com/VonHeikemen/lsp-zero.nvim"
   },
+  ["magma-nvim"] = {
+    loaded = true,
+    path = "/home/negr3/.local/share/nvim/site/pack/packer/start/magma-nvim",
+    url = "https://github.com/dccsillag/magma-nvim"
+  },
   ["mason-lspconfig.nvim"] = {
     loaded = true,
     path = "/home/negr3/.local/share/nvim/site/pack/packer/start/mason-lspconfig.nvim",
@@ -133,6 +138,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/negr3/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
     url = "https://github.com/nvim-treesitter/nvim-treesitter"
+  },
+  omnisharp = {
+    loaded = true,
+    path = "/home/negr3/.local/share/nvim/site/pack/packer/start/omnisharp",
+    url = "https://github.com/OmniSharp/omnisharp-vim"
   },
   ["packer.nvim"] = {
     loaded = true,

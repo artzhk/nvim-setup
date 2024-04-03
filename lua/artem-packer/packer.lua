@@ -63,4 +63,8 @@ return require('packer').startup(function(use)
             }
         end,
     }
+
+    use {'OmniSharp/omnisharp-vim', as="omnisharp"}
+
+    use { 'dccsillag/magma-nvim', as="magma", {run = ':UpdateRemotePlugins' }}
 end)
