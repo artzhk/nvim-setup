@@ -1,11 +1,6 @@
 vim.opt.termguicolors = true
-<<<<<<< HEAD
-require("artem-packer.after.plugin.magma")
-=======
->>>>>>> main
-require("artem-packer.after.plugin.rose-pine")
-require("artem-packer.packer")
 require("artem-packer.set")
+require("artem-packer.packer")
 ---@diagnostic disable-next-line: different-requires
 require("artem-packer.after.plugin.telescope")
 require("artem-packer.after.plugin.treesitter")
@@ -16,4 +11,4 @@ require("artem-packer.after.plugin.lsp")
 require("artem-packer.remap")
 require("artem-packer.after.plugin.copilot")
 require("artem-packer.after.plugin.magma")
-
+require("artem-packer.after.plugin.rose-pine")
