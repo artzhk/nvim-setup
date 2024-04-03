@@ -31,7 +31,7 @@ vim.keymap.set("n", "_", [[<cmd>horizontal resize -5<cr>]])
 vim.keymap.set({ "v", "n" }, "<leader>w", "<C-w>")
 vim.keymap.set({ "v", "n" }, "<C-w>", "<leader>w")
 
--- close all windows except current
+-- close all windows but current
 vim.keymap.set("n", "<leader>wo", function()
     vim.cmd(":only")
 end)
@@ -68,7 +68,13 @@ vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
 -- quick navigation to remaps
 vim.keymap.set("n", "<leader>vsr", "<cmd>e ~/.config/nvim/lua/artem-packer/remap.lua<CR>")
+<<<<<<< HEAD
 vim.keymap.set("n", "<leader>vscs", "<cmd>e ~/.config/nvim/lua/artem-packer/after/plugin/rose-pine.lua<CR>")
+=======
+vim.keymap.set("n", "<leader>vss", "<cmd>e ~/.config/nvim/lua/artem-packer/set.lua<CR>")
+vim.keymap.set("n", "<leader>vscs", "<cmd>e ~/.config/nvim/lua/artem-packer/after/plugin/kanagawa.lua<CR>")
+>>>>>>> main
 
 -- pretty clear imho
 vim.keymap.set("n", "<leader>jf", vim.cmd.Ex)
+

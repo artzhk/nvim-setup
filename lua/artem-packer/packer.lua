@@ -49,6 +49,7 @@ return require('packer').startup(function(use)
     }
 
     use { "github/copilot.vim", as = "copilot" }
+
     use {
         "pmizio/typescript-tools.nvim",
         requires = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
@@ -64,7 +65,26 @@ return require('packer').startup(function(use)
         end,
     }
 
+<<<<<<< HEAD
     use {'OmniSharp/omnisharp-vim', as="omnisharp"}
 
     use { 'dccsillag/magma-nvim', as="magma", {run = ':UpdateRemotePlugins' }}
+=======
+    -- jupyter like run in py
+    use { 'dccsillag/magma-nvim',
+
+        { run = ':UpdateRemotePlugins' },
+
+        -- Image display
+        requires = {
+            { 'edluffy/hologram.nvim', as = 'hologram',
+                config = function()
+                    require('hologram').setup() {
+                        auto_display = true,
+                    }
+                end,
+            }
+        }
+    }
+>>>>>>> main
 end)

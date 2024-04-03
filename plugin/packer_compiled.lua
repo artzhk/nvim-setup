@@ -111,7 +111,11 @@ _G.packer_plugins = {
   },
   ["magma-nvim"] = {
     loaded = true,
+<<<<<<< HEAD
     path = "/home/negr3/.local/share/nvim/site/pack/packer/start/magma-nvim",
+=======
+    path = "/Users/artem/.local/share/nvim/site/pack/packer/start/magma-nvim",
+>>>>>>> main
     url = "https://github.com/dccsillag/magma-nvim"
   },
   ["mason-lspconfig.nvim"] = {
@@ -156,7 +160,11 @@ _G.packer_plugins = {
   },
   ["rose-pine"] = {
     loaded = true,
+<<<<<<< HEAD
     path = "/home/negr3/.local/share/nvim/site/pack/packer/start/rose-pine",
+=======
+    path = "/Users/artem/.local/share/nvim/site/pack/packer/start/rose-pine",
+>>>>>>> main
     url = "https://github.com/rose-pine/neovim"
   },
   telescope = {
