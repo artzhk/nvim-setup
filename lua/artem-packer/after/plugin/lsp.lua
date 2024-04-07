@@ -49,7 +49,6 @@ require('mason-lspconfig').setup({
                 on_attach = lsp_zero.on_attach,
             })
         end,
-
         ["clangd"] = function()
             lsp_config.clangd.setup({
                 capabilities = capabilities,
