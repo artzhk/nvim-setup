@@ -139,6 +139,11 @@ _G.packer_plugins = {
     path = "/home/negr3/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
     url = "https://github.com/nvim-treesitter/nvim-treesitter"
   },
+  omnisharp = {
+    loaded = true,
+    path = "/home/negr3/.local/share/nvim/site/pack/packer/start/omnisharp",
+    url = "https://github.com/OmniSharp/omnisharp-vim"
+  },
   ["packer.nvim"] = {
     loaded = true,
     path = "/home/negr3/.local/share/nvim/site/pack/packer/start/packer.nvim",
