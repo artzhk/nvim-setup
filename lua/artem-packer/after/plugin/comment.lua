@@ -2,15 +2,16 @@ require("Comment").setup({
      ---Add a space b/w comment and the line
     padding = true,
     ---Whether the cursor should stay at its position
-    sticky = true,
+    sticky = false,
     ---Lines to be ignored while (un)comment
-    ignore = nil,
+    ignore = "^$",
     ---LHS of toggle mappings in NORMAL mode
     toggler = {
         ---Line-comment toggle keymap
         line = 'zc',
         ---Block-comment toggle keymap
         block = 'zC',
+
     },
     ---LHS of operator-pending mappings in NORMAL and VISUAL mode
     opleader = {
