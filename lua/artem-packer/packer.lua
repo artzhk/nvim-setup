@@ -65,6 +65,8 @@ return require('packer').startup(function(use)
         end,
     }
 
+    use { 'numToStr/Comment.nvim', as = "Comment" }
+
     use { 'OmniSharp/omnisharp-vim', as = "omnisharp" }
 
     -- jupyter like run in py
