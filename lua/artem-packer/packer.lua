@@ -65,7 +65,7 @@ return require('packer').startup(function(use)
         end,
     }
 
-    use {'OmniSharp/omnisharp-vim', as="omnisharp"}
+    use { 'OmniSharp/omnisharp-vim', as = "omnisharp" }
 
     -- jupyter like run in py
     use { 'dccsillag/magma-nvim',

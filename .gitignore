@@ -1,4 +1,3 @@
-<<<<<<< HEAD
-=======
-packer_compiled.lua
->>>>>>> main
+plugin/packer_compiled.lua
+lua/artem-packer/after/plugin/colorscheme.lua
+

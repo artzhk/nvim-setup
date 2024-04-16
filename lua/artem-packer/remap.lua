@@ -1,6 +1,8 @@
 -- just cool
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+-- LSP bug fix
+vim.keymap.set({'i', 'n', 'v'}, '<C-C>', '<esc>', { desc = 'Make Ctrl+C behave exactly like escape.' })
 
 -- Colorscheme autoreload
 vim.keymap.set("n", "<leader><leader>", "<cmd>luafile ~/.config/nvim/lua/artem-packer/after/plugin/colorscheme.lua<CR>")
