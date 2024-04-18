@@ -15,9 +15,9 @@ require('telescope').setup({
                 ["<C-r>"] = actions.delete_buffer,
             },
             n = {
+                ["<C-c>"] = actions.close,
                 ["<C-r>"] = actions.delete_buffer,
                 ["<C-o>"] = action_layout.toggle_preview,
-                ["q"] = actions.close,
             },
         },
     },

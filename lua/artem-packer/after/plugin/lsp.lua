@@ -3,7 +3,7 @@ local lsp_zero = require('lsp-zero')
 lsp_zero.on_attach(function(client, bufnr)
 
     -- disabling for cs
-    if client.name == "cs" then 
+    if client.name == "cs" then
         vim.cmd [[ LspStop ]]
     end
 
@@ -16,14 +16,11 @@ lsp_zero.on_attach(function(client, bufnr)
     vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
     vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
     vim.keymap.set("n", "<leader>vws", function()
-        vim.lsp.buf.workspace_symbol(
-            {
-                search = vim.fin.input("Grep > ")
-            })
+       vim.lsp.buf.workspace_symbol(vim.fn.input("Grep > "))
     end, opts)
-    vim.keymap.set("n", "<leader>vd", function() vim.lsp.buf.open_float() end, opts)
-    vim.keymap.set("n", "]e", function() vim.diagnostic.goto_next() end, opts)
-    vim.keymap.set("n", "[e", function() vim.diagnostic.goto_prev() end, opts)
+    vim.keymap.set("n", "<leader>q", vim.diagnostic.open_float)
+    vim.keymap.set("n", "]e", vim.diagnostic.goto_next)
+    vim.keymap.set("n", "[e", vim.diagnostic.goto_prev)
     vim.keymap.set("n", "<leader>va", function() vim.lsp.buf.code_action() end, opts)
     vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
     vim.keymap.set("n", "<leader>rn", function() vim.lsp.buf.rename() end, opts)

@@ -21,7 +21,6 @@ end)
 
 -- beginnging and end of a line
 vim.keymap.set({ "n", "v" }, "<leader>e", "<S-$>")
-vim.keymap.set({ "n", "v" }, "<leader>q", "_")
 
 -- enable/disable relative line numbers
 vim.keymap.set("n", "<leader>nr", ":set rnu!<CR>")
