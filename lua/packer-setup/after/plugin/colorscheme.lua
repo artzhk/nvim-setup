@@ -1,5 +1,5 @@
 require('rose-pine').setup({
-    dark_variant = "main", -- main, moon, or dawn
+    dark_variant = "dawn", -- main, moon, or dawn
     dim_inactive_windows = false,
     extend_background_behind_borders = true,
 
@@ -65,3 +65,6 @@ require('rose-pine').setup({
 })
 
 vim.cmd('colorscheme rose-pine')
+
+-- Colorscheme autoreload
+vim.keymap.set("n", "<leader><leader>", "<cmd>luafile ~/.config/nvim/lua/packer-setup/after/plugin/colorscheme.lua<CR>")
