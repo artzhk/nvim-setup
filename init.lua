@@ -1,1 +1,3 @@
-require("artem-packer.artem_init")
+require("core")
+require("packer-setup")
+-- require("lazy-setup")

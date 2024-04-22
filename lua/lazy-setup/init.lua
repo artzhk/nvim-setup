@@ -1,4 +1,3 @@
-
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
@@ -10,10 +9,14 @@ if not vim.loop.fs_stat(lazypath) then
     lazypath,
   })
 end
-  require("artem-lazy.plugins.telescope")
 vim.opt.rtp:prepend(lazypath)
 
-require("artem-lazy.vim-options")
-
-return require("lazy").setup("artem-lazy.plugins")
-
+require("lazy").setup({ { import = "lazy-setup.plugins" }, { import = "lazy-setup.plugins.lsp" } }, {
+  checker = {
+    enabled = true,
+    notify = false,
+  },
+  change_detection = {
+    notify = false,
+  },
+})

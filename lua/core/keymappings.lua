@@ -34,6 +34,8 @@ vim.keymap.set("n", "_", [[<cmd>horizontal resize -5<cr>]])
 -- windows navigation
 vim.keymap.set({ "v", "n" }, "<leader>w", "<C-w>")
 vim.keymap.set({ "v", "n" }, "<C-w>", "<leader>w")
+vim.keymap.set({ "v", "n" }, "<leader>wv", ":vsplit<CR><C-w>l")
+vim.keymap.set({ "v", "n" }, "<leader>ws", ":split<CR><C-w>j")
 
 -- close all windows but current
 vim.keymap.set("n", "<leader>wo", function()
@@ -61,10 +63,6 @@ vim.keymap.set("n", "<leader>J", "<cmd>lprev<CR>zz")
 
 -- Tmux stuffff
 vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-session<CR>", { silent = true })
-vim.keymap.set("n", "<C-n><C-w>", function()
-    local input = vim.fn.input("New window > ")
-    vim.cmd("silent !tmux neww tmux-window " .. input)
-end)
 
 -- Inside of file renaming and making executable
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
