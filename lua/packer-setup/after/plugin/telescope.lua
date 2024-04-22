@@ -6,7 +6,7 @@ local action_layout = require('telescope.actions.layout')
 require('telescope').setup({
     defaults = {
         layout_strategy = 'vertical',
-        file_ignore_patterns = { "node_modules", ".git", "lib/*", "assets/*" },
+        file_ignore_patterns = { "node_modules", ".git$", "lib/*", "assets/*" },
         mappings = {
             i = {
                 ["<C-c>"] = { "<esc>", type = "command" },

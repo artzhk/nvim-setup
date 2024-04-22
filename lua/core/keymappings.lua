@@ -67,9 +67,9 @@ vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
 -- quick navigation to remaps
-vim.keymap.set("n", "<leader>vsr", "<cmd>e ~/.config/nvim/lua/artem-packer/remap.lua<CR>")
-vim.keymap.set("n", "<leader>vss", "<cmd>e ~/.config/nvim/lua/artem-packer/set.lua<CR>")
-vim.keymap.set("n", "<leader>vscs", "<cmd>e ~/.config/nvim/lua/artem-packer/after/plugin/colorscheme.lua<CR>")
+vim.keymap.set("n", "<leader>vsr", "<cmd>e ~/.config/nvim/lua/core/keymappings.lua<CR>")
+vim.keymap.set("n", "<leader>vss", "<cmd>e ~/.config/nvim/lua/core/options.lua<CR>")
+vim.keymap.set("n", "<leader>vscs", "<cmd>e ~/.config/nvim/lua/packer-setup/after/plugin/colorscheme.lua<CR>")
 
 -- pretty clear imho
 vim.keymap.set("n", "<leader>jf", vim.cmd.Ex)
