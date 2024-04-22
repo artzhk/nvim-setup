@@ -67,4 +67,4 @@ require('rose-pine').setup({
 vim.cmd('colorscheme rose-pine')
 
 -- Colorscheme autoreload
-vim.keymap.set("n", "<leader><leader>", "<cmd>luafile /home/art/.config/nvim/lua/packer-setup/after/plugin/colorscheme.lua<CR>")
+vim.keymap.set("n", "<leader><leader>", "<cmd>luafile ~/.config/nvim/lua/packer-setup/after/plugin/colorscheme.lua<CR>")
