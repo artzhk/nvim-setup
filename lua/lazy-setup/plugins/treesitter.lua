@@ -1,16 +1,23 @@
 return {
-  {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
-    config = function() 
-      local config = require("nvim-treesitter.configs")
-      config.setup({
-        ensure_install = { "c", "cpp", "typescript", "javascript", "lua", "html", "scss", "vim", "python", "json"},
-        auto_install = true,
-        highlight = { enable = true },
-        indent = { enable = true },
-        italic = false,
-      })
+    config = function()
+        require("nvim-treesitter.configs").setup({
+            -- A list of parser names, or "all" (the five listed parsers should always be installed)
+            ensure_installed = { "python", "cpp", "scss", "html", "css", "typescript", "javascript", "python", "c", "lua", "vim" },
+
+            disable = { "txt" },
+
+            -- Install parsers synchronously (only applied to `ensure_installed`)
+            sync_install = false,
+
+            -- Automatically install missing parsers when entering buffer
+            -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
+            auto_install = true,
+
+            highlight = {
+                enable = true,
+            },
+        })
     end
-  }
 }

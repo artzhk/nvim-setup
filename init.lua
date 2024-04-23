@@ -1,3 +1,3 @@
 require("core")
-require("packer-setup")
--- require("lazy-setup")
+-- require("packer-setup")
+require("lazy-setup")

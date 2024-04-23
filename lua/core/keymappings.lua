@@ -4,7 +4,6 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 -- LSP bug fix
 vim.keymap.set({'i', 'n', 'v'}, '<C-C>', '<esc>', { desc = 'Make Ctrl+C behave exactly like escape.' })
 
-
 -- I would love to find inverse version of this
 vim.keymap.set("n", "J", "mzJ`z")
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
@@ -30,8 +29,8 @@ vim.keymap.set("n", "+", [[<cmd>horizontal resize +5<cr>]])
 vim.keymap.set("n", "_", [[<cmd>horizontal resize -5<cr>]])
 
 -- windows navigation
-vim.keymap.set({ "v", "n" }, "<leader>w", "<C-w>")
-vim.keymap.set({ "v", "n" }, "<C-w>", "<leader>w")
+-- vim.keymap.set({ "v", "n" }, "<leader>w", "<C-w>")
+-- vim.keymap.set({ "v", "n" }, "<C-w>", "<leader>w")
 vim.keymap.set({ "v", "n" }, "<leader>wv", ":vsplit<CR><C-w>l")
 vim.keymap.set({ "v", "n" }, "<leader>ws", ":split<CR><C-w>j")
 

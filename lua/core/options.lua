@@ -1,3 +1,5 @@
+vim.cmd("let g:netrw_liststyle = 3")
+
 vim.opt.guicursor = ""
 
 vim.opt.clipboard = 'unnamedplus'
@@ -33,8 +35,6 @@ vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 50
-
---vim.opt.colorcolumn = "80"
 
 vim.g.mapleader = " "
 
