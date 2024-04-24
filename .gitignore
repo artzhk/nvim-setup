@@ -1,5 +1,5 @@
 plugin/packer_compiled.lua
 lua/packer-setup/after/plugin/colorscheme.lua
 lazy-lock.json
-lua/lazy-setup/plugins/colorscheme.lua
+#lua/lazy-setup/plugins/colorscheme.lua
 
