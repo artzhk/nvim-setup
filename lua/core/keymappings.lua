@@ -2,7 +2,7 @@
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 -- LSP bug fix
-vim.keymap.set({'i', 'n', 'v'}, '<C-C>', '<esc>', { desc = 'Make Ctrl+C behave exactly like escape.' })
+vim.keymap.set({ 'i', 'n', 'v' }, '<C-C>', '<esc>', { desc = 'Make Ctrl+C behave exactly like escape.' })
 
 -- I would love to find inverse version of this
 vim.keymap.set("n", "J", "mzJ`z")
@@ -53,8 +53,8 @@ vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
 
 -- Quick fix navigation
-vim.keymap.set("n", "<C-c>", "<cmd>cnext<CR>zz")
-vim.keymap.set("n", "<C-x>", "<cmd>cprev<CR>zz")
+vim.keymap.set("n", "<C-x>", "<cmd>cnext<CR>zz")
+vim.keymap.set("n", "<C-z>", "<cmd>cprev<CR>zz")
 vim.keymap.set("n", "<leader>K", "<cmd>lnext<CR>zz")
 vim.keymap.set("n", "<leader>J", "<cmd>lprev<CR>zz")
 
@@ -72,4 +72,3 @@ vim.keymap.set("n", "<leader>vscs", "<cmd>e ~/.config/nvim/lua/packer-setup/afte
 
 -- pretty clear imho
 vim.keymap.set("n", "<leader>jf", vim.cmd.Ex)
-

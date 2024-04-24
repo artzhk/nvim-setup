@@ -2,7 +2,7 @@
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 -- LSP bug fix
-vim.keymap.set({'i', 'n', 'v'}, '<C-C>', '<esc>', { desc = 'Make Ctrl+C behave exactly like escape.' })
+vim.keymap.set({ 'i', 'n', 'v' }, '<C-C>', '<esc>', { desc = 'Make Ctrl+C behave exactly like escape.' })
 
 -- Colorscheme autoreload
 vim.keymap.set("n", "<leader><leader>", "<cmd>luafile ~/.config/nvim/lua/artem-packer/after/plugin/colorscheme.lua<CR>")
@@ -53,7 +53,7 @@ vim.keymap.set("n", "<leader>Y", [["+Y]])
 vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 
 -- Format with current set cmp format
-vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
+vim.keymap.set("n", "<leader>o", vim.lsp.buf.format)
 
 -- Quick fix navigation
 vim.keymap.set("n", "<C-c>", "<cmd>cnext<CR>zz")
@@ -75,4 +75,3 @@ vim.keymap.set("n", "<leader>vscs", "<cmd>e ~/.config/nvim/lua/artem-packer/afte
 
 -- pretty clear imho
 vim.keymap.set("n", "<leader>jf", vim.cmd.Ex)
-
