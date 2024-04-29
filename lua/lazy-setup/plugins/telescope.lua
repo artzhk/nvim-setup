@@ -18,6 +18,17 @@ return {
                 },
                 defaults = {
                     layout_strategy = 'vertical',
+                    layout_config = {
+                        vertical = {
+                            preview_height = 0.7,
+                            width = 0.9,
+                            horizontal = 0.9,
+                            prompt_position = "top",
+                        },
+
+                    },
+                    sorting_strategy = "ascending",
+                    color_devicons = true,
                     file_ignore_patterns = { "node_modules", ".git$", "lib/*", "assets/*" },
                     mappings = {
                         i = {
