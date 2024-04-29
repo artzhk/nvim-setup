@@ -1,6 +1,8 @@
 return {
     "EdenEast/nightfox.nvim",
     config = function()
+        local Shade = require("nightfox.lib.shade")
+
         require('nightfox').setup({
             options = {
                 -- Compiled file's destination location
@@ -40,7 +42,14 @@ return {
                     -- ...
                 },
             },
-            palettes = {},
+            palettes = {
+                nightfox = {
+                    yellow  = Shade.new("#ebcb8b", "#f0d399", "#d9b263"),
+                    cyan    = Shade.new("#88c0d0", "#93ccdc", "#69a7ba"),
+                    orange  = Shade.new("#c9826b", "#d89079", "#b46950"),
+                    pink    = Shade.new("#bf88bc", "#d092ce", "#a96ca5"),
+                }
+            },
             specs = {
                 nightfox = {
                     syntax = {
@@ -57,14 +66,14 @@ return {
             },
             groups = {
                 nightfox = {
-                    StatusLine = { fg = "#719cd6", bg = "#192330" },
-                    FloatBorder = { fg = "#dbc074" },
-                    NormalFloat     = { fg ="#cdcecf" , bg = "#192330" },
+                    StatusLine             = { fg = "#719cd6", bg = "#192330" },
+                    FloatBorder            = { fg = "#dbc074" },
+                    NormalFloat            = { fg = "#cdcecf", bg = "#192330" },
 
-                    TelescopeBorder = { fg = "#719cd6" },
-                    TelescopePromptBorder = { fg = "#dbc074" },
-                    TelescopePromptPrefix = { fg = "#dbc074" },
-                    TelescopePromptTitle = { fg = "#dbc074" },
+                    TelescopeBorder        = { fg = "#719cd6" },
+                    TelescopePromptBorder  = { fg = "#dbc074" },
+                    TelescopePromptPrefix  = { fg = "#dbc074" },
+                    TelescopePromptTitle   = { fg = "#dbc074" },
                     TelescopePromptCounter = { fg = "#dbc074" },
 
                 },
@@ -74,4 +83,3 @@ return {
         vim.cmd("colorscheme nightfox")
     end
 }
-

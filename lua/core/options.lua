@@ -1,4 +1,4 @@
-vim.cmd("let g:netrw_liststyle = 3")
+-- vim.cmd("let g:netrw_liststyle = 1")
 
 vim.opt.guicursor = ""
 
