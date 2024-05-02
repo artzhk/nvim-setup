@@ -19,21 +19,21 @@ return {
 
         local colors = {
             bg = "none",
-            normal = "#F8F8F8",
+            normal = "#d6d6d7",
             grey = "#132434",
             grey1 = "#262626",
             grey2 = "#424242",
             grey3 = "#8B8B8B",
             grey4 = "#bdbdbd",
             grey5 = "#F8F8F8",
-            violet = "#D484FF",
+            violet = "#9d79d6",
             blue = "#2f628e",
-            cyan = "#00f1f5",
-            green = "#A9FF68",
+            cyan = "#93ccdc",
+            green = "#81b29a",
             green2 = "#2f7366",
-            yellow = "#FFF59D",
-            orange = "#F79000",
-            red = "#F70067",
+            yellow = "#f0d399",
+            orange = "#d89079",
+            red = "#c94f6d",
         }
 
         local buffer_not_empty = function()
@@ -44,11 +44,11 @@ return {
         end
 
         local mode_color = {
-            n = colors.green,
-            i = colors.cyan,
-            v = colors.violet,
+            n = colors.violet,
+            i = colors.yellow,
+            v = colors.cyan,
             [""] = colors.cyan,
-            V = colors.cyan,
+            V = colors.orange,
             c = colors.red,
             no = colors.violet,
             s = colors.orange,
@@ -67,12 +67,12 @@ return {
         }
 
         local mode_alias = {
-            n = "߇",
+            n = "ɳ",
             i = "ﾂ",
-            c = " ",
-            V = " ",
+            c = "Ϛ",
+            V = "փ",
             [""] = " ",
-            v = " ",
+            v = "߇",
             ["r?"] = ":CONFIRM",
             rm = "--MORE",
             R = " ",
@@ -115,7 +115,7 @@ return {
         end
 
         local spinner_frames = { "⣾", "⣽", "⣻", "⢿", "⡿", "⣟", "⣯", "⣷" }
-        local function lsp_status(status)
+        local function lsp_status_func(status)
             local success, lsp_status = pcall(require, "lsp-status")
             if not success then
                 return ""
@@ -201,7 +201,7 @@ return {
                 FileStatus = {
                     provider = function()
                         if vim.bo.filetype ~= "help" and vim.bo.readonly then
-                            return " "
+                            return "  "
                         end
                     end,
                     highlight = { colors.cyan, colors.bg },
@@ -221,7 +221,6 @@ return {
                     highlight = { colors.grey3, colors.bg, "bold" },
                 },
             },
-
             {
                 DiffAdd = {
                     provider = "DiffAdd",
@@ -251,7 +250,7 @@ return {
         gls.right = {
             {
                 LspStatus = {
-                    provider = lsp_status,
+                    provider = lsp_status_func,
                     highlight = { colors.grey3, colors.bg },
                 },
             },
