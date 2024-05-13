@@ -11,6 +11,8 @@ return {
         { 'hrsh7th/nvim-cmp' },
         { 'hrsh7th/cmp-nvim-lsp' },
 
+        { "pmizio/typescript-tools.nvim" },
+
         -- Snippets
         {
             'L3MON4D3/LuaSnip',
@@ -19,6 +21,8 @@ return {
     },
     config = function()
         local lsp_zero = require('lsp-zero')
+        lsp_zero.extend_lspconfig()
+        -- local ts_lsp = require('lazy-setup.plugins.lsp.ts-lsp')
 
         lsp_zero.on_attach(function(client, bufnr)
             -- disabling for cs
@@ -56,19 +60,88 @@ return {
             "force",
             {},
             vim.lsp.protocol.make_client_capabilities(),
-            cmp_lsp.default_capabilities())
+            cmp_lsp.default_capabilities()
+        )
 
         require('mason').setup({})
         require('mason-lspconfig').setup({
             -- for web
             -- ensure_installed = { "lua_ls", "angularls", "pyright", "html", "clangd" },
-            ensure_installed = { "lua_ls", "pyright", "clangd" },
+            ensure_installed = { "lua_ls", "pyright", "clangd", "volar" },
             handlers = {
                 lsp_zero.default_setup,
                 function(server)
                     lsp_config[server].setup({
                         capabilities = capabilities,
                         on_attach = lsp_zero.on_attach,
+                    })
+                end,
+                ["tsserver"] = function()
+                    lsp_config.tsserver.setup({
+                        capabilities = capabilities,
+                        on_attach = lsp_zero.on_attach,
+                        init_options = {
+                            plugins = {
+                                {
+                                    name = "@vue/typescript-plugin",
+                                    location = "/usr/local/lib/node_modules/@vue/typescript-plugin",
+                                    languages = { "javascript", "typescript", "vue" },
+                                },
+                            },
+                        },
+                        filetypes = {
+                            "javascript",
+                            "typescript",
+                            "vue",
+                        },
+                    })
+                end,
+                ["volar"] = function()
+                    -- Directly setup Volar outside mason-lspconfig handlers if issues persist
+                    lsp_config.volar.setup({
+                        cmd = { 'vue-language-server', '--stdio' },
+                        filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json' },
+                        capabilities = capabilities,
+                        on_attach = lsp_zero.on_attach,
+                        init_options = {
+                            vue = {
+                                hybridMode = false,
+                            },
+                            typescript = {
+                                tsdk =
+                                "/Users/artem/.local/share/nvim/mason/packages/vue-language-server/node_modules/typescript/lib/tsserverlibrary"
+                            },
+                            languageFeatures = {
+                                references = true,
+                                definition = true,
+                                typeDefinition = true,
+                                callHierarchy = true,
+                                hover = true,
+                                rename = true,
+                                renameFileRefactoring = true,
+                                signatureHelp = true,
+                                codeAction = true,
+                                workspaceSymbol = true,
+                                completion = {
+                                    defaultTagNameCase = 'both',
+                                    defaultAttrNameCase = 'kebabCase',
+                                    getDocumentNameCasesRequest = false,
+                                    getDocumentSelectionRequest = false
+                                },
+                                schemaRequestService = true,
+                                diagnostics = true
+                            },
+                            documentFeatures = {
+                                selectionRange = true,
+                                foldingRange = true,
+                                linkedEditingRange = true,
+                                documentSymbol = true,
+                                documentColor = true,
+                                documentFormatting = {
+                                    defaultPrintWidth = 100
+                                }
+                            }
+                        },
                     })
                 end,
                 ["clangd"] = function()
@@ -103,22 +176,64 @@ return {
                     require('lspconfig').lua_ls.setup(lua_opts)
                 end,
             }
+
         })
 
         lsp_zero.setup()
 
+        local ls = require("luasnip")
+
+        -- vim.keymap.set({ "i" }, "<C-d>", function() ls.expand() end)
+        -- vim.keymap.set({ "i", "s" }, "<Tab>", function() ls.jump(1) end)
+        -- vim.keymap.set({ "i", "s" }, "<S-Tab>", function() ls.jump(-1) end)
+        -- -- vim.keymap.set({ "i", "s" }, "<CR>", function()
+        -- --     if ls.choice_active() then
+        -- --         ls.change_choice(1)
+        -- --     end
+        -- -- end)
+
+        require("luasnip.loaders.from_vscode").lazy_load()
+
         cmp.setup({
+            snippet = {
+                expand = function(args)
+                    ls.lsp_expand(args.body)
+                end
+            },
             sources = {
                 { name = 'nvim_lsp' },
                 { name = 'buffer' },
                 { name = 'nvim_lua' },
-                { name = 'luasnip' },
+                { name = 'luasnip', priority = 100},
             },
-            mapping = cmp.mapping.preset.insert({
-                ['<Tab>'] = cmp_action.luasnip_supertab(),
-                ['<S-Tab>'] = cmp_action.luasnip_shift_supertab(),
+            mapping = {
                 ['<CR>'] = cmp.mapping.confirm({ select = true }),
-            }),
+                ['<Tab>'] = cmp.mapping(function(fallback)
+                    if ls.expandable() then
+                        ls.expand()
+                    elseif cmp.visible() then
+                        cmp.select_next_item()
+                    elseif ls.jumpable(1) then
+                        ls.jump(1)
+                    else
+                        fallback()
+                    end
+                end, { 'i', 's' }),
+                ['<S-Tab>'] = cmp.mapping(function(fallback)
+                    if ls.jumpable(-1) then
+                        ls.jump(-1)
+                    elseif cmp.visible() then
+                        cmp.select_prev_item()
+                    else
+                        fallback()
+                    end
+                end, { 'i', 's' })
+            },
+            -- mapping = cmp.mapping.preset.insert({
+            --     ['<Tab>'] = cmp_action.luasnip_supertab(),
+            --     ['<S-Tab>'] = cmp_action.luasnip_shift_supertab(),
+            --     ['<CR>'] = cmp.mapping.confirm({ select = true }),
+            -- }),
             window = {
                 completion = cmp.config.window.bordered(),
                 documentation = cmp.config.window.bordered(),
