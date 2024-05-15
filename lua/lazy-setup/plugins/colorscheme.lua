@@ -80,6 +80,6 @@ return {
             },
         })
         -- setup must be called before loading
-        vim.cmd("colorscheme dayfox")
+        vim.cmd("colorscheme nightfox")
     end
 }
