@@ -3,7 +3,7 @@ return {
     dependencies = {
         { 'williamboman/mason.nvim' },
         { 'williamboman/mason-lspconfig.nvim' },
-
+        { "WhoIsSethDaniel/mason-tool-installer.nvim" },
         -- LSP Support
         { 'neovim/nvim-lspconfig' },
 
@@ -53,7 +53,6 @@ return {
         local lsp_config = require('lspconfig')
         --local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
         local cmp = require('cmp')
-        local cmp_action = lsp_zero.cmp_action()
         local cmp_lsp = require("cmp_nvim_lsp")
 
         local capabilities = vim.tbl_deep_extend(
@@ -62,6 +61,8 @@ return {
             vim.lsp.protocol.make_client_capabilities(),
             cmp_lsp.default_capabilities()
         )
+
+        local pyright_config = require('lazy-setup.configs.ls.pyright')
 
         require('mason').setup({})
         require('mason-lspconfig').setup({
@@ -74,6 +75,14 @@ return {
                     lsp_config[server].setup({
                         capabilities = capabilities,
                         on_attach = lsp_zero.on_attach,
+                    })
+                end,
+                ["pyright"] = function()
+                    lsp_config.pyright.setup({
+                        capabilities = capabilities,
+                        on_attach = lsp_zero.on_attach,
+                        default_config = pyright_config.default_config,
+                        commands = pyright_config.commands,
                     })
                 end,
                 ["tsserver"] = function()
@@ -176,13 +185,11 @@ return {
                     require('lspconfig').lua_ls.setup(lua_opts)
                 end,
             }
-
         })
 
         lsp_zero.setup()
-
+        local cmp_action = lsp_zero.cmp_action()
         local ls = require("luasnip")
-
         require("luasnip.loaders.from_vscode").lazy_load()
 
         cmp.setup({
@@ -192,39 +199,41 @@ return {
                 end
             },
             sources = {
+                { name = 'luasnip', priority = 100 },
                 { name = 'nvim_lsp' },
                 { name = 'buffer' },
                 { name = 'nvim_lua' },
-                { name = 'luasnip', priority = 100 },
             },
-            mapping = {
-                ['<CR>'] = cmp.mapping.confirm({ select = true }),
-                ['<Tab>'] = cmp.mapping(function(fallback)
-                    if ls.expandable() then
-                        ls.expand()
-                    elseif cmp.visible() then
-                        cmp.select_next_item()
-                    elseif ls.jumpable(1) then
-                        ls.jump(1)
-                    else
-                        fallback()
-                    end
-                end, { 'i', 's' }),
-                ['<S-Tab>'] = cmp.mapping(function(fallback)
-                    if ls.jumpable(-1) then
-                        ls.jump(-1)
-                    elseif cmp.visible() then
-                        cmp.select_prev_item()
-                    else
-                        fallback()
-                    end
-                end, { 'i', 's' })
-            },
-            -- mapping = cmp.mapping.preset.insert({
-            --     ['<Tab>'] = cmp_action.luasnip_supertab(),
-            --     ['<S-Tab>'] = cmp_action.luasnip_shift_supertab(),
+            -- mapping = {
             --     ['<CR>'] = cmp.mapping.confirm({ select = true }),
-            -- }),
+            --     ['<C-<Tab>>'] = cmp.mapping(function ()
+            --         if ls.expandable() then
+            --             ls.expand()
+            --         elseif cmp.visible() then
+            --             cmp.select_next_item()
+            --         elseif ls.jumpable(1) then
+            --             ls.jump(1)
+            --         else
+            --             fallback()
+            --         end
+            --     end, { 'i', 's' }),
+            --     ['<Tab>'] = cmp.mapping(function(fallback)
+            --     end, { 'i', 's' }),
+            --     ['<S-Tab>'] = cmp.mapping(function(fallback)
+            --         if ls.jumpable(-1) then
+            --             ls.jump(-1)
+            --         elseif cmp.visible() then
+            --             cmp.select_prev_item()
+            --         else
+            --             fallback()
+            --         end
+            --     end, { 'i', 's' })
+            -- },
+            mapping = cmp.mapping.preset.insert({
+                ['<Tab>'] = cmp_action.luasnip_supertab(),
+                ['<S-Tab>'] = cmp_action.luasnip_shift_supertab(),
+                ['<CR>'] = cmp.mapping.confirm({ select = true }),
+            }),
             window = {
                 completion = cmp.config.window.bordered(),
                 documentation = cmp.config.window.bordered(),
