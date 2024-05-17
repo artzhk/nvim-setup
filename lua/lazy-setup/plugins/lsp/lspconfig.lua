@@ -183,15 +183,6 @@ return {
 
         local ls = require("luasnip")
 
-        -- vim.keymap.set({ "i" }, "<C-d>", function() ls.expand() end)
-        -- vim.keymap.set({ "i", "s" }, "<Tab>", function() ls.jump(1) end)
-        -- vim.keymap.set({ "i", "s" }, "<S-Tab>", function() ls.jump(-1) end)
-        -- -- vim.keymap.set({ "i", "s" }, "<CR>", function()
-        -- --     if ls.choice_active() then
-        -- --         ls.change_choice(1)
-        -- --     end
-        -- -- end)
-
         require("luasnip.loaders.from_vscode").lazy_load()
 
         cmp.setup({
@@ -204,7 +195,7 @@ return {
                 { name = 'nvim_lsp' },
                 { name = 'buffer' },
                 { name = 'nvim_lua' },
-                { name = 'luasnip', priority = 100},
+                { name = 'luasnip', priority = 100 },
             },
             mapping = {
                 ['<CR>'] = cmp.mapping.confirm({ select = true }),
