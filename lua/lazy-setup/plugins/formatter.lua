@@ -17,7 +17,13 @@ return {
                 },
                 typescript = {
                     prettier_config
-                }
+                },
+                vue = {
+                    prettier_config
+                },
+                html = {
+                    prettier_config
+                },
                 -- other formatters ...
             }
         })

@@ -50,7 +50,7 @@ vim.keymap.set("n", "<leader>Y", [["+Y]])
 vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 
 -- Format with current set cmp format
-vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
+vim.keymap.set("n", "<leader>f", "<cmd>Format<CR>")
 
 -- Quick fix navigation
 vim.keymap.set("n", "<C-x>", "<cmd>cnext<CR>zz")
@@ -69,3 +69,8 @@ vim.keymap.set("n", "<leader>vscs", "<cmd>e ~/.config/nvim/lua/lazy-setup/plugin
 
 -- pretty clear imho
 vim.keymap.set("n", "<leader>jf", vim.cmd.Ex)
+
+-- replace all occurences of a word in a file
+vim.keymap.set("n", "<leader>rw", ":%s/\\<<C-r><C-w>\\>//gI<Left><Left><Left>")
+-- replace all occurences of a specified word in a visual selectionRange jump to replacement with tab
+vim.keymap.set("v", "<leader>rw", ":s/<C-w>//g<Left><Left>")
