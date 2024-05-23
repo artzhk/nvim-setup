@@ -2,7 +2,7 @@
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 -- LSP bug fix
-vim.keymap.set({ 'i', 'n', 'v' }, '<C-C>', '<esc>', { desc = 'Make Ctrl+C behave exactly like escape.' })
+vim.keymap.set({ "i", "n", "v" }, "<C-C>", "<esc>", { desc = "Make Ctrl+C behave exactly like escape." })
 
 -- I would love to find inverse version of this
 vim.keymap.set("n", "J", "mzJ`z")
@@ -13,7 +13,7 @@ vim.keymap.set("n", "N", "Nzzzv")
 
 -- delete all buffers except current
 vim.keymap.set("n", "<leader>da", function()
-    vim.cmd(":%bd|e#|bd#")
+	vim.cmd(":%bd|e#|bd#")
 end)
 
 -- beginnging and end of a line
@@ -36,7 +36,7 @@ vim.keymap.set({ "v", "n" }, "<leader>ws", ":split<CR><C-w>j")
 
 -- close all windows but current
 vim.keymap.set("n", "<leader>wo", function()
-    vim.cmd(":only")
+	vim.cmd(":only")
 end)
 
 -- greatest remap ever
@@ -51,6 +51,7 @@ vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 
 -- Format with current set cmp format
 vim.keymap.set("n", "<leader>f", "<cmd>Format<CR>")
+vim.keymap.set("n", "<leader>F", "<cmd>lua require('conform').format()<CR>")
 
 -- Quick fix navigation
 vim.keymap.set("n", "<C-x>", "<cmd>cnext<CR>zz")

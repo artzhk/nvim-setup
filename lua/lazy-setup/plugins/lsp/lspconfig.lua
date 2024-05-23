@@ -64,7 +64,15 @@ return {
 
         local pyright_config = require('lazy-setup.configs.ls.pyright')
 
-        require('mason').setup({})
+        require("mason").setup({
+            ui = {
+                icons = {
+                    package_installed = "✓",
+                    package_pending = "➜",
+                    package_uninstalled = "✗"
+                }
+            }
+        })
         require('mason-lspconfig').setup({
             -- for web
             -- ensure_installed = { "lua_ls", "angularls", "pyright", "html", "clangd" },
