@@ -50,8 +50,7 @@ vim.keymap.set("n", "<leader>Y", [["+Y]])
 vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 
 -- Format with current set cmp format
-vim.keymap.set("n", "<leader>f", "<cmd>Format<CR>")
-vim.keymap.set("n", "<leader>F", "<cmd>lua require('conform').format()<CR>")
+vim.keymap.set("n", "<leader>f", "<cmd>lua require('conform').format()<CR>")
 
 -- Quick fix navigation
 vim.keymap.set("n", "<C-x>", "<cmd>cnext<CR>zz")
