@@ -15,6 +15,9 @@ return {
 				python = { "black" },
 				-- Use a sub-list to run only the first available formatter
 				javascript = { "prettierd" },
+        html = { "prettierd" },
+        css = { "prettierd" },
+        json = { "prettierd" },
 				typescript = { "prettierd" },
 				vue = { "prettierd" },
 				cpp = { "clang-format" },
