@@ -29,7 +29,7 @@ return {
                     },
                     sorting_strategy = "ascending",
                     color_devicons = true,
-                    file_ignore_patterns = { "node_modules", ".git$", "lib/*", --[[ "assets/*" ]] },
+                    file_ignore_patterns = { "node_modules", ".git$", --[[ "lib/*" ]] --[[ "assets/*" ]] },
                     mappings = {
                         i = {
                             ["<C-c>"] = { "<esc>", type = "command" },
