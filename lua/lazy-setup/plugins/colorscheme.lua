@@ -1,4 +1,5 @@
 return {
+
 	"EdenEast/nightfox.nvim",
 	config = function()
 		local Shade = require("nightfox.lib.shade")
@@ -80,5 +81,6 @@ return {
 		})
 		-- setup must be called before loading
 		vim.cmd("colorscheme nightfox")
+		-- vim.cmd("colorscheme dayfox")
 	end,
 }

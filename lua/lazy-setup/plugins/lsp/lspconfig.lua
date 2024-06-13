@@ -190,6 +190,7 @@ return {
 					local lua_opts = lsp_zero.nvim_lua_ls()
 					lsp_config.lua_ls.setup({
 						capabilities = capabilities,
+						on_attach = lsp_zero.on_attach,
 						settings = {
 							Lua = {
 								diagnostics = {
