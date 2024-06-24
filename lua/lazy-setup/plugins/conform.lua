@@ -15,13 +15,16 @@ return {
 				python = { "black" },
 				-- Use a sub-list to run only the first available formatter
 				javascript = { "prettierd" },
-        html = { "prettierd" },
-        css = { "prettierd" },
-        json = { "prettierd" },
+				html = { "prettierd" },
+				css = { "prettierd" },
+				json = { "prettierd" },
 				typescript = { "prettierd" },
 				vue = { "prettierd" },
 				cpp = { "clang-format" },
-        go = { "gofmt" },
+				go = { "gofmt" },
+				bash = { "beautysh" },
+				shell = { "beautysh" },
+				sh = { "beautysh" },
 				-- Use the "*" filetype to run formatters on all filetypes.
 				-- ["*"] = { "codespell" },
 				-- Use the "_" filetype to run formatters on filetypes that don't
