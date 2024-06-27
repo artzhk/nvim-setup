@@ -2,7 +2,7 @@
 
 vim.opt.guicursor = ""
 
--- vim.opt.clipboard = 'unnamedplus'
+vim.opt.clipboard = 'unnamedplus'
 vim.opt.cursorline = true
 
 -- better disable for transparent bg
