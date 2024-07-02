@@ -46,8 +46,8 @@ return {
 			palettes = {
 				nightfox = {
 					yellow = Shade.new("#ebcb8b", "#f0d399", "#d9b263"),
-					blue = Shade.new("#88c0d0", "#93ccdc", "#69a7ba"),
-					cyan = Shade.new("#81a1c1", "#8cafd2", "#668aab"),
+					-- blue = Shade.new("#88c0d0", "#93ccdc", "#69a7ba"),
+					-- cyan = Shade.new("#81a1c1", "#8cafd2", "#668aab"),
 					orange = Shade.new("#c9826b", "#d89079", "#b46950"),
 					pink = Shade.new("#bf88bc", "#d092ce", "#a96ca5"),
 				},
