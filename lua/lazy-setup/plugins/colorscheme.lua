@@ -1,9 +1,7 @@
 return {
-
 	"EdenEast/nightfox.nvim",
 	config = function()
 		local Shade = require("nightfox.lib.shade")
-
 		require("nightfox").setup({
 			options = {
 				-- Compiled file's destination location
@@ -45,9 +43,22 @@ return {
 			},
 			palettes = {
 				nightfox = {
-					yellow = Shade.new("#ebcb8b", "#f0d399", "#d9b263"),
-					-- blue = Shade.new("#88c0d0", "#93ccdc", "#69a7ba"),
-					-- cyan = Shade.new("#81a1c1", "#8cafd2", "#668aab"),
+
+-- blue    = '#648EC4'
+          black = Shade.new("#484f58", 0.15, -0.15),
+          red = Shade.new("#ff7b72", 0.15, -0.15),
+          green = Shade.new("#81b29a", 0.15, -0.15),
+          yellow = Shade.new("#dbc074", 0.15, -0.15),
+          blue = Shade.new("#7fa1bd", 0.15, -0.15),
+          magenta = Shade.new("#bc8cff", 0.15, -0.15),
+          cyan = Shade.new("#84aee4", 0.15, -0.15),
+          white = Shade.new("#b1bac4", 0.15, -0.15),
+
+					-- yellow = Shade.new("#dbc074", "#dbc074", "#dbc074"),
+					-- -- yellow = Shade.new("#ebcb8b", "#f0d399", "#d9b263"),
+					-- blue = Shade.new("#81a2be", "#8ab9f3", "#5f819d"),
+					-- cyan = Shade.new("#79c0ff", "#8ab9f3", "#58a6ff"),
+					-- white = Shade.new("#d0d6dc", "#e0e0e0", "#b1bac4"),
 					orange = Shade.new("#c9826b", "#d89079", "#b46950"),
 					pink = Shade.new("#bf88bc", "#d092ce", "#a96ca5"),
 				},
@@ -71,7 +82,6 @@ return {
 					StatusLine = { fg = "#668aab", bg = "none" },
 					FloatBorder = { fg = "#dbc074" },
 					NormalFloat = { fg = "#cdcecf", bg = "#192330" },
-
 					TelescopeBorder = { fg = "#668aab" },
 					TelescopePromptBorder = { fg = "#dbc074" },
 					TelescopePromptPrefix = { fg = "#dbc074" },
