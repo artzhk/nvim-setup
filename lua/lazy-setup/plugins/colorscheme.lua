@@ -44,15 +44,15 @@ return {
 			palettes = {
 				nightfox = {
 
--- blue    = '#648EC4'
-          black = Shade.new("#484f58", 0.15, -0.15),
-          red = Shade.new("#ff7b72", 0.15, -0.15),
-          green = Shade.new("#81b29a", 0.15, -0.15),
-          yellow = Shade.new("#dbc074", 0.15, -0.15),
-          blue = Shade.new("#7fa1bd", 0.15, -0.15),
-          magenta = Shade.new("#bc8cff", 0.15, -0.15),
-          cyan = Shade.new("#84aee4", 0.15, -0.15),
-          white = Shade.new("#b1bac4", 0.15, -0.15),
+					-- blue    = '#648EC4'
+					black = Shade.new("#484f58", 0.15, -0.15),
+					red = Shade.new("#ff7b72", 0.15, -0.15),
+					green = Shade.new("#81b29a", 0.15, -0.15),
+					yellow = Shade.new("#dbc074", 0.15, -0.15),
+					blue = Shade.new("#7fa1bd", 0.15, -0.15),
+					magenta = Shade.new("#bc8cff", 0.15, -0.15),
+					cyan = Shade.new("#84aee4", 0.15, -0.15),
+					white = Shade.new("#b1bac4", 0.15, -0.15),
 
 					-- yellow = Shade.new("#dbc074", "#dbc074", "#dbc074"),
 					-- -- yellow = Shade.new("#ebcb8b", "#f0d399", "#d9b263"),
@@ -81,12 +81,13 @@ return {
 				nightfox = {
 					StatusLine = { fg = "#668aab", bg = "none" },
 					FloatBorder = { fg = "#dbc074" },
-					NormalFloat = { fg = "#cdcecf", bg = "#192330" },
+					NormalFloat = { fg = "#cdcecf", bg = "none" },
 					TelescopeBorder = { fg = "#668aab" },
 					TelescopePromptBorder = { fg = "#dbc074" },
 					TelescopePromptPrefix = { fg = "#dbc074" },
 					TelescopePromptTitle = { fg = "#dbc074" },
 					TelescopePromptCounter = { fg = "#dbc074" },
+          CursorLine = { bg = "#2e3440" },
 				},
 			},
 		})

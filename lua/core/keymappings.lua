@@ -39,6 +39,9 @@ vim.keymap.set("n", "<leader>wo", function()
 	vim.cmd(":only")
 end)
 
+-- check git blame 
+vim.keymap.set("n", "<leader>gb", ":lua require('core.utils.gitlens').blameVirtText()<CR>")
+
 -- greatest remap ever
 vim.keymap.set("x", "<leader>p", [["_dP]])
 
