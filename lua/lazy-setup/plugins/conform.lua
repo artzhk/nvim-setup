@@ -25,11 +25,20 @@ return {
 				bash = { "beautysh" },
 				shell = { "beautysh" },
 				sh = { "beautysh" },
+				cs = { "OmniSharpCodeFormat" },
+
 				-- Use the "*" filetype to run formatters on all filetypes.
 				-- ["*"] = { "codespell" },
 				-- Use the "_" filetype to run formatters on filetypes that don't
 				-- have other formatters configured.
 				["_"] = { "trim_whitespace" },
+			},
+			formatters = {
+				-- custom formatter for cs files
+				OmniSharpCodeFormat = {
+					command = "OmniSharpCodeFormat",
+					root_patterns = { "csproj", "sln" },
+				},
 			},
 		})
 	end,

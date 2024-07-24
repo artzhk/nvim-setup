@@ -13,6 +13,13 @@ return {
 
 		{ "pmizio/typescript-tools.nvim" },
 
+		-- C# Support
+		{ "nickspoons/vim-sharpenup" },
+		-- { "Hoffs/omnisharp-extended-lsp.nvim" },
+		{
+			"OmniSharp/Omnisharp-vim",
+		},
+
 		-- Snippets
 		{
 			"L3MON4D3/LuaSnip",
@@ -22,12 +29,50 @@ return {
 	config = function()
 		local lsp_zero = require("lsp-zero")
 		lsp_zero.extend_lspconfig()
+		-- require("omnisharp_extended").lsp_definitions()
 		-- local ts_lsp = require('lazy-setup.plugins.lsp.ts-lsp')
 
 		lsp_zero.on_attach(function(client, bufnr)
+			lsp_zero.default_keymaps({ buffer = bufnr })
 			-- disabling for cs
-			if client.name == "cs" then
-				vim.cmd([[ LspStop ]])
+			print(client.name)
+			if client.name == "omnisharp" or client.name == "cs" then
+				local opts = { buffer = bufnr, remap = true }
+
+				vim.keymap.set("n", "gd", "<cmd>lua require('omnisharp_extended').lsp_definitions()<cr>", opts)
+				vim.keymap.set("n", "K", function()
+					vim.lsp.buf.hover()
+				end, opts)
+				vim.keymap.set("n", "<leader>vws", function()
+					vim.lsp.buf.workspace_symbol(vim.fn.input("Grep > "))
+				end, opts)
+				vim.keymap.set("n", "<leader>q", vim.diagnostic.open_float)
+				vim.keymap.set("n", "]e", vim.diagnostic.goto_next)
+				vim.keymap.set("n", "[e", vim.diagnostic.goto_prev)
+				vim.keymap.set("n", "<leader>va", function()
+					vim.lsp.buf.code_action()
+				end, opts)
+				vim.keymap.set("n", "<leader>vrr", "<cmd>lua require('omnisharp_extended').lsp_references()", opts)
+				vim.keymap.set("n", "<leader>rn", function()
+					vim.lsp.buf.rename()
+				end, opts)
+				vim.keymap.set("i", "<C-h>", function()
+					vim.lsp.buf.signature_help()
+				end, opts)
+				vim.keymap.set(
+					"n",
+					"<leader>vi",
+					"<cmd>lua require('omnisharp_extended').lsp_implementation()<cr>",
+					opts
+				)
+				vim.keymap.set(
+					"n",
+					"<leader>vt",
+					"<cmd>lua require('omnisharp_extended').lsp_type_definition()<cr>",
+					opts
+				)
+
+				return
 			end
 
 			-- see :help lsp-zero-keybindings
