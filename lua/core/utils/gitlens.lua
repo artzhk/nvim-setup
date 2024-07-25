@@ -1,6 +1,7 @@
 local M = {}
 
 local api = vim.api
+-- TODO: Add a function to show the changes in the whole commit by its hash
 function M.blameVirtText()
 	local ft = vim.fn.expand("%:h:t") -- get the current file extension
 
@@ -31,6 +32,7 @@ function M.blameVirtText()
 
 	api.nvim_buf_set_virtual_text(0, 2, line[1] - 1, { { text, "GitLens" } }, {}) -- set virtual text for namespace 2 with the content from git and assign it to the higlight group 'GitLens'
 end
+
 
 function M.clearBlameVirtText() -- important for clearing out the text when our cursor moves
 	api.nvim_buf_clear_namespace(0, 2, 0, -1)
