@@ -15,7 +15,7 @@ return {
 
 		-- C# Support
 		{ "nickspoons/vim-sharpenup" },
-		-- { "Hoffs/omnisharp-extended-lsp.nvim" },
+		{ "Hoffs/omnisharp-extended-lsp.nvim" },
 		{
 			"OmniSharp/Omnisharp-vim",
 		},
@@ -52,7 +52,7 @@ return {
 				vim.keymap.set("n", "<leader>va", function()
 					vim.lsp.buf.code_action()
 				end, opts)
-				vim.keymap.set("n", "<leader>vrr", "<cmd>lua require('omnisharp_extended').lsp_references()", opts)
+				vim.keymap.set("n", "<leader>vrr", "<cmd>lua require('omnisharp_extended').lsp_references()<cr>", opts)
 				vim.keymap.set("n", "<leader>rn", function()
 					vim.lsp.buf.rename()
 				end, opts)
