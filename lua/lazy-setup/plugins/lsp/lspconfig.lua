@@ -14,11 +14,7 @@ return {
 		{ "pmizio/typescript-tools.nvim" },
 
 		-- C# Support
-		{ "nickspoons/vim-sharpenup" },
 		{ "Hoffs/omnisharp-extended-lsp.nvim" },
-		{
-			"OmniSharp/Omnisharp-vim",
-		},
 
 		-- Snippets
 		{
@@ -36,6 +32,7 @@ return {
 			lsp_zero.default_keymaps({ buffer = bufnr })
 			-- disabling for cs
 			print(client.name)
+
 			if client.name == "omnisharp" or client.name == "cs" then
 				local opts = { buffer = bufnr, remap = true }
 
@@ -142,6 +139,13 @@ return {
 						on_attach = lsp_zero.on_attach,
 					})
 				end,
+        ["omnisharp"] = function()
+          require("omnisharp_extended").lsp_definitions()
+          lsp_config.omnisharp.setup({
+            capabilities = capabilities,
+            on_attach = lsp_zero.on_attach,
+          })
+        end,
 				["pyright"] = function()
 					lsp_config.pyright.setup({
 						capabilities = capabilities,
@@ -166,6 +170,8 @@ return {
 						filetypes = {
 							"javascript",
 							"typescript",
+              "typescriptreact",
+              "javascriptreact",
 							"vue",
 						},
 					})
@@ -174,7 +180,7 @@ return {
 					-- Directly setup Volar outside mason-lspconfig handlers if issues persist
 					lsp_config.volar.setup({
 						cmd = { "vue-language-server", "--stdio" },
-						filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue", "json" },
+						filetypes = { "typescript", "javascript", "vue", "json" },
 						capabilities = capabilities,
 						on_attach = lsp_zero.on_attach,
 						init_options = {

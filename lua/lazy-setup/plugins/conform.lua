@@ -25,7 +25,11 @@ return {
 				bash = { "beautysh" },
 				shell = { "beautysh" },
 				sh = { "beautysh" },
-				cs = { "OmniSharpCodeFormat" },
+				cs = { "csharpier" },
+        javascriptreact = { "prettierd" },
+        typescriptreact = { "prettierd" },
+        jsx = { "prettierd" },
+        tsx = { "prettierd" },
 
 				-- Use the "*" filetype to run formatters on all filetypes.
 				-- ["*"] = { "codespell" },
@@ -35,9 +39,9 @@ return {
 			},
 			formatters = {
 				-- custom formatter for cs files
-				OmniSharpCodeFormat = {
+				sharpFormat = {
 					command = "OmniSharpCodeFormat",
-					root_patterns = { "csproj", "sln" },
+					cwd = require("conform.util").root_file({ "csproj", "sln" }),
 				},
 			},
 		})

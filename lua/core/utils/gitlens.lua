@@ -1,6 +1,7 @@
 local M = {}
 
 local api = vim.api
+local undefinedTxt = "No Idea Who Did This :("
 -- TODO: Add a function to show the changes in the whole commit by its hash
 function M.blameVirtText()
 	local ft = vim.fn.expand("%:h:t") -- get the current file extension
@@ -20,19 +21,18 @@ function M.blameVirtText()
 	local blame = vim.fn.system(string.format("git blame -c -L %d,%d %s", line[1], line[1], currFile))
 	local hash = vim.split(blame, "%s")[1]
 	local cmd = string.format("git show %s ", hash) .. "--format='%an | %ar | %s'" -- format the git show command to get the author, time and commit message
-	local text = "No Idead Who Did This :("
+	local text = undefinedTxt
 
 	if hash ~= "00000000" then
-	  text = vim.fn.system(cmd)
+		text = vim.fn.system(cmd)
 		text = vim.split(text, "\n")[1] .. string.format(" | %s", hash)
 		if text:find("fatal") then -- if the call to git show fails
-			text = "No Idead Who Did This :("
+			text = undefinedTxt
 		end
 	end
 
 	api.nvim_buf_set_virtual_text(0, 2, line[1] - 1, { { text, "GitLens" } }, {}) -- set virtual text for namespace 2 with the content from git and assign it to the higlight group 'GitLens'
 end
-
 
 function M.clearBlameVirtText() -- important for clearing out the text when our cursor moves
 	api.nvim_buf_clear_namespace(0, 2, 0, -1)
