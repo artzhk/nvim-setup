@@ -130,7 +130,7 @@ return {
 		require("mason-lspconfig").setup({
 			-- for web
 			-- ensure_installed = { "lua_ls", "angularls", "pyright", "html", "clangd" },
-			ensure_installed = { "lua_ls", "pyright", "clangd", "volar" },
+			ensure_installed = { "lua_ls", "basedpyright", "clangd", "volar" },
 			handlers = {
 				lsp_zero.default_setup,
 				function(server)
