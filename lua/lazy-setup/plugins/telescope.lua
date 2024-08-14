@@ -52,10 +52,11 @@ return {
 			vim.keymap.set("n", "<leader>fb", builtin.buffers, {})
 
 			-- -- Files search
-			-- vim.keymap.set('n', '<leader>fj', builtin.find_files, {})
+			vim.keymap.set('n', '<leader>fj', builtin.find_files, {})
 
 			-- Files search Dvorak
-			vim.keymap.set("n", "<leader>hu", builtin.find_files, {})
+			-- vim.keymap.set("n", "<leader>hu", builtin.find_files, {})
+
 			vim.keymap.set("n", "<leader>lg", builtin.live_grep, {})
 
 			-- File search relative to current file's directory
