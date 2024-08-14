@@ -36,13 +36,21 @@ return {
 						i = {
 							["<C-c>"] = { "<esc>", type = "command" },
 							["<esc>"] = actions.close,
-							["<C-o>"] = action_layout.toggle_preview,
+							["<C-p>"] = action_layout.toggle_preview,
+							["<C-o>"] = function(p_bufnr)
+								actions.send_selected_to_qflist(p_bufnr)
+								vim.cmd.cfdo("edit")
+							end,
 							["<C-r>"] = actions.delete_buffer,
 						},
 						n = {
 							["<C-c>"] = actions.close,
+							["<C-o>"] = function(p_bufnr)
+								actions.send_selected_to_qflist(p_bufnr)
+								vim.cmd.cfdo("edit")
+							end,
 							["<C-r>"] = actions.delete_buffer,
-							["<C-o>"] = action_layout.toggle_preview,
+							["<C-p>"] = action_layout.toggle_preview,
 						},
 					},
 				},
@@ -52,7 +60,7 @@ return {
 			vim.keymap.set("n", "<leader>fb", builtin.buffers, {})
 
 			-- -- Files search
-			vim.keymap.set('n', '<leader>fj', builtin.find_files, {})
+			vim.keymap.set("n", "<leader>fj", builtin.find_files, {})
 
 			-- Files search Dvorak
 			-- vim.keymap.set("n", "<leader>hu", builtin.find_files, {})
