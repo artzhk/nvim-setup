@@ -31,7 +31,7 @@ return {
 		lsp_zero.on_attach(function(client, bufnr)
 			lsp_zero.default_keymaps({ buffer = bufnr })
 			-- disabling for cs
-			print(client.name)
+			-- print(client.name)
 
 			if client.name == "omnisharp" or client.name == "cs" then
 				local opts = { buffer = bufnr, remap = true }
@@ -130,7 +130,7 @@ return {
 		require("mason-lspconfig").setup({
 			-- for web
 			-- ensure_installed = { "lua_ls", "angularls", "pyright", "html", "clangd" },
-			ensure_installed = { "lua_ls", "basedpyright", "clangd", "volar" },
+			ensure_installed = { "lua_ls", "tsserver", "clangd" },
 			handlers = {
 				lsp_zero.default_setup,
 				function(server)
@@ -160,11 +160,11 @@ return {
 						on_attach = lsp_zero.on_attach,
 						init_options = {
 							plugins = {
-								{
-									name = "@vue/typescript-plugin",
-									location = "/usr/local/lib/node_modules/@vue/typescript-plugin",
-									languages = { "javascript", "typescript", "vue" },
-								},
+								-- {
+								-- 	name = "@vue/typescript-plugin",
+								-- 	location = "/usr/local/lib/node_modules/@vue/typescript-plugin",
+								-- 	languages = { "javascript", "typescript", "vue" },
+								-- },
 							},
 						},
 						filetypes = {
