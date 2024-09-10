@@ -130,7 +130,7 @@ return {
 		})
 		require("mason-lspconfig").setup({
 			-- for web
-			-- ensure_installed = { "lua_ls", "angularls", "pyright", "html", "clangd" },
+			-- ensure_installed = { "lua_ls", "angularls", "pyright", "html", "clangd", omnisharp, "tsserver", "eslint"},
 			ensure_installed = { "lua_ls", "tsserver", "clangd" },
 			handlers = {
 				lsp_zero.default_setup,
@@ -145,7 +145,7 @@ return {
 					require("omnisharp_extended").lsp_definitions()
 					lsp_config.omnisharp.setup({
 						capabilities = capabilities,
-						on_attach = autocommands.eslint_on_save,
+						on_attach = lsp_zero.on_attach,
 					})
 				end,
 				["eslint"] = function()
