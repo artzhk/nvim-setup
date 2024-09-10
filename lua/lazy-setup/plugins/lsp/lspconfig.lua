@@ -104,6 +104,7 @@ return {
 			end, opts)
 		end)
 
+		local autocommands = require("core.autocommands")
 		local lsp_config = require("lspconfig")
 		--local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 		local cmp = require("cmp")
@@ -139,13 +140,20 @@ return {
 						on_attach = lsp_zero.on_attach,
 					})
 				end,
-        ["omnisharp"] = function()
-          require("omnisharp_extended").lsp_definitions()
-          lsp_config.omnisharp.setup({
-            capabilities = capabilities,
-            on_attach = lsp_zero.on_attach,
-          })
-        end,
+
+				["omnisharp"] = function()
+					require("omnisharp_extended").lsp_definitions()
+					lsp_config.omnisharp.setup({
+						capabilities = capabilities,
+						on_attach = autocommands.eslint_on_save,
+					})
+				end,
+				["eslint"] = function()
+					lsp_config.eslint.setup({
+						capabilities = capabilities,
+						on_attach = autocommands.eslint_on_save,
+					})
+				end,
 				["pyright"] = function()
 					lsp_config.pyright.setup({
 						capabilities = capabilities,
@@ -170,8 +178,8 @@ return {
 						filetypes = {
 							"javascript",
 							"typescript",
-              "typescriptreact",
-              "javascriptreact",
+							"typescriptreact",
+							"javascriptreact",
 							"vue",
 						},
 					})

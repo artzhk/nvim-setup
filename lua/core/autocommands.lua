@@ -9,3 +9,14 @@ vim.api.nvim_create_autocmd({ "CursorMoved" }, {
 	end,
 	group = autocmd_group,
 })
+
+local M = {}
+
+M.eslint_on_save = function(_, buffer)
+	vim.api.nvim_create_autocmd("BufWritePre", {
+		buffer = buffer,
+		command = "EslintFixAll",
+	})
+end
+
+return M
