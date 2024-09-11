@@ -52,6 +52,8 @@ return {
 		)
 
 		local pyright_config = require("lazy-setup.configs.ls.pyright")
+		local tsserver_config = require("lazy-setup.configs.ls.tsserver")
+		local volar_config = require("lazy-setup.configs.ls.volar")
 
 		require("mason").setup({
 			ui = {
@@ -101,69 +103,18 @@ return {
 					lsp_config.tsserver.setup({
 						capabilities = capabilities,
 						on_attach = lsp_zero.on_attach,
-						init_options = {
-							plugins = {
-								-- {
-								-- 	name = "@vue/typescript-plugin",
-								-- 	location = "/usr/local/lib/node_modules/@vue/typescript-plugin",
-								-- 	languages = { "javascript", "typescript", "vue" },
-								-- },
-							},
-						},
-						filetypes = {
-							"javascript",
-							"typescript",
-							"typescriptreact",
-							"javascriptreact",
-							"vue",
-						},
+						init_options = tsserver_config.init_options(false),
+						filetypes = tsserver_config.filetypes,
 					})
 				end,
 				["volar"] = function()
 					-- Directly setup Volar outside mason-lspconfig handlers if issues persist
 					lsp_config.volar.setup({
-						cmd = { "vue-language-server", "--stdio" },
-						filetypes = { "typescript", "javascript", "vue", "json" },
+						cmd = volar_config.cmd,
+						filetypes = volar_config.filetypes,
 						capabilities = capabilities,
 						on_attach = lsp_zero.on_attach,
-						init_options = {
-							vue = {
-								hybridMode = false,
-							},
-							typescript = {
-								tsdk = "/Users/artem/.local/share/nvim/mason/packages/vue-language-server/node_modules/typescript/lib/tsserverlibrary",
-							},
-							languageFeatures = {
-								references = true,
-								definition = true,
-								typeDefinition = true,
-								callHierarchy = true,
-								hover = true,
-								rename = true,
-								renameFileRefactoring = true,
-								signatureHelp = true,
-								codeAction = true,
-								workspaceSymbol = true,
-								completion = {
-									defaultTagNameCase = "both",
-									defaultAttrNameCase = "kebabCase",
-									getDocumentNameCasesRequest = false,
-									getDocumentSelectionRequest = false,
-								},
-								schemaRequestService = true,
-								diagnostics = true,
-							},
-							documentFeatures = {
-								selectionRange = true,
-								foldingRange = true,
-								linkedEditingRange = true,
-								documentSymbol = true,
-								documentColor = true,
-								documentFormatting = {
-									defaultPrintWidth = 100,
-								},
-							},
-						},
+						init_options = volar_config.init_options,
 					})
 				end,
 				["clangd"] = function()
