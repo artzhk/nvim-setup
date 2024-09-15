@@ -1,32 +1,37 @@
 local M = {
-    ui = {
-        icons = {
-            package_installed = "✓",
-            package_pending = "➜",
-            package_uninstalled = "✗",
-        },
-    },
+	ui = {
+		icons = {
+			package_installed = "✓",
+			package_pending = "➜",
+			package_uninstalled = "✗",
+		},
+	},
 }
 
 function M.init(lsp_zero, cmp_lsp, lsp_config)
 	M.lsp_zero = lsp_zero
 	M.cmp_lsp = cmp_lsp
-  M.lsp_config = lsp_config
+	M.lsp_config = lsp_config
 end
 
 function M.capabilities()
-    return vim.tbl_deep_extend(
-        "force",
-        {},
-        vim.lsp.protocol.make_client_capabilities(),
-        M.cmp_lsp.default_capabilities()
-    )
+	return vim.tbl_deep_extend(
+		"force",
+		{},
+		vim.lsp.protocol.make_client_capabilities(),
+		M.cmp_lsp.default_capabilities()
+	)
 end
 
 function M.config_keymaps(client, bufnr)
 	M.lsp_zero.default_keymaps({ buffer = bufnr })
 
 	local opts = { buffer = bufnr, remap = true }
+	-- make it valid, replace spread with something that works in lua
+	-- enable
+	vim.keymap.set("n", "<leader>dq", function()
+		vim.diagnostic.setqflist({ severity = "ERROR" })
+	end, opts)
 
 	if client.name == "omnisharp" or client.name == "cs" then
 		vim.keymap.set("n", "gd", "<cmd>lua require('omnisharp_extended').lsp_definitions()<cr>", opts)
@@ -109,9 +114,9 @@ return {
 		local lsp_zero = require("lsp-zero")
 		local cmp = require("cmp")
 		local cmp_lsp = require("cmp_nvim_lsp")
-    local lsp_config = require("lspconfig")
+		local lsp_config = require("lspconfig")
 
-    M.init(lsp_zero, cmp_lsp, lsp_config)
+		M.init(lsp_zero, cmp_lsp, lsp_config)
 		M.lsp_zero.extend_lspconfig()
 		M.lsp_zero.on_attach(M.config_keymaps)
 
