@@ -37,8 +37,8 @@ function M.config_keymaps(client, bufnr)
 			vim.lsp.buf.workspace_symbol(vim.fn.input("Grep > "))
 		end, opts)
 		vim.keymap.set("n", "<leader>q", vim.diagnostic.open_float)
-		vim.keymap.set("n", "]e", vim.diagnostic.goto_next)
-		vim.keymap.set("n", "[e", vim.diagnostic.goto_prev)
+		vim.keymap.set("n", "]e", vim.diagnostic.get_next)
+		vim.keymap.set("n", "[e", vim.diagnostic.get_prev)
 		vim.keymap.set("n", "<leader>va", function()
 			vim.lsp.buf.code_action()
 		end, opts)
@@ -65,8 +65,8 @@ function M.config_keymaps(client, bufnr)
 		vim.lsp.buf.workspace_symbol(vim.fn.input("Grep > "))
 	end, opts)
 	vim.keymap.set("n", "<leader>q", vim.diagnostic.open_float)
-	vim.keymap.set("n", "]e", vim.diagnostic.goto_next)
-	vim.keymap.set("n", "[e", vim.diagnostic.goto_prev)
+	vim.keymap.set("n", "]e", vim.diagnostic.get_next)
+	vim.keymap.set("n", "[e", vim.diagnostic.get_prev)
 	vim.keymap.set("n", "<leader>va", function()
 		vim.lsp.buf.code_action()
 	end, opts)
@@ -155,7 +155,7 @@ return {
 						commands = pyright_config.commands,
 					})
 				end,
-				["tsserver"] = function()
+				["ts_ls"] = function()
 					lsp_config.tsserver.setup({
 						capabilities = M.capabilities(),
 						on_attach = M.lsp_zero.on_attach,
