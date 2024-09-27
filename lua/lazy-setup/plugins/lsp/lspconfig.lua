@@ -27,8 +27,7 @@ function M.config_keymaps(client, bufnr)
 	M.lsp_zero.default_keymaps({ buffer = bufnr })
 
 	local opts = { buffer = bufnr, remap = true }
-	-- make it valid, replace spread with something that works in lua
-	-- enable
+
 	vim.keymap.set("n", "<leader>dq", function()
 		vim.diagnostic.setqflist({ severity = "ERROR" })
 	end, opts)
