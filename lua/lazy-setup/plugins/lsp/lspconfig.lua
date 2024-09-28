@@ -159,7 +159,7 @@ return {
 						commands = pyright_config.commands,
 					})
 				end,
-				["ts_ls"] = function()
+				["tsserver"] = function()
 					lsp_config.tsserver.setup({
 						capabilities = M.capabilities(),
 						on_attach = M.lsp_zero.on_attach,
