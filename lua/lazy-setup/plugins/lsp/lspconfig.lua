@@ -1,3 +1,7 @@
+vim.diagnostic.config {
+  float = { border = "rounded" },
+}
+
 local M = {
 	ui = {
 		icons = {
@@ -232,16 +236,8 @@ return {
 				["<CR>"] = cmp.mapping.confirm({ select = true }),
 			}),
 			window = {
-				-- completion = cmp.config.window(),
-				-- documentation = cmp.config.window.bordered(),
-        completion = cmp.config.window.bordered({
-            winhighlight = "Normal:ThermCursorNC,FloatBorder:ThermCursorNC,CursorLine:PmenuThumb,Search:None",
-        }),
-        documentation = cmp.config.window.bordered({
-            max_width = 0,
-            max_height = 0,
-            winhighlight = "Normal:ThermCursorNC,FloatBorder:ThermCursorNC,CursorLine:PmenuThumb,Search:None",
-        }),
+        completion = cmp.config.window.bordered(),
+        documentation = cmp.config.window.bordered(),
 			},
 		})
 	end,
