@@ -1,3 +1,7 @@
+vim.diagnostic.config {
+  float = { border = "rounded" },
+}
+
 local M = {
 	ui = {
 		icons = {
@@ -28,6 +32,10 @@ function M.config_keymaps(client, bufnr)
 
 	local opts = { buffer = bufnr, remap = true }
 
+	vim.keymap.set("n", "<leader>dq", function()
+		vim.diagnostic.setqflist({ severity = "ERROR" })
+	end, opts)
+
 	if client.name == "omnisharp" or client.name == "cs" then
 		vim.keymap.set("n", "gd", "<cmd>lua require('omnisharp_extended').lsp_definitions()<cr>", opts)
 		vim.keymap.set("n", "K", function()
@@ -37,8 +45,8 @@ function M.config_keymaps(client, bufnr)
 			vim.lsp.buf.workspace_symbol(vim.fn.input("Grep > "))
 		end, opts)
 		vim.keymap.set("n", "<leader>q", vim.diagnostic.open_float)
-		vim.keymap.set("n", "]e", vim.diagnostic.get_next)
-		vim.keymap.set("n", "[e", vim.diagnostic.get_prev)
+		vim.keymap.set("n", "]e", vim.diagnostic.goto_next)
+		vim.keymap.set("n", "[e", vim.diagnostic.goto_prev)
 		vim.keymap.set("n", "<leader>va", function()
 			vim.lsp.buf.code_action()
 		end, opts)
@@ -65,8 +73,8 @@ function M.config_keymaps(client, bufnr)
 		vim.lsp.buf.workspace_symbol(vim.fn.input("Grep > "))
 	end, opts)
 	vim.keymap.set("n", "<leader>q", vim.diagnostic.open_float)
-	vim.keymap.set("n", "]e", vim.diagnostic.get_next)
-	vim.keymap.set("n", "[e", vim.diagnostic.get_prev)
+	vim.keymap.set("n", "]e", vim.diagnostic.goto_next)
+	vim.keymap.set("n", "[e", vim.diagnostic.goto_prev)
 	vim.keymap.set("n", "<leader>va", function()
 		vim.lsp.buf.code_action()
 	end, opts)
@@ -124,7 +132,7 @@ return {
 		require("mason").setup(M.ui)
 
 		require("mason-lspconfig").setup({
-			ensure_installed = { "lua_ls", "tsserver", "clangd" },
+			ensure_installed = { "lua_ls", "ts_ls", "clangd" },
 			handlers = {
 				M.lsp_zero.default_setup,
 				function(server)
@@ -156,7 +164,8 @@ return {
 					})
 				end,
 				["ts_ls"] = function()
-					lsp_config.tsserver.setup({
+					lsp_config.ts_ls.setup({
+
 						capabilities = M.capabilities(),
 						on_attach = M.lsp_zero.on_attach,
 						init_options = tsserver_config.init_options(false),
@@ -228,8 +237,8 @@ return {
 				["<CR>"] = cmp.mapping.confirm({ select = true }),
 			}),
 			window = {
-				completion = cmp.config.window.bordered(),
-				documentation = cmp.config.window.bordered(),
+        completion = cmp.config.window.bordered(),
+        documentation = cmp.config.window.bordered(),
 			},
 		})
 	end,

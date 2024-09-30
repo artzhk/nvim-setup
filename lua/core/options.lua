@@ -5,12 +5,8 @@ vim.opt.guicursor = ""
 vim.opt.clipboard = 'unnamedplus'
 vim.opt.cursorline = true
 
--- better disable for transparent bg
---vim.cmd('highlight CursorLine guibg=NONE guifg=NONE gui=reverse')
---vim.api.nvim_set_hl(0, "Visual", { nil,  nil, reverse = true })
-
 vim.opt.nu = true
-vim.opt.relativenumber = true
+vim.opt.relativenumber = false
 
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
@@ -37,6 +33,9 @@ vim.opt.isfname:append("@-@")
 vim.opt.updatetime = 50
 
 vim.g.mapleader = " "
+
+vim.cmd("colorscheme shine")
+vim.cmd("colorscheme default")
 
 vim.api.nvim_create_user_command("Cpath", function()
     local path = vim.fn.expand("%:p")
