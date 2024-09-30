@@ -6,6 +6,7 @@ return {
         local harpoon = require("harpoon")
         local conf = require("telescope.config").values
 
+
         harpoon.setup({
             settings = {
                 save_on_toggle = true,
@@ -28,7 +29,6 @@ return {
             }):find()
         end
 
-
         vim.keymap.set("n", "<C-q>", function() toggle_telescope(harpoon:list()) end,
             { desc = "Open harpoon window" })
         vim.keymap.set("n", "<C-e>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
@@ -42,5 +42,16 @@ return {
 
         vim.keymap.set("n", "<C-b>", function() harpoon:list():prev() end)
         vim.keymap.set("n", "<C-n>", function() harpoon:list():next() end)
+
+        -- Colorscheme adjustments
+        vim.cmd("hi clear  Visual")
+        vim.cmd("hi link Visual  SpellBad")
+        vim.cmd("hi clear  NormalFloat")
+        vim.cmd("hi link NormalFloat  NormalNC")
+        vim.cmd("hi clear DiagnosticUnderlineError")
+        vim.cmd("hi clear DiagnosticUnderlineHint")
+        vim.cmd("hi clear DiagnosticUnderlineInfo")
+        vim.cmd("hi clear DiagnosticUnderlineOk")
+        vim.cmd("hi clear DiagnosticUnderlineWarn")
     end
 }

@@ -20,27 +20,33 @@ local modules_colors = {
 local lightLine = {
   normal = {
     a = {bg = colors.gray, fg = colors.black, gui = 'bold'},
-    modules_colors
+    b = modules_colors.b,
+    c = modules_colors.b
   },
   insert = {
     a = {bg = colors.blue, fg = colors.black, gui = 'bold'},
-    modules_colors
+    b = modules_colors.b,
+    c = modules_colors.b
   },
   visual = {
     a = {bg = colors.yellow, fg = colors.black, gui = 'bold'},
-    modules_colors
+    b = modules_colors.b,
+    c = modules_colors.b
   },
   replace = {
     a = {bg = colors.red, fg = colors.black, gui = 'bold'},
-    modules_colors
+    b = modules_colors.b,
+    c = modules_colors.b
   },
   command = {
     a = {bg = colors.green, fg = colors.black, gui = 'bold'},
-    modules_colors
+    b = modules_colors.b,
+    c = modules_colors.b
   },
   inactive = {
     a = {bg = colors.darkgray, fg = colors.gray, gui = 'bold'},
-    modules_colors
+    b = modules_colors.b,
+    c = modules_colors.b
   }
 }
 

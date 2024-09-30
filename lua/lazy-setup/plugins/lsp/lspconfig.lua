@@ -1,3 +1,7 @@
+vim.diagnostic.config {
+  float = { border = "rounded" },
+}
+
 local M = {
 	ui = {
 		icons = {
@@ -128,7 +132,7 @@ return {
 		require("mason").setup(M.ui)
 
 		require("mason-lspconfig").setup({
-			ensure_installed = { "lua_ls", "tsserver", "clangd" },
+			ensure_installed = { "lua_ls", "ts_ls", "clangd" },
 			handlers = {
 				M.lsp_zero.default_setup,
 				function(server)
@@ -159,8 +163,8 @@ return {
 						commands = pyright_config.commands,
 					})
 				end,
-				["tsserver"] = function()
-					lsp_config.tsserver.setup({
+				["ts_ls"] = function()
+					lsp_config.ts_ls.setup({
 						capabilities = M.capabilities(),
 						on_attach = M.lsp_zero.on_attach,
 						init_options = tsserver_config.init_options(false),
@@ -232,8 +236,8 @@ return {
 				["<CR>"] = cmp.mapping.confirm({ select = true }),
 			}),
 			window = {
-				completion = cmp.config.window.bordered(),
-				documentation = cmp.config.window.bordered(),
+        completion = cmp.config.window.bordered(),
+        documentation = cmp.config.window.bordered(),
 			},
 		})
 	end,
