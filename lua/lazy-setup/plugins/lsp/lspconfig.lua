@@ -165,6 +165,7 @@ return {
 				end,
 				["ts_ls"] = function()
 					lsp_config.ts_ls.setup({
+
 						capabilities = M.capabilities(),
 						on_attach = M.lsp_zero.on_attach,
 						init_options = tsserver_config.init_options(false),
