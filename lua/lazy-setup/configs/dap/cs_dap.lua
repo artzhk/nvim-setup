@@ -2,7 +2,8 @@ local M = {}
 
 M.adapters_coreclr = {
 	type = "executable",
-	command = "/usr/local/bin/netcoredbg",
+	-- command = "/home/art/.local/bin/netcoredbg",
+	command = "~/.local/bin/netcoredbg",
 	args = { "--interpreter=vscode" },
 }
 
