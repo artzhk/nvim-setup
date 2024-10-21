@@ -37,7 +37,7 @@ function M:adjust_highlight()
 	vim.cmd("hi clear LineNr")
 	vim.cmd("hi CursorLineNr cterm=bold gui=bold guifg=#4d699b guibg=none")
 	vim.cmd("hi clear CursorLine")
-	vim.cmd("hi CursorLine guifg=#43436c guibg=#c7d7e0 ")
+	vim.cmd("hi CursorLine guibg=#c7d7e0 ")
 	vim.cmd("hi clear SignColumn")
 	vim.cmd("hi clear TelescopeBorder")
 	vim.cmd("hi clear TelescopeResultsBorder ")
@@ -88,6 +88,9 @@ function M:adjust_highlight()
 	vim.cmd("hi clear ColorColumn  ")
 	vim.cmd("hi clear QuickFixLine ")
 	vim.cmd("hi clear MsgSeparator ")
+
+  vim.cmd("hi clear Visual")
+  vim.cmd("hi Visual cterm=undercurl gui=undercurl")
 end
 
 function M:config()
