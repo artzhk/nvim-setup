@@ -7,29 +7,26 @@ function M:setup()
 		compile = false, -- enable compiling the colorscheme
 		undercurl = true, -- enable undercurls
 		commentStyle = { italic = false },
-		functionStyle = {},
-		keywordStyle = { bold = true },
+		functionStyle = { italic = false, bold = false },
+		keywordStyle = { italic = false, bold = false },
 		statementStyle = { bold = true },
-		typeStyle = {},
+		typeStyle = { italic = false },
 		transparent = true, -- do not set background color
 		dimInactive = false, -- dim inactive window `:h hl-NormalNC`
 		terminalColors = true, -- define vim.g.terminal_color_{0,17}
 		colors = { -- add/modify theme and palette colors
 			palette = {
 				surimiOrange = "#d27e99",
-				lotusOrange = "#658594",
+				lotusOrange = "#2d4f67",
 				lotusOrange2 = "#223249",
+				lotusYellow = "#2d4f67",
+				lotusTeal2 = "#223249",
+        lotusAqua = "#2d4f67",
+        lotusBlue4 = "#2d5066",
+        lotusGreen = "#526e47",
 			},
-			theme = { wave = {}, lotus = {}, dragon = {}, all = {} },
 		},
-		overrides = function(colors) -- add/modify highlights
-			return {}
-		end,
 		theme = "lotus", -- Load "wave" theme when 'background' option is not set
-		background = { -- map the value of 'background' option to a theme
-			dark = "wave", -- try "dragon" !
-			light = "lotus",
-		},
 	}
 end
 
@@ -89,8 +86,10 @@ function M:adjust_highlight()
 	vim.cmd("hi clear QuickFixLine ")
 	vim.cmd("hi clear MsgSeparator ")
 
-  vim.cmd("hi clear Visual")
-  vim.cmd("hi Visual cterm=undercurl gui=undercurl")
+	vim.cmd("hi clear Visual")
+	vim.cmd("hi Visual cterm=undercurl gui=undercurl")
+
+	vim.cmd("hi clear TreesitterContextLineNumber")
 end
 
 function M:config()
