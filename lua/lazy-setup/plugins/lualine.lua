@@ -17,7 +17,7 @@ local modules_colors = {
 	c = { bg = colors.white, fg = colors.black },
 }
 
-local lightLine = {
+local kanagawaline = {
 	normal = {
 		a = { bg = colors.gray, fg = colors.black, gui = "bold" },
 		b = modules_colors.b,
@@ -56,7 +56,7 @@ return {
 		require("lualine").setup({
 			options = {
 				icons_enabled = true,
-				theme = lightLine,
+				theme = kanagawaline,
 				component_separators = { left = "|", right = "|" },
 				section_separators = { left = "", right = "" },
 				disabled_filetypes = {

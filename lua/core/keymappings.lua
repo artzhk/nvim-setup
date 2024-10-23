@@ -22,18 +22,6 @@ vim.keymap.set({ "n", "v" }, "<leader>e", "<S-$>")
 -- enable/disable relative line numbers
 vim.keymap.set("n", "<leader>nr", ":set rnu!<CR>")
 
--- windows managing
-vim.keymap.set("n", "=", [[<cmd>vertical resize +10<cr>]])
-vim.keymap.set("n", "-", [[<cmd>vertical resize -10<cr>]])
-vim.keymap.set("n", "+", [[<cmd>horizontal resize +5<cr>]])
-vim.keymap.set("n", "_", [[<cmd>horizontal resize -5<cr>]])
-
--- windows navigation
--- vim.keymap.set({ "v", "n" }, "<leader>w", "<C-w>")
--- vim.keymap.set({ "v", "n" }, "<C-w>", "<leader>w")
-vim.keymap.set({ "v", "n" }, "<leader>wv", ":vsplit<CR><C-w>l")
-vim.keymap.set({ "v", "n" }, "<leader>ws", ":split<CR><C-w>j")
-
 -- close all windows but current
 vim.keymap.set("n", "<leader>wo", function()
 	vim.cmd(":only")

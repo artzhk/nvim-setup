@@ -33,6 +33,9 @@ function M.config_keymaps(client, bufnr)
 	local opts = { buffer = bufnr, remap = true }
 
 	vim.keymap.set("n", "<leader>dq", function()
+		vim.diagnostic.setqflist({ bufnr = 0, severity = "ERROR" })
+	end, opts)
+	vim.keymap.set("n", "<leader>dQ", function()
 		vim.diagnostic.setqflist({ severity = "ERROR" })
 	end, opts)
 
@@ -165,7 +168,6 @@ return {
 				end,
 				["ts_ls"] = function()
 					lsp_config.ts_ls.setup({
-
 						capabilities = M.capabilities(),
 						on_attach = M.lsp_zero.on_attach,
 						init_options = tsserver_config.init_options(false),
