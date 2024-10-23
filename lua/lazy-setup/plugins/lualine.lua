@@ -1,10 +1,62 @@
+local colors = {
+	red = "#d27e99",
+	yellow = "#f9d791",
+	black = "#545464",
+	white = "#f7f7f0",
+	green = "#6e915f",
+	blue = "#6693bf",
+	grey = "#9b9ea4",
+	magenta = "#624c83",
+	lightgray = "#d7dae1",
+	inactivegrey = "#c4c6cd",
+	darkgray = "#9b9ea4",
+}
+
+local modules_colors = {
+	b = { bg = colors.white, fg = colors.black },
+	c = { bg = colors.white, fg = colors.black },
+}
+
+local kanagawaline = {
+	normal = {
+		a = { bg = colors.gray, fg = colors.black, gui = "bold" },
+		b = modules_colors.b,
+		c = modules_colors.b,
+	},
+	insert = {
+		a = { bg = colors.blue, fg = colors.white, gui = "bold" },
+		b = modules_colors.b,
+		c = modules_colors.b,
+	},
+	visual = {
+		a = { bg = colors.magenta, fg = colors.white, gui = "bold" },
+		b = modules_colors.b,
+		c = modules_colors.b,
+	},
+	replace = {
+		a = { bg = colors.red, fg = colors.white, gui = "bold" },
+		b = modules_colors.b,
+		c = modules_colors.b,
+	},
+	command = {
+		a = { bg = colors.green, fg = colors.white, gui = "bold" },
+		b = modules_colors.b,
+		c = modules_colors.b,
+	},
+	inactive = {
+		a = { bg = colors.black, fg = colors.black, gui = "bold" },
+		b = modules_colors.b,
+		c = modules_colors.b,
+	},
+}
+
 return {
 	"nvim-lualine/lualine.nvim",
 	config = function()
 		require("lualine").setup({
 			options = {
 				icons_enabled = true,
-				theme = "iceberg_light",
+				theme = kanagawaline,
 				component_separators = { left = "|", right = "|" },
 				section_separators = { left = "", right = "" },
 				disabled_filetypes = {
@@ -22,7 +74,7 @@ return {
 			},
 			sections = {
 				lualine_a = { "mode" },
-				lualine_b = { "branch", "diff",  },
+				lualine_b = { "branch", "diff" },
 				lualine_c = { "filename" },
 				lualine_x = { "encoding", "fileformat", "filetype" },
 				lualine_y = { "diagnostics" },
