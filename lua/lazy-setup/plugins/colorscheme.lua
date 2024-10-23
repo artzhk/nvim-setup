@@ -9,8 +9,8 @@ function M:setup()
 		commentStyle = { italic = false },
 		functionStyle = { italic = false, bold = false },
 		keywordStyle = { italic = false, bold = false },
-		statementStyle = { bold = true },
-		typeStyle = { italic = false },
+		statementStyle = { bold = false },
+		typeStyle = { italic = false, bold = true },
 		transparent = true, -- do not set background color
 		dimInactive = false, -- dim inactive window `:h hl-NormalNC`
 		terminalColors = true, -- define vim.g.terminal_color_{0,17}
@@ -34,6 +34,8 @@ function M:adjust_highlight()
 	vim.cmd("hi clear LineNr")
 	vim.cmd("hi CursorLineNr cterm=bold gui=bold guifg=#4d699b guibg=none")
 	vim.cmd("hi clear CursorLine")
+	vim.cmd("hi clear Boolean")
+  vim.cmd("hi clear Boolean term=bold gui=bold guifg=#2d4f67")
 	vim.cmd("hi CursorLine guibg=#c7d7e0 ")
 	vim.cmd("hi clear SignColumn")
 	vim.cmd("hi clear TelescopeBorder")

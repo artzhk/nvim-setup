@@ -1,53 +1,53 @@
-
 local colors = {
-  red     = "#9e3039",
-  yellow  = "#f4d88c",
-  black   = '#1c1d23',
-  white   = '#e0e2ea',
-  green   = "#aaedb7",
-  blue    = "#9fd8ff",
-  grey   = "#ebeef5",
-  lightgray   = "#d7dae1",
-  inactivegrey   = "#c4c6cd",
-  darkgray   = "#9b9ea4",
+	red = "#d27e99",
+	yellow = "#f9d791",
+	black = "#545464",
+	white = "#f7f7f0",
+	green = "#6e915f",
+	blue = "#6693bf",
+	grey = "#9b9ea4",
+	magenta = "#624c83",
+	lightgray = "#d7dae1",
+	inactivegrey = "#c4c6cd",
+	darkgray = "#9b9ea4",
 }
 
 local modules_colors = {
-    b = {bg = colors.white, fg = colors.darkgray},
-    c = {bg = colors.white, fg = colors.gray}
+	b = { bg = colors.white, fg = colors.black },
+	c = { bg = colors.white, fg = colors.black },
 }
 
 local lightLine = {
-  normal = {
-    a = {bg = colors.gray, fg = colors.black, gui = 'bold'},
-    b = modules_colors.b,
-    c = modules_colors.b
-  },
-  insert = {
-    a = {bg = colors.blue, fg = colors.black, gui = 'bold'},
-    b = modules_colors.b,
-    c = modules_colors.b
-  },
-  visual = {
-    a = {bg = colors.yellow, fg = colors.black, gui = 'bold'},
-    b = modules_colors.b,
-    c = modules_colors.b
-  },
-  replace = {
-    a = {bg = colors.red, fg = colors.black, gui = 'bold'},
-    b = modules_colors.b,
-    c = modules_colors.b
-  },
-  command = {
-    a = {bg = colors.green, fg = colors.black, gui = 'bold'},
-    b = modules_colors.b,
-    c = modules_colors.b
-  },
-  inactive = {
-    a = {bg = colors.darkgray, fg = colors.gray, gui = 'bold'},
-    b = modules_colors.b,
-    c = modules_colors.b
-  }
+	normal = {
+		a = { bg = colors.gray, fg = colors.black, gui = "bold" },
+		b = modules_colors.b,
+		c = modules_colors.b,
+	},
+	insert = {
+		a = { bg = colors.blue, fg = colors.white, gui = "bold" },
+		b = modules_colors.b,
+		c = modules_colors.b,
+	},
+	visual = {
+		a = { bg = colors.magenta, fg = colors.white, gui = "bold" },
+		b = modules_colors.b,
+		c = modules_colors.b,
+	},
+	replace = {
+		a = { bg = colors.red, fg = colors.white, gui = "bold" },
+		b = modules_colors.b,
+		c = modules_colors.b,
+	},
+	command = {
+		a = { bg = colors.green, fg = colors.white, gui = "bold" },
+		b = modules_colors.b,
+		c = modules_colors.b,
+	},
+	inactive = {
+		a = { bg = colors.black, fg = colors.black, gui = "bold" },
+		b = modules_colors.b,
+		c = modules_colors.b,
+	},
 }
 
 return {
@@ -74,7 +74,7 @@ return {
 			},
 			sections = {
 				lualine_a = { "mode" },
-				lualine_b = { "branch", "diff",  },
+				lualine_b = { "branch", "diff" },
 				lualine_c = { "filename" },
 				lualine_x = { "encoding", "fileformat", "filetype" },
 				lualine_y = { "diagnostics" },
