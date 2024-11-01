@@ -52,11 +52,6 @@ vim.keymap.set("n", "<leader>J", "<cmd>lprev<CR>zz")
 -- Inside of file renaming and making executable
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
--- quick navigation to remaps
-vim.keymap.set("n", "<leader>vsr", "<cmd>e ~/.config/nvim/lua/core/keymappings.lua<CR>")
-vim.keymap.set("n", "<leader>vss", "<cmd>e ~/.config/nvim/lua/core/options.lua<CR>")
--- vim.keymap.set("n", "<leader>vscs", "<cmd>e ~/.config/nvim/lua/lazy-setup/plugins/colorscheme.lua<CR>")
-
 -- pretty clear imho
 vim.keymap.set("n", "<leader>jf", vim.cmd.Ex)
 

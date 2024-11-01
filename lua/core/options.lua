@@ -1,5 +1,3 @@
--- vim.cmd("let g:netrw_liststyle = 1")
-
 vim.opt.guicursor = ""
 
 vim.opt.clipboard = 'unnamedplus'

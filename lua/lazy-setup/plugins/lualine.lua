@@ -2,7 +2,8 @@ local colors = {
 	red = "#d27e99",
 	yellow = "#f9d791",
 	black = "#545464",
-	white = "#f7f7f0",
+	transparent = "#ffffff",
+	white = "#dcd7ba",
 	green = "#6e915f",
 	blue = "#6693bf",
 	grey = "#9b9ea4",
@@ -13,33 +14,33 @@ local colors = {
 }
 
 local modules_colors = {
-	b = { bg = colors.white, fg = colors.black },
-	c = { bg = colors.white, fg = colors.black },
+	b = { bg = colors.transparent, fg = colors.black },
+	c = { bg = colors.transparent, fg = colors.black },
 }
 
 local kanagawaline = {
 	normal = {
-		a = { bg = colors.gray, fg = colors.black, gui = "bold" },
+		a = { bg = colors.white, fg = colors.black, gui = "bold" },
 		b = modules_colors.b,
 		c = modules_colors.b,
 	},
 	insert = {
-		a = { bg = colors.blue, fg = colors.white, gui = "bold" },
+		a = { bg = colors.blue, fg = colors.transparent, gui = "bold" },
 		b = modules_colors.b,
 		c = modules_colors.b,
 	},
 	visual = {
-		a = { bg = colors.magenta, fg = colors.white, gui = "bold" },
+		a = { bg = colors.magenta, fg = colors.transparent, gui = "bold" },
 		b = modules_colors.b,
 		c = modules_colors.b,
 	},
 	replace = {
-		a = { bg = colors.red, fg = colors.white, gui = "bold" },
+		a = { bg = colors.red, fg = colors.transparent, gui = "bold" },
 		b = modules_colors.b,
 		c = modules_colors.b,
 	},
 	command = {
-		a = { bg = colors.green, fg = colors.white, gui = "bold" },
+		a = { bg = colors.green, fg = colors.transparent, gui = "bold" },
 		b = modules_colors.b,
 		c = modules_colors.b,
 	},
