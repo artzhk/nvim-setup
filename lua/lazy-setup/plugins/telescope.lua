@@ -34,8 +34,7 @@ return {
 					},
 					mappings = {
 						i = {
-							["<C-c>"] = { "<esc>", type = "command" },
-							["<esc>"] = actions.close,
+							["<C-c>"] = actions.close,
 							["<C-p>"] = action_layout.toggle_preview,
 							["<C-o>"] = function(p_bufnr)
 								actions.send_selected_to_qflist(p_bufnr)
@@ -44,7 +43,7 @@ return {
 							["<C-r>"] = actions.delete_buffer,
 						},
 						n = {
-							["<C-c>"] = actions.close,
+							["<esc>"] = actions.close,
 							["<C-o>"] = function(p_bufnr)
 								actions.send_selected_to_qflist(p_bufnr)
 								vim.cmd.cfdo("edit")
