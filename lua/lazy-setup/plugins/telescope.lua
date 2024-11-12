@@ -34,7 +34,7 @@ return {
 					},
 					mappings = {
 						i = {
-							["<C-c>"] = actions.close,
+							["<C-q>"] = actions.close,
 							["<C-p>"] = action_layout.toggle_preview,
 							["<C-o>"] = function(p_bufnr)
 								actions.send_selected_to_qflist(p_bufnr)
@@ -43,7 +43,6 @@ return {
 							["<C-r>"] = actions.delete_buffer,
 						},
 						n = {
-							["<esc>"] = actions.close,
 							["<C-o>"] = function(p_bufnr)
 								actions.send_selected_to_qflist(p_bufnr)
 								vim.cmd.cfdo("edit")
@@ -75,6 +74,10 @@ return {
 				local word = vim.fn.expand("<cword>")
 				builtin.grep_string({ search = word })
 			end)
+
+      vim.keymap.set("n", "<leader>tq", function()
+          builtin.quickfix()
+      end)
 
 			vim.keymap.set("n", "<leader>gS", function()
 				local word = vim.fn.expand("<cWORD>")
