@@ -6,6 +6,7 @@ vim.opt.ignorecase = true
 
 vim.opt.nu = true
 vim.opt.relativenumber = false
+vim.opt.bomb = false
 
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
