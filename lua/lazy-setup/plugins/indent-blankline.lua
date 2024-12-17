@@ -10,7 +10,6 @@ return {
         },
         scope = {
             enabled = true,
-
         }
     },
 }
