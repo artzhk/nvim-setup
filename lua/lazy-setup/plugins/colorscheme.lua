@@ -32,9 +32,9 @@ end
 
 function M:adjust_highlight()
 	vim.cmd("hi clear LineNr")
-	vim.cmd("hi CursorLineNr cterm=bold gui=bold guifg=#4d699b guibg=none")
+	vim.cmd("hi CursorLineNr cterm=bold gui=bold guifg=#d27e99 guibg=none")
 	vim.cmd("hi clear CursorLine")
-	vim.cmd("hi CursorLine gui=reverse")
+	vim.cmd("hi CursorLine guibg=#eeeeee")
 	vim.cmd("hi clear Boolean")
   vim.cmd("hi clear Boolean term=bold gui=bold guifg=#2d4f67")
 	vim.cmd("hi clear SignColumn")
