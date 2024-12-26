@@ -14,8 +14,8 @@ return {
                 line = 'zc',
                 ---Block-comment toggle keymap
                 block = 'zC',
-
             },
+
             ---LHS of operator-pending mappings in NORMAL and VISUAL mode
             opleader = {
                 ---Line-comment keymap
@@ -27,7 +27,7 @@ return {
             ---NOTE: If given `false` then the plugin won't create any mappings
             mappings = {
                 ---Operator-pending mapping; `gcc` `gbc` `gc[count]{motion}` `gb[count]{motion}`
-                basic = false,
+                basic = true,
                 ---Extra mapping; `gco`, `gcO`, `gcA`
                 extra = false,
             },
