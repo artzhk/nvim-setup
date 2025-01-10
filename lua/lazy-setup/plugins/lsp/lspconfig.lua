@@ -254,6 +254,8 @@ return {
 				["<Tab>"] = cmp_action.luasnip_supertab(),
 				["<S-Tab>"] = cmp_action.luasnip_shift_supertab(),
 				["<CR>"] = cmp.mapping.confirm({ select = true }),
+        ["<C-j>"] = cmp.mapping.scroll_docs(5),
+        ["<C-k>"] = cmp.mapping.scroll_docs(-5),
 				["<C-e>"] = cmp.mapping.abort(),
 			}),
 			window = {
