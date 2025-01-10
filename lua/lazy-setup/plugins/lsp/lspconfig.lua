@@ -1,6 +1,6 @@
-vim.diagnostic.config {
-  float = { border = "rounded" },
-}
+vim.diagnostic.config({
+	float = { border = "rounded" },
+})
 
 local M = {
 	ui = {
@@ -92,29 +92,43 @@ function M.config_keymaps(client, bufnr)
 	end, opts)
 end
 
+function M.setup_snippet_source(name)
+	return {
+		name = name,
+		entry_filter = function(entry, _)
+			return require("cmp.types").lsp.CompletionItemKind[entry:get_kind()] ~= "Text"
+		end,
+	}
+end
+
 return {
 	"VonHeikemen/lsp-zero.nvim",
 	dependencies = {
 		{ "williamboman/mason.nvim" },
+
 		{ "williamboman/mason-lspconfig.nvim" },
 		{ "WhoIsSethDaniel/mason-tool-installer.nvim" },
 		-- LSP Support
 		{ "neovim/nvim-lspconfig" },
 
 		-- Autocompletion
-		{ "hrsh7th/nvim-cmp" },
-		{ "hrsh7th/cmp-nvim-lsp" },
+		{
+			"hrsh7th/nvim-cmp",
+			dependencies = {
+				{ "hrsh7th/cmp-buffer" },
+				{ "hrsh7th/cmp-nvim-lsp" },
+				{ "hrsh7th/cmp-nvim-lua" },
+				{ "hrsh7th/cmp-path" },
+				{ "saadparwaiz1/cmp_luasnip" },
+				{ "L3MON4D3/LuaSnip" },
+				{ "rafamadriz/friendly-snippets" },
+			},
+		},
 
 		{ "pmizio/typescript-tools.nvim" },
 
 		-- C# Support
 		{ "Hoffs/omnisharp-extended-lsp.nvim" },
-
-		-- Snippets
-		{
-			"L3MON4D3/LuaSnip",
-			dependencies = { "rafamadriz/friendly-snippets" },
-		},
 	},
 	config = function()
 		local lsp_zero = require("lsp-zero")
@@ -219,28 +233,32 @@ return {
 		M.lsp_zero.setup()
 		local cmp_action = M.lsp_zero.cmp_action()
 		local ls = require("luasnip")
-		require("luasnip.loaders.from_vscode").lazy_load()
+		local vs_code_snip = require("luasnip.loaders.from_vscode").lazy_load()
 
 		cmp.setup({
 			snippet = {
 				expand = function(args)
 					ls.lsp_expand(args.body)
+					vs_code_snip.expand_or_jump(args.body)
+					vim.snippet.expand(args.body)
 				end,
 			},
 			sources = {
-				{ name = "luasnip" },
-				{ name = "nvim_lsp" },
-				{ name = "buffer" },
-				{ name = "nvim_lua" },
+				M.setup_snippet_source("luasnip"),
+				M.setup_snippet_source("nvim_lsp"),
+				M.setup_snippet_source("nvim_lua"),
+				M.setup_snippet_source("buffer"),
+				M.setup_snippet_source("path"),
 			},
 			mapping = cmp.mapping.preset.insert({
 				["<Tab>"] = cmp_action.luasnip_supertab(),
 				["<S-Tab>"] = cmp_action.luasnip_shift_supertab(),
 				["<CR>"] = cmp.mapping.confirm({ select = true }),
+				["<C-e>"] = cmp.mapping.abort(),
 			}),
 			window = {
-        completion = cmp.config.window.bordered(),
-        documentation = cmp.config.window.bordered(),
+				completion = cmp.config.window.bordered(),
+				documentation = cmp.config.window.bordered(),
 			},
 		})
 	end,
