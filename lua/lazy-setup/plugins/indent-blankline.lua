@@ -1,15 +1,22 @@
-return {
-    "lukas-reineke/indent-blankline.nvim",
-    event = { "BufReadPre", "BufNewFile" },
-    main = "ibl",
-    opts = {
-        indent = {
-           -- char = ":",
-            -- char = "│",
-            char = "▏",
-        },
-        scope = {
-            enabled = true,
-        }
-    },
+local M = {
+	"lukas-reineke/indent-blankline.nvim",
 }
+
+M.event = { "BufReadPre", "BufNewFile" }
+
+M.main = "ibl"
+
+M.opts = {
+	indent = {
+		char = "▏",
+	},
+	scope = {
+		enabled = true,
+
+		highlight = {
+			"CursorLineNr",
+		},
+	},
+}
+
+return M

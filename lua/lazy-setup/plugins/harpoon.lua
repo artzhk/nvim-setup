@@ -43,8 +43,6 @@ return {
         vim.keymap.set("n", "<C-n>", function() harpoon:list():next() end)
 
         -- Colorscheme adjustments
-        vim.cmd("hi clear  Visual")
-        vim.cmd("hi link Visual  SpellBad")
         vim.cmd("hi clear  NormalFloat")
         vim.cmd("hi link NormalFloat  NormalNC")
         vim.cmd("hi clear FloatBorder")

@@ -21,9 +21,9 @@ function M:setup()
 				lotusOrange2 = "#223249",
 				-- lotusYellow = "#2d4f67",
 				lotusTeal2 = "#223249",
-        -- lotusAqua = "#2d4f67",
-        -- lotusBlue4 = "#2d5066",
-        lotusGreen = "#526e47",
+				-- lotusAqua = "#2d4f67",
+				-- lotusBlue4 = "#2d5066",
+				lotusGreen = "#526e47",
 			},
 		},
 		theme = "lotus", -- Load "wave" theme when 'background' option is not set
@@ -31,12 +31,14 @@ function M:setup()
 end
 
 function M:adjust_highlight()
+	vim.cmd("hi clear MatchParen")
+	vim.cmd("hi MatchParen cterm=bold gui=bold guibg=#ffffff guifg=#d27e99")
 	vim.cmd("hi clear LineNr")
 	vim.cmd("hi CursorLineNr cterm=bold gui=bold guifg=#d27e99 guibg=none")
 	vim.cmd("hi clear CursorLine")
 	vim.cmd("hi CursorLine guibg=#eeeeee")
 	vim.cmd("hi clear Boolean")
-  vim.cmd("hi clear Boolean term=bold gui=bold guifg=#2d4f67")
+	vim.cmd("hi clear Boolean term=bold gui=bold guifg=#2d4f67")
 	vim.cmd("hi clear SignColumn")
 	vim.cmd("hi clear TelescopeBorder")
 	vim.cmd("hi clear TelescopeResultsBorder ")
@@ -89,7 +91,7 @@ function M:adjust_highlight()
 	vim.cmd("hi clear MsgSeparator ")
 
 	vim.cmd("hi clear Visual")
-	vim.cmd("hi Visual cterm=undercurl gui=undercurl")
+	vim.cmd("hi Visual guifg=#ffffff guibg=#58a6ff")
 
 	vim.cmd("hi clear TreesitterContextLineNumber")
 end
