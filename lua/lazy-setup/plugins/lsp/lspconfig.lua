@@ -119,6 +119,7 @@ return {
 				{ "hrsh7th/cmp-nvim-lsp" },
 				{ "hrsh7th/cmp-nvim-lua" },
 				{ "hrsh7th/cmp-path" },
+				{ "hrsh7th/cmp-cmdline" },
 				{ "saadparwaiz1/cmp_luasnip" },
 				{ "L3MON4D3/LuaSnip" },
 				{ "rafamadriz/friendly-snippets" },
@@ -141,6 +142,8 @@ return {
 		M.lsp_zero.on_attach(M.config_keymaps)
 
 		local autocommands = require("core.autocommands")
+
+		vim.filetype.add({ extension = { ejs = "ejs" } })
 
 		local pyright_config = require("lazy-setup.configs.ls.pyright")
 		local tsserver_config = require("lazy-setup.configs.ls.tsserver")
@@ -205,6 +208,13 @@ return {
 						root_dir = lsp_config.util.root_pattern("compile_commands.json", "compile_flags.txt", ".git"),
 					})
 				end,
+				["html"] = function()
+					lsp_config.html.setup({
+						capabilities = M.capabilities(),
+						on_attach = M.lsp_zero.on_attach,
+						filetypes = { "html", "ejs" },
+					})
+				end,
 				["angularls"] = function()
 					lsp_config.angularls.setup({
 						capabilities = M.capabilities(),
@@ -230,6 +240,7 @@ return {
 			},
 		})
 
+		-- TODO: refactor this to a separate module
 		M.lsp_zero.setup()
 		local cmp_action = M.lsp_zero.cmp_action()
 		local ls = require("luasnip")
@@ -254,13 +265,21 @@ return {
 				["<Tab>"] = cmp_action.luasnip_supertab(),
 				["<S-Tab>"] = cmp_action.luasnip_shift_supertab(),
 				["<CR>"] = cmp.mapping.confirm({ select = true }),
-        ["<C-j>"] = cmp.mapping.scroll_docs(5),
-        ["<C-k>"] = cmp.mapping.scroll_docs(-5),
+				["<C-j>"] = cmp.mapping.scroll_docs(5),
+				["<C-k>"] = cmp.mapping.scroll_docs(-5),
 				["<C-e>"] = cmp.mapping.abort(),
 			}),
 			window = {
 				completion = cmp.config.window.bordered(),
 				documentation = cmp.config.window.bordered(),
+			},
+		})
+
+		-- `/` cmdline setup.
+		cmp.setup.cmdline("/", {
+			mapping = cmp.mapping.preset.cmdline(),
+			sources = {
+				{ name = "buffer" },
 			},
 		})
 	end,
