@@ -27,6 +27,10 @@ function M.capabilities()
 	)
 end
 
+function M.on_attach(client, bufnr)
+	client.server_capabilities.semanticTokensprovider = nil
+	M.config_keymaps(client, bufnr)
+end
 function M.config_keymaps(client, bufnr)
 	M.lsp_zero.default_keymaps({ buffer = bufnr })
 
@@ -87,7 +91,7 @@ function M.config_keymaps(client, bufnr)
 	vim.keymap.set("n", "<leader>rn", function()
 		vim.lsp.buf.rename()
 	end, opts)
-	vim.keymap.set("i", "<C-h>", function()
+	vim.keymap.set("i", "<C-g>", function()
 		vim.lsp.buf.signature_help()
 	end, opts)
 end
@@ -139,7 +143,7 @@ return {
 
 		M.init(lsp_zero, cmp_lsp, lsp_config)
 		M.lsp_zero.extend_lspconfig()
-		M.lsp_zero.on_attach(M.config_keymaps)
+		M.lsp_zero.on_attach(M.on_attach)
 
 		local autocommands = require("core.autocommands")
 
@@ -172,7 +176,14 @@ return {
 				["eslint"] = function()
 					lsp_config.eslint.setup({
 						capabilities = M.capabilities(),
-						on_attach = autocommands.eslint_on_save,
+						settings = {
+							-- helps eslint find the eslintrc when it's placed in a subfolder instead of the cwd root
+							workingDirectories = { mode = "auto" },
+							experimental = {
+								-- allows to use flat config format
+								useFlatConfig = true,
+							},
+						},
 					})
 				end,
 				["pyright"] = function()
