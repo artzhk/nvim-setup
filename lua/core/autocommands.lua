@@ -19,6 +19,20 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	end,
 })
 
+vim.api.nvim_create_autocmd("ColorScheme", {
+	callback = function(_)
+		vim.cmd("hi clear  NormalFloat")
+		vim.cmd("hi link NormalFloat  NormalNC")
+		vim.cmd("hi clear FloatBorder")
+		vim.cmd("hi link FloatBorder  NormalNC")
+		vim.cmd("hi clear DiagnosticUnderlineError")
+		vim.cmd("hi clear DiagnosticUnderlineHint")
+		vim.cmd("hi clear DiagnosticUnderlineInfo")
+		vim.cmd("hi clear DiagnosticUnderlineOk")
+		vim.cmd("hi clear DiagnosticUnderlineWarn")
+	end,
+})
+
 vim.api.nvim_create_autocmd("BufWritePre", {
 	pattern = "*",
 	desc = "Remove bomb if presented",
