@@ -8,9 +8,9 @@ vim.opt.nu = true
 vim.opt.relativenumber = false
 vim.opt.bomb = false
 
-vim.opt.tabstop = 2
-vim.opt.softtabstop = 2
-vim.opt.shiftwidth = 4
+vim.opt.tabstop = 8
+vim.opt.softtabstop = 8
+vim.opt.shiftwidth = 8
 vim.opt.expandtab = true
 
 vim.opt.smartindent = true
@@ -36,6 +36,8 @@ vim.g.mapleader = " "
 
 vim.cmd("colorscheme shine")
 vim.cmd("colorscheme default")
+
+vim.filetype.add({ extension = { ejs = "ejs" } })
 
 vim.api.nvim_create_user_command("Cpath", function()
     local path = vim.fn.expand("%:p")
