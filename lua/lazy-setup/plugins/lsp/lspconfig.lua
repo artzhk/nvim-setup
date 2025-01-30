@@ -260,9 +260,12 @@ return {
 		cmp.setup({
 			snippet = {
 				expand = function(args)
-					ls.lsp_expand(args.body)
-					vs_code_snip.expand_or_jump(args.body)
-					vim.snippet.expand(args.body)
+					if vs_code_snip ~= nil then
+						vs_code_snip.expand_or_jump(args.body)
+					else
+						ls.lsp_expand(args.body)
+					end
+					-- vim.snippet.expand(args.body)
 				end,
 			},
 			sources = {
