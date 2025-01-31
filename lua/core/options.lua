@@ -26,7 +26,7 @@ vim.opt.incsearch = true
 
 vim.opt.termguicolors = true
 
-vim.opt.scrolloff = 7
+vim.opt.scrolloff = 0
 vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
 
@@ -35,7 +35,7 @@ vim.opt.updatetime = 50
 vim.g.mapleader = " "
 
 vim.cmd("colorscheme shine")
-vim.cmd("colorscheme default")
+vim.cmd("colorscheme retrobox")
 
 vim.filetype.add({ extension = { ejs = "ejs" } })
 
@@ -44,3 +44,5 @@ vim.api.nvim_create_user_command("Cpath", function()
     vim.fn.setreg("+", path)
     vim.notify('Copied "' .. path .. '" to the clipboard!')
 end, {})
+
+require("core.utils.colorscheme").configure()

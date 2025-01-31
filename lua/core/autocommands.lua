@@ -1,5 +1,6 @@
 local autocmd_group = vim.api.nvim_create_augroup("Custom auto-commands", { clear = true })
 local gitlens = require("core.utils.gitlens")
+local colorscheme = require("core.utils.colorscheme")
 
 vim.api.nvim_create_autocmd({ "CursorMoved" }, {
 	pattern = "*",
@@ -21,15 +22,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 vim.api.nvim_create_autocmd("ColorScheme", {
 	callback = function(_)
-		vim.cmd("hi clear  NormalFloat")
-		vim.cmd("hi link NormalFloat  NormalNC")
-		vim.cmd("hi clear FloatBorder")
-		vim.cmd("hi link FloatBorder  NormalNC")
-		vim.cmd("hi clear DiagnosticUnderlineError")
-		vim.cmd("hi clear DiagnosticUnderlineHint")
-		vim.cmd("hi clear DiagnosticUnderlineInfo")
-		vim.cmd("hi clear DiagnosticUnderlineOk")
-		vim.cmd("hi clear DiagnosticUnderlineWarn")
+                colorscheme.configure()
 	end,
 })
 
