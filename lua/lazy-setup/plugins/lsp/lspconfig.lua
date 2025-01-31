@@ -31,6 +31,7 @@ function M.on_attach(client, bufnr)
 	client.server_capabilities.semanticTokensprovider = nil
 	M.config_keymaps(client, bufnr)
 end
+
 function M.config_keymaps(client, bufnr)
 	M.lsp_zero.default_keymaps({ buffer = bufnr })
 
@@ -39,6 +40,7 @@ function M.config_keymaps(client, bufnr)
 	vim.keymap.set("n", "<leader>dq", function()
 		vim.diagnostic.setqflist({ bufnr = 0, severity = "ERROR" })
 	end, opts)
+
 	vim.keymap.set("n", "<leader>dQ", function()
 		vim.diagnostic.setqflist({ severity = "ERROR" })
 	end, opts)
@@ -52,8 +54,8 @@ function M.config_keymaps(client, bufnr)
 			vim.lsp.buf.workspace_symbol(vim.fn.input("Grep > "))
 		end, opts)
 		vim.keymap.set("n", "<leader>q", vim.diagnostic.open_float)
-		vim.keymap.set("n", "]e", vim.diagnostic.goto_next)
-		vim.keymap.set("n", "[e", vim.diagnostic.goto_prev)
+		vim.keymap.set("n", "]e", vim.diagnostic.get_next)
+		vim.keymap.set("n", "[e", vim.diagnostic.get_prev)
 		vim.keymap.set("n", "<leader>va", function()
 			vim.lsp.buf.code_action()
 		end, opts)
@@ -125,7 +127,9 @@ return {
 				{ "hrsh7th/cmp-path" },
 				{ "hrsh7th/cmp-cmdline" },
 				{ "saadparwaiz1/cmp_luasnip" },
-				{ "L3MON4D3/LuaSnip" },
+				{
+					"L3MON4D3/LuaSnip",
+				},
 				{ "rafamadriz/friendly-snippets" },
 			},
 		},
@@ -144,8 +148,6 @@ return {
 		M.init(lsp_zero, cmp_lsp, lsp_config)
 		M.lsp_zero.extend_lspconfig()
 		M.lsp_zero.on_attach(M.on_attach)
-
-		local autocommands = require("core.autocommands")
 
 		vim.filetype.add({ extension = { ejs = "ejs" } })
 
@@ -256,6 +258,7 @@ return {
 		local cmp_action = M.lsp_zero.cmp_action()
 		local ls = require("luasnip")
 		local vs_code_snip = require("luasnip.loaders.from_vscode").lazy_load()
+
 
 		cmp.setup({
 			snippet = {
