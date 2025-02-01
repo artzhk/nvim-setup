@@ -27,14 +27,13 @@ local function configure_base()
 	vim.cmd("hi IncSearch gui=NONE cterm=NONE guibg=#d7474b guifg=#ffffff")
 	vim.cmd("hi clear TelescopeMatching")
 	vim.cmd("hi link TelescopeMatching IncSearch")
+	print("base works")
 end
 
 local function configure_light()
 	vim.cmd("hi clear MatchParen")
 	vim.cmd("hi MatchParen cterm=bold gui=bold guibg=#ffffff guifg=#d27e99")
-	vim.cmd("hi clear LineNr")
 	vim.cmd("hi CursorLineNr cterm=bold gui=bold guifg=#d7474b guibg=none")
-	vim.cmd("hi clear CursorLine")
 	vim.cmd("hi CursorLine guibg=#eeeeee")
 	vim.cmd("hi clear Identifier")
 	vim.cmd("hi Identifier guifg=#2d4f67")
@@ -55,12 +54,14 @@ local function configure_light()
 	-- vim.cmd("hi link LspSignatureActiveParameter WarningMsg ")
 	vim.cmd("hi MiniFilesTitleFocused cterm=bold gui=bold guifg=#545464 guibg=none")
 	vim.cmd("hi MiniFilesTitle cterm=bold gui=bold guifg=#766b90 guibg=none")
+	print("works")
 end
 
 function M.configure()
 	configure_base()
 
-	if vim.g.colors_name == "retrobox" and vim.opt.background == "light" then
+	---@diagnostic disable-next-line: undefined-field
+	if vim.g.colors_name == "retrobox" and vim.opt.background._value == "light" then
 		configure_light()
 	end
 end

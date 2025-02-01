@@ -34,7 +34,7 @@ vim.opt.updatetime = 50
 
 vim.g.mapleader = " "
 
-vim.cmd("colorscheme shine")
+vim.opt.background = "light"
 vim.cmd("colorscheme retrobox")
 
 vim.filetype.add({ extension = { ejs = "ejs" } })
@@ -44,5 +44,3 @@ vim.api.nvim_create_user_command("Cpath", function()
     vim.fn.setreg("+", path)
     vim.notify('Copied "' .. path .. '" to the clipboard!')
 end, {})
-
-require("core.utils.colorscheme").configure()
