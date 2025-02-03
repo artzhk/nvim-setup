@@ -55,18 +55,15 @@ return {
 			})
 
 			-- View current buffers
-			vim.keymap.set("n", "<leader>fb", builtin.buffers, {})
+			vim.keymap.set("n", "<leader>mb", builtin.buffers, {})
 
-			-- -- Files search
+			-- Files search
 			vim.keymap.set("n", "<leader>du", builtin.find_files, {})
-
-			-- Files search Dvorak
-			-- vim.keymap.set("n", "<leader>hu", builtin.find_files, {})
 
 			vim.keymap.set("n", "<leader>lg", builtin.live_grep, {})
 
 			-- File search relative to current file's directory
-			vim.keymap.set("n", "<leader>df", function()
+			vim.keymap.set("n", "<leader>cd", function()
 				builtin.find_files({ cwd = utils.buffer_dir() })
 			end, {})
 
