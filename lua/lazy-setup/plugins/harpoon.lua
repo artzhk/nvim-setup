@@ -60,17 +60,5 @@ return {
 		vim.keymap.set("n", "<C-n>", function()
 			harpoon:list():next()
 		end)
-
-		-- -- Colorscheme adjustments
-		-- vim.cmd("hi clear  NormalFloat")
-		-- vim.cmd("hi link NormalFloat  NormalNC")
-		-- vim.cmd("hi clear FloatBorder")
-		-- vim.cmd("hi link FloatBorder  NormalNC")
-
-		-- vim.cmd("hi clear DiagnosticHint")
-		-- vim.cmd("hi clear DiagnosticInfo")
-		-- vim.cmd("hi link DiagnosticHint  NvimRegister")
-		-- vim.cmd("hi link DiagnosticInfo  NvimRegister")
-		-- vim.cmd("hi clear Identifier")
 	end,
 }
