@@ -1,6 +1,12 @@
 vim.diagnostic.config({
-	float = { border = "rounded" },
+	virtual_text = {
+		prefix = "# ",
+	},
+	float = { border = "single" },
 })
+
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "single" })
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "single", title = "Skill Issue" })
 
 local M = {
 	ui = {
@@ -167,10 +173,10 @@ return {
 						on_attach = M.lsp_zero.on_attach,
 					})
 				end,
-
 				["omnisharp"] = function()
 					require("omnisharp_extended").lsp_definitions()
 					lsp_config.omnisharp.setup({
+						cmd = { "dotnet", "/home/art/.local/share/nvim/mason/packages/omnisharp/libexec/OmniSharp.dll" },
 						capabilities = M.capabilities(),
 						on_attach = M.lsp_zero.on_attach,
 					})
@@ -258,7 +264,6 @@ return {
 		local cmp_action = M.lsp_zero.cmp_action()
 		local ls = require("luasnip")
 		local vs_code_snip = require("luasnip.loaders.from_vscode").lazy_load()
-
 
 		cmp.setup({
 			snippet = {

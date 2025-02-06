@@ -8,7 +8,7 @@ M.filetypes = {
 	"vue",
 }
 
-M.init_options = function(volar)
+function M.init_options(volar)
 	assert(type(volar) == "boolean", "volar parameter has to be a boolean")
 	if volar == true then
 		return {
