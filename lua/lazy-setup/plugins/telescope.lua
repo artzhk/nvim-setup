@@ -34,13 +34,16 @@ return {
 					},
 					mappings = {
 						i = {
-							["<C-q>"] = actions.close,
 							["<C-p>"] = action_layout.toggle_preview,
 							["<C-o>"] = function(p_bufnr)
 								actions.send_selected_to_qflist(p_bufnr)
 								vim.cmd.cfdo("edit")
 							end,
 							["<C-r>"] = actions.delete_buffer,
+                                                        ["<C-q>"] = function(p_bufnr)
+                                                                actions.send_to_qflist(p_bufnr)
+                                                                actions.open_qflist(p_bufnr)
+                                                        end
 						},
 						n = {
 							["<C-o>"] = function(p_bufnr)
