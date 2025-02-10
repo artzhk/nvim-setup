@@ -12,6 +12,14 @@ local M = {
 	},
 }
 
+local function get_prev()
+	vim.diagnostic.jump({ count = -1, float = true })
+end
+
+local function get_next()
+	vim.diagnostic.jump({ count = 1, float = true })
+end
+
 function M.init(lsp_zero, cmp_lsp, lsp_config)
 	M.lsp_zero = lsp_zero
 	M.cmp_lsp = cmp_lsp
@@ -54,8 +62,8 @@ function M.config_keymaps(client, bufnr)
 			vim.lsp.buf.workspace_symbol(vim.fn.input("Grep > "))
 		end, opts)
 		vim.keymap.set("n", "<leader>q", vim.diagnostic.open_float)
-		vim.keymap.set("n", "]e", vim.diagnostic.get_next)
-		vim.keymap.set("n", "[e", vim.diagnostic.get_prev)
+		vim.keymap.set("n", "]e", get_next)
+		vim.keymap.set("n", "[e", get_prev)
 		vim.keymap.set("n", "<leader>va", function()
 			vim.lsp.buf.code_action()
 		end, opts)
@@ -76,14 +84,14 @@ function M.config_keymaps(client, bufnr)
 		vim.lsp.buf.definition()
 	end, opts)
 	vim.keymap.set("n", "K", function()
-		vim.lsp.buf.hover()
+		vim.lsp.buf.hover({ border = "single", title = "Skill Issue" })
 	end, opts)
 	vim.keymap.set("n", "<leader>vws", function()
 		vim.lsp.buf.workspace_symbol(vim.fn.input("Grep > "))
 	end, opts)
 	vim.keymap.set("n", "<leader>q", vim.diagnostic.open_float)
-	vim.keymap.set("n", "]e", vim.diagnostic.goto_next)
-	vim.keymap.set("n", "[e", vim.diagnostic.goto_prev)
+	vim.keymap.set("n", "]e", get_next)
+	vim.keymap.set("n", "[e", get_prev)
 	vim.keymap.set("n", "<leader>va", function()
 		vim.lsp.buf.code_action()
 	end, opts)
@@ -150,7 +158,6 @@ return {
 		M.lsp_zero.on_attach(M.on_attach)
 
 		vim.filetype.add({ extension = { ejs = "ejs" } })
-
 		local pyright_config = require("lazy-setup.configs.ls.pyright")
 		local tsserver_config = require("lazy-setup.configs.ls.tsserver")
 		local volar_config = require("lazy-setup.configs.ls.volar")
