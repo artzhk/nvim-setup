@@ -40,10 +40,10 @@ return {
 								vim.cmd.cfdo("edit")
 							end,
 							["<C-r>"] = actions.delete_buffer,
-                                                        ["<C-q>"] = function(p_bufnr)
-                                                                actions.send_to_qflist(p_bufnr)
-                                                                actions.open_qflist(p_bufnr)
-                                                        end
+							["<C-q>"] = function(p_bufnr)
+								actions.send_to_qflist(p_bufnr)
+								actions.open_qflist(p_bufnr)
+							end,
 						},
 						n = {
 							["<C-o>"] = function(p_bufnr)
@@ -75,9 +75,9 @@ return {
 				builtin.grep_string({ search = word })
 			end)
 
-      vim.keymap.set("n", "<leader>tq", function()
-          builtin.quickfix()
-      end)
+			vim.keymap.set("n", "<leader>tq", function()
+				builtin.quickfix()
+			end)
 
 			vim.keymap.set("n", "<leader>gS", function()
 				local word = vim.fn.expand("<cWORD>")
@@ -90,7 +90,7 @@ return {
 			end)
 
 			-- Grep relative to current file's directory
-			vim.keymap.set("n", "<leader>rdf", function()
+			vim.keymap.set("n", "<leader>rg", function()
 				builtin.grep_string({ search = vim.fn.input("Relative Grep > "), cwd = utils.buffer_dir() })
 			end)
 

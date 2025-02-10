@@ -41,7 +41,7 @@ vim.cmd("colorscheme retrobox")
 
 vim.filetype.add({ extension = { ejs = "ejs" } })
 
-vim.api.nvim_create_user_command("Cpath", function()
+vim.api.nvim_create_user_command("Cp", function()
     local path = vim.fn.expand("%:p")
     vim.fn.setreg("+", path)
     vim.notify('Copied "' .. path .. '" to the clipboard!')
