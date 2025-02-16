@@ -32,10 +32,12 @@ vim.keymap.set("n", "<leader>gb", ":lua require('core.utils.gitlens').blameVirtT
 
 -- greatest remap ever
 vim.keymap.set("x", "<leader>p", [["_dP]])
+vim.keymap.set("n", "<leader>P", "!!cat /tmp/buffer.txt<CR>")
+vim.keymap.set("v", "<leader>P", "!cat /tmp/buffer.txt<CR>")
 
 -- Copy to system clipboard config
-vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
-vim.keymap.set("n", "<leader>Y", [["+Y]])
+vim.keymap.set({ "n", "v" }, "<leader>y", ':w! /tmp/buffer.txt<CR> "+Y"')
+vim.keymap.set("n", "<leader>Y", ':w! /tmp/buffer.txt <CR> "+Y"')
 
 -- Delete without yanking
 vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
