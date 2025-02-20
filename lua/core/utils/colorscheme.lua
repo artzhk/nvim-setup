@@ -30,7 +30,7 @@ end
 
 local function configure_light()
 	vim.cmd("hi clear MatchParen")
-	vim.cmd("hi MatchParen cterm=bold gui=bold guibg=#ffffff guifg=#d27e99")
+	vim.cmd("hi MatchParen cterm=bold gui=bold guibg=#2d4f67 guifg=#ffffff")
 	vim.cmd("hi CursorLineNr cterm=bold gui=bold guifg=#d7474b guibg=none")
 	vim.cmd("hi CursorLine guibg=#eeeeee")
 	vim.cmd("hi Identifier guifg=#2d4f67")
