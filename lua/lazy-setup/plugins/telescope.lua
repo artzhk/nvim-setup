@@ -52,6 +52,7 @@ return {
 							end,
 							["<C-r>"] = actions.delete_buffer,
 							["<C-p>"] = action_layout.toggle_preview,
+							["<C-n>"] = action_layout.cycle_layout_next,
 						},
 					},
 				},
