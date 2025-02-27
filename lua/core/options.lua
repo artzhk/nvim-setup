@@ -1,9 +1,12 @@
 vim.opt.guicursor = ""
 
-vim.opt.clipboard = 'unnamedplus'
+vim.opt.clipboard = "unnamedplus"
 vim.opt.cursorline = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
+
+-- vim.opt.statusline = "%f%M %L, L:%l|C:%c %p%%"
+vim.opt.statusline = "%f"
 
 vim.opt.nu = true
 vim.opt.relativenumber = false
@@ -35,13 +38,21 @@ vim.opt.updatetime = 50
 
 vim.g.mapleader = " "
 
-vim.opt.background = "light"
+vim.opt.background = "dark"
 vim.cmd("colorscheme retrobox")
 
 vim.filetype.add({ extension = { ejs = "ejs" } })
 
 vim.api.nvim_create_user_command("Cp", function()
-    local path = vim.fn.expand("%:p")
-    vim.fn.setreg("+", path)
-    vim.notify('Copied "' .. path .. '" to the clipboard!')
+	local path = vim.fn.expand("%:p")
+	vim.fn.setreg("+", path)
+	vim.notify('Copied "' .. path .. '" to the clipboard!')
+end, {})
+
+vim.api.nvim_create_user_command("Bnr", function()
+	vim.opt.statusline = "%f"
+end, {})
+
+vim.api.nvim_create_user_command("Br", function()
+	vim.opt.statusline = "%<%f %h%m%r%=%-14.(%l,%c%V%) %P"
 end, {})
