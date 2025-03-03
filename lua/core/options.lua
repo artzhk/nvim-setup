@@ -59,7 +59,14 @@ end, {})
 
 -- Copy file name command
 vim.api.nvim_create_user_command("Cfn", function()
-        local path = vim.fn.expand("%:t")
-        path = path:match("^(.+)%..+")
-        vim.notify('Copied "' .. path .. '" to the clipboard!')
+	local path = vim.fn.expand("%:t")
+	path = path:match("^(.+)%..+")
+	-- check reg available
+	if vim.fn.reg_recording() == 0 then
+		vim.notify("Clipboard is not available!")
+		vim.fn.setreg('"', path)
+		return
+	end
+	vim.fn.setreg("+", path)
+	vim.notify('Copied "' .. path .. '" to the clipboard!')
 end, {})
