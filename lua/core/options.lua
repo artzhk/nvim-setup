@@ -38,7 +38,7 @@ vim.opt.updatetime = 50
 
 vim.g.mapleader = " "
 
-vim.opt.background = "dark"
+vim.opt.background = "light"
 vim.cmd("colorscheme retrobox")
 
 vim.filetype.add({ extension = { ejs = "ejs" } })
@@ -55,4 +55,11 @@ end, {})
 
 vim.api.nvim_create_user_command("Br", function()
 	vim.opt.statusline = "%<%f %h%m%r%=%-14.(%l,%c%V%) %P"
+end, {})
+
+-- Copy file name command
+vim.api.nvim_create_user_command("Cfn", function()
+        local path = vim.fn.expand("%:t")
+        path = path:match("^(.+)%..+")
+        vim.notify('Copied "' .. path .. '" to the clipboard!')
 end, {})
