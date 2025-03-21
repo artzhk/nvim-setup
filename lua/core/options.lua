@@ -4,6 +4,7 @@ vim.opt.clipboard = "unnamedplus"
 vim.opt.cursorline = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
+vim.opt.encoding = "utf-8"
 
 -- vim.opt.statusline = "%f%M %L, L:%l|C:%c %p%%"
 vim.opt.statusline = "%f"
@@ -70,3 +71,22 @@ vim.api.nvim_create_user_command("Cfn", function()
 	vim.fn.setreg("+", path)
 	vim.notify('Copied "' .. path .. '" to the clipboard!')
 end, {})
+
+-- NVIM appearence adjustments
+-- Might be put to the init hooks of lsp configuration
+vim.diagnostic.config({
+	virtual_text = {
+		prefix = "# ",
+	},
+	float = { border = "single" },
+})
+
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+  vim.lsp.handlers.hover, {
+    -- Use a sharp border with `FloatBorder` highlights
+    border = "single",
+    -- add the title in hover float window
+    title = "Skill Issue"
+  }
+)
+
