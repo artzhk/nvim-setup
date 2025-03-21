@@ -81,12 +81,3 @@ vim.diagnostic.config({
 	float = { border = "single" },
 })
 
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
-  vim.lsp.handlers.hover, {
-    -- Use a sharp border with `FloatBorder` highlights
-    border = "single",
-    -- add the title in hover float window
-    title = "Skill Issue"
-  }
-)
-

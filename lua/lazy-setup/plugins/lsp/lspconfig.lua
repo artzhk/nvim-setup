@@ -9,11 +9,13 @@ local M = {
 }
 
 local function get_prev()
-	vim.diagnostic.jump({ count = -1, float = true })
+	-- vim.diagnostic.jump({ count = -1, float = true })
+	vim.diagnostic.goto_prev()
 end
 
 local function get_next()
-	vim.diagnostic.jump({ count = 1, float = true })
+	-- vim.diagnostic.jump({ count = 1, float = true })
+	vim.diagnostic.goto_prev()
 end
 
 function M.init(lsp_zero, cmp_lsp, lsp_config)
@@ -52,7 +54,7 @@ function M.config_keymaps(client, bufnr)
 	if client.name == "omnisharp" or client.name == "cs" then
 		vim.keymap.set("n", "gd", "<cmd>lua require('omnisharp_extended').lsp_definitions()<cr>", opts)
 		vim.keymap.set("n", "K", function()
-			vim.lsp.buf.hover()
+			vim.lsp.buf.hover({ border = "single" })
 		end, opts)
 		vim.keymap.set("n", "<leader>vws", function()
 			vim.lsp.buf.workspace_symbol(vim.fn.input("Grep > "))
@@ -80,7 +82,7 @@ function M.config_keymaps(client, bufnr)
 		vim.lsp.buf.definition()
 	end, opts)
 	vim.keymap.set("n", "K", function()
-		vim.lsp.buf.hover()
+		vim.lsp.buf.hover({ border = "single" })
 	end, opts)
 	vim.keymap.set("n", "<leader>vws", function()
 		vim.lsp.buf.workspace_symbol(vim.fn.input("Grep > "))
