@@ -37,7 +37,7 @@ local function configure_light()
 	vim.cmd("hi Delimiter guifg=#545464")
 	vim.cmd("hi Special guifg=#6f4c00")
 	vim.cmd("hi Type guifg=#5a7785")
-        vim.cmd("hi StorageClass guifg=#2d4f67")
+	vim.cmd("hi StorageClass guifg=#2d4f67")
 	vim.cmd("hi String guifg=#3e612f")
 	vim.cmd("hi DiagnosticError guifg=#e82424 guibg=none")
 	vim.cmd("hi DiagnosticWarn guifg=#e98a00 guibg=none")
@@ -50,12 +50,59 @@ local function configure_light()
 	vim.cmd("hi MiniFilesTitle cterm=bold gui=bold guifg=#766b90 guibg=none")
 end
 
+local function murphy()
+	vim.cmd("hi Normal guibg=#444444 guifg=#ffffff ctermbg=NONE ")
+	vim.cmd("hi EndOfBuffer guibg=#444444 guifg=#ffff00 ctermbg=NONE ")
+	vim.cmd("hi clear Visual term=underline guibg=#87ff87 guifg=#444444")
+	vim.cmd("hi Visual term=underline guibg=#87ff87 guifg=#444444 ")
+	vim.cmd("hi MatchParen term=bold gui=bold guifg=#ffff00 guibg=NONE")
+	vim.cmd("hi CursorLineNr guifg=#ffff00 guibg=#bcbcbc")
+	vim.cmd("hi clear Constant")
+	vim.cmd("hi Constant guifg=#ffffff guibg=NONE")
+	vim.cmd("hi clear Type")
+	vim.cmd("hi link Type LineNr")
+	vim.cmd("hi Comment term=underline ctermfg=250 guifg=#bcbcbc")
+	vim.cmd("hi clear PreProc")
+	vim.cmd("hi link PreProc LineNr")
+	vim.cmd("hi clear Identifier")
+	vim.cmd("hi link Identifier Constant")
+	vim.cmd("hi clear Statement")
+	vim.cmd("hi link Statement LineNr")
+	vim.cmd("hi clear Operator")
+	vim.cmd("hi link Operator Constant")
+	vim.cmd("hi clear Tag")
+	vim.cmd("hi link Tag Constant")
+	vim.cmd("hi clear Function")
+	vim.cmd("hi link Function LineNr")
+	vim.cmd("hi clear Special")
+	vim.cmd("hi link Special Constant")
+	vim.cmd("hi clear Delimiter")
+	vim.cmd("hi link Delimiter LineNr")
+	vim.cmd("hi clear Operator")
+	vim.cmd("hi link Operator LineNr")
+	vim.cmd("hi clear Boolean")
+	vim.cmd("hi link Boolean LineNr")
+	vim.cmd("hi clear Structure")
+	vim.cmd("hi link Structure Constant")
+	vim.cmd("hi clear Keyword")
+	vim.cmd("hi link Keyword LineNr")
+	vim.cmd("hi clear String")
+	vim.cmd("hi String guifg=#87ff87")
+	vim.cmd("hi clear StatusLineNC")
+	vim.cmd("hi StatusLineNC gui=reverse")
+	vim.cmd("hi IncSearch gui=NONE cterm=NONE guibg=#d7474b guifg=#ffffff")
+end
+
 function M.configure()
 	configure_base()
 
 	---@diagnostic disable-next-line: undefined-field
 	if vim.g.colors_name == "retrobox" and vim.opt.background._value == "light" then
 		configure_light()
+	end
+
+	if vim.g.colors_name == "murphy" then
+		murphy()
 	end
 end
 

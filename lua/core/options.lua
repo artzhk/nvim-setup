@@ -39,8 +39,8 @@ vim.opt.updatetime = 50
 
 vim.g.mapleader = " "
 
-vim.opt.background = "light"
-vim.cmd("colorscheme retrobox")
+vim.opt.background = "dark"
+vim.cmd("colorscheme murphy")
 
 vim.filetype.add({ extension = { ejs = "ejs" } })
 
