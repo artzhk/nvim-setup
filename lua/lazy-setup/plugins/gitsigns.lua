@@ -93,6 +93,9 @@ return {
 				gitsigns.next_hunk = function()
 					gitsigns.nav_hunk("next")
 				end
+                                map("n", "<leader>gB", function()
+                                        gitsigns.blame()
+                                end)
 				map("n", "<leader>hS", gitsigns.stage_buffer)
 				map("n", "<leader>hu", gitsigns.undo_stage_hunk)
 				map("n", "<leader>hR", gitsigns.reset_buffer)
