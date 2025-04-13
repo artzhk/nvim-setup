@@ -59,7 +59,7 @@ return {
 			})
 
 			-- View current buffers
-			vim.keymap.set("n", "<leader>mb", builtin.buffers, {})
+			vim.keymap.set("n", "<leader>b", builtin.buffers, {})
 
 			-- Files search
 			vim.keymap.set("n", "<leader>du", builtin.find_files, {})
@@ -81,7 +81,7 @@ return {
 			end)
 
 			vim.keymap.set("n", "<leader>gS", function()
-				local word = vim.fn.expand("<cWORD>")
+				local word = vim.fn.expand("<cword>")
 				builtin.grep_string({ search = word })
 			end)
 
