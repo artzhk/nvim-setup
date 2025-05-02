@@ -61,6 +61,9 @@ return {
 			-- View current buffers
 			vim.keymap.set("n", "<leader>b", builtin.buffers, {})
 
+                        -- View current list of marks
+			vim.keymap.set("n", "<leader>mm", builtin.marks)
+
 			-- Files search
 			vim.keymap.set("n", "<leader>du", builtin.find_files, {})
 
