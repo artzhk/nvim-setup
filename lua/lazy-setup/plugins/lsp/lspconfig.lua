@@ -9,13 +9,13 @@ local M = {
 }
 
 local function get_prev()
-	-- vim.diagnostic.jump({ count = -1, float = true })
-	vim.diagnostic.goto_prev()
+	vim.diagnostic.jump({ count = -1, float = true })
+	-- vim.diagnostic.goto_prev()
 end
 
 local function get_next()
-	-- vim.diagnostic.jump({ count = 1, float = true })
-	vim.diagnostic.goto_prev()
+	vim.diagnostic.jump({ count = 1, float = true })
+	-- vim.diagnostic.goto_next()
 end
 
 function M.init(lsp_zero, cmp_lsp, lsp_config)
@@ -43,10 +43,17 @@ function M.config_keymaps(client, bufnr)
 
 	local opts = { buffer = bufnr, remap = true }
 
+	--        -- Diagnistics quickfixlist current buffer
+	-- vim.keymap.set("n", "<leader>dq", function()
+	-- 	vim.diagnostic.setqflist({ bufnr = 0, severity = "ERROR" })
+	-- end, opts)
+
+	-- Diagnistics quickfixlist current buffer
 	vim.keymap.set("n", "<leader>dq", function()
-		vim.diagnostic.setqflist({ bufnr = 0, severity = "ERROR" })
+		vim.diagnostic.setqflist({ namespace = 0, open = true, severity = "ERROR" })
 	end, opts)
 
+	-- Diagnistics quickfixlist all buffers
 	vim.keymap.set("n", "<leader>dQ", function()
 		vim.diagnostic.setqflist({ severity = "ERROR" })
 	end, opts)
@@ -184,12 +191,7 @@ return {
 					lsp_config.eslint.setup({
 						capabilities = M.capabilities(),
 						settings = {
-							-- helps eslint find the eslintrc when it's placed in a subfolder instead of the cwd root
-							workingDirectories = { mode = "auto" },
-							experimental = {
-								-- allows to use flat config format
-								useFlatConfig = true,
-							},
+							workingDirectories = { mode = "location" },
 						},
 					})
 				end,
