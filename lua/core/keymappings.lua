@@ -30,17 +30,16 @@ end)
 -- check git blame
 vim.keymap.set("n", "<leader>gb", ":lua require('core.utils.gitlens').blameVirtText()<CR>")
 
--- greatest remap ever
-vim.keymap.set("x", "<leader>p", [["_dP]])
+-- no yanking actions
+vim.keymap.set("v", "<leader>p", [["_dP]])
+-- TODO: do i really need this?
+vim.keymap.set("n", "<leader>p", [[V"_dP]])
+vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 
 -- Copy to system clipboard config
-vim.keymap.set({ "n", "v" }, "<leader>y", ':w! /tmp/buffer.txt<CR> "+Y')
-vim.keymap.set("n", "<leader>Y", ':w! /tmp/buffer.txt <CR> "+Y')
+vim.keymap.set({"n", "v"}, "<leader>Y", ':w! /tmp/buffer.txt <CR> "+Y')
 vim.keymap.set("n", "<leader>P", "!!cat /tmp/buffer.txt<CR>")
 vim.keymap.set("v", "<leader>P", "!cat /tmp/buffer.txt<CR>")
-
--- Delete without yanking
-vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 
 -- Format with current set cmp format
 vim.keymap.set("n", "<leader>f", "<cmd>lua require('conform').format()<CR>")
