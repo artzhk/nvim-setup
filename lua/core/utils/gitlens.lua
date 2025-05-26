@@ -25,7 +25,7 @@ function M.blameVirtText()
 
 	if hash ~= "00000000" then
 		text = vim.fn.system(cmd)
-		text =  string.format("%s | ", hash) .. vim.split(text, "\n")[1]
+		text = string.format("%s | ", hash) .. vim.split(text, "\n")[1]
 		if text:find("fatal") then -- if the call to git show fails
 			text = undefinedTxt
 		end

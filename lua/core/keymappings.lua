@@ -45,8 +45,8 @@ vim.keymap.set("v", "<leader>P", "!cat /tmp/buffer.txt<CR>")
 vim.keymap.set("n", "<leader>f", "<cmd>lua require('conform').format()<CR>")
 
 -- Quick fix navigation
-vim.keymap.set("n", "<C-x>", "<cmd>cnext<CR>zz")
-vim.keymap.set("n", "<C-z>", "<cmd>cprev<CR>zz")
+vim.keymap.set("n", "<C-b>", "<cmd>cnext<CR>zz")
+vim.keymap.set("n", "<C-s>", "<cmd>cprev<CR>zz")
 vim.keymap.set("n", "<leader>K", "<cmd>lnext<CR>zz")
 vim.keymap.set("n", "<leader>J", "<cmd>lprev<CR>zz")
 
