@@ -96,13 +96,21 @@ end
 function M.configure()
 	configure_base()
 
+	local colorscheme = vim.g.colors_name or "default"
 	---@diagnostic disable-next-line: undefined-field
-	if vim.g.colors_name == "retrobox" and vim.opt.background._value == "light" then
+	local bg = vim.opt.background._value or "dark"
+
+	---@diagnostic disable-next-line: undefined-field
+	if colorscheme and bg == "light" then
 		configure_light()
 	end
 
-	if vim.g.colors_name == "murphy" then
+	if colorscheme == "murphy" then
 		murphy()
+	end
+
+	if bg == "dark" then
+		vim.cmd("hi Normal guibg=#444444 guifg=#ffffff ctermbg=NONE ")
 	end
 end
 
