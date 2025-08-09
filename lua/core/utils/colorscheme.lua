@@ -61,10 +61,6 @@ function M.configure()
 		configure_light()
 	end
 
-	if colorscheme == "murphy" then
-		murphy()
-	end
-
 	if bg == "dark" then
 		vim.cmd("hi Normal guibg=#444444 guifg=#ffffff ctermbg=NONE ")
 	end
