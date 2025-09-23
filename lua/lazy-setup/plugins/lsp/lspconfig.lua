@@ -1,310 +1,299 @@
-local M = {
-	ui = {
-		icons = {
-			package_installed = "✓",
-			package_pending = "➜",
-			package_uninstalled = "✗",
-		},
-	},
-}
-
-local function get_prev()
-	vim.diagnostic.jump({ count = -1, float = true })
-	-- vim.diagnostic.goto_prev()
-end
-
-local function get_next()
-	vim.diagnostic.jump({ count = 1, float = true })
-	-- vim.diagnostic.goto_next()
-end
-
-function M.init(lsp_zero, cmp_lsp, lsp_config)
-	M.lsp_zero = lsp_zero
-	M.cmp_lsp = cmp_lsp
-	M.lsp_config = lsp_config
-end
-
-function M.capabilities()
-	return vim.tbl_deep_extend(
-		"force",
-		{},
-		vim.lsp.protocol.make_client_capabilities(),
-		M.cmp_lsp.default_capabilities()
-	)
-end
-
-function M.on_attach(client, bufnr)
-	client.server_capabilities.semanticTokensprovider = nil
-	M.config_keymaps(client, bufnr)
-end
-
-function M.config_keymaps(client, bufnr)
-	M.lsp_zero.default_keymaps({ buffer = bufnr })
-
-	local opts = { buffer = bufnr, remap = true }
-
-	--        -- Diagnistics quickfixlist current buffer
-	-- vim.keymap.set("n", "<leader>dq", function()
-	-- 	vim.diagnostic.setqflist({ bufnr = 0, severity = "ERROR" })
-	-- end, opts)
-
-	-- Diagnistics quickfixlist current buffer
-	vim.keymap.set("n", "<leader>dq", function()
-		vim.diagnostic.setqflist({ namespace = 0, open = true, severity = "ERROR" })
+-- much appreciation to https://github.com/ryanthedev
+local on_lsp_attach = function(client, bufnr)
+	local opts = { buffer = bufnr, remap = false }
+	local telescope = require("telescope.builtin")
+	vim.keymap.set("n", "gt", function()
+		telescope.lsp_type_definitions()
 	end, opts)
-
-	-- Diagnistics quickfixlist all buffers
-	vim.keymap.set("n", "<leader>dQ", function()
-		vim.diagnostic.setqflist({ severity = "ERROR" })
+	vim.keymap.set("n", "gr", function()
+		telescope.lsp_references()
 	end, opts)
-
-	if client.name == "omnisharp" or client.name == "cs" then
-		vim.keymap.set("n", "gd", "<cmd>lua require('omnisharp_extended').lsp_definitions()<cr>", opts)
-		vim.keymap.set("n", "K", function()
-			vim.lsp.buf.hover({ border = "single" })
-		end, opts)
-		vim.keymap.set("n", "<leader>vws", function()
-			vim.lsp.buf.workspace_symbol(vim.fn.input("Grep > "))
-		end, opts)
-		vim.keymap.set("n", "<leader>q", vim.diagnostic.open_float)
-		vim.keymap.set("n", "]e", get_next)
-		vim.keymap.set("n", "[e", get_prev)
-		vim.keymap.set("n", "<leader>va", function()
-			vim.lsp.buf.code_action()
-		end, opts)
-		vim.keymap.set("n", "<leader>vrr", "<cmd>lua require('omnisharp_extended').lsp_references()<cr>", opts)
-		vim.keymap.set("n", "<leader>rn", function()
-			vim.lsp.buf.rename()
-		end, opts)
-		vim.keymap.set("i", "<C-h>", function()
-			vim.lsp.buf.signature_help()
-		end, opts)
-		vim.keymap.set("n", "<leader>vi", "<cmd>lua require('omnisharp_extended').lsp_implementation()<cr>", opts)
-		vim.keymap.set("n", "<leader>vt", "<cmd>lua require('omnisharp_extended').lsp_type_definition()<cr>", opts)
-
-		return
-	end
-
+	vim.keymap.set("n", "<leader>gi", function()
+		telescope.lsp_implementations()
+	end, opts)
 	vim.keymap.set("n", "gd", function()
 		vim.lsp.buf.definition()
 	end, opts)
-	vim.keymap.set("n", "K", function()
-		vim.lsp.buf.hover({ border = "single" })
+	vim.keymap.set("n", "ge", function()
+		telescope.diagnostics()
 	end, opts)
 	vim.keymap.set("n", "<leader>vws", function()
-		vim.lsp.buf.workspace_symbol(vim.fn.input("Grep > "))
+		vim.lsp.buf.workspace_symbol()
 	end, opts)
-	vim.keymap.set("n", "<leader>q", vim.diagnostic.open_float)
-	vim.keymap.set("n", "]e", get_next)
-	vim.keymap.set("n", "[e", get_prev)
-	vim.keymap.set("n", "<leader>va", function()
+	vim.keymap.set("n", "gn", function()
+		vim.diagnostic.goto_next()
+	end, opts)
+	vim.keymap.set("n", "gp", function()
+		vim.diagnostic.goto_prev()
+	end, opts)
+	vim.keymap.set("n", "<leader>xca", function()
 		vim.lsp.buf.code_action()
 	end, opts)
-	vim.keymap.set("n", "<leader>vrr", function()
-		vim.lsp.buf.references()
-	end, opts)
-	vim.keymap.set("n", "<leader>rn", function()
+	vim.keymap.set("n", "<leader>xrn", function()
 		vim.lsp.buf.rename()
 	end, opts)
-	vim.keymap.set("i", "<C-g>", function()
-		vim.lsp.buf.signature_help()
-	end, opts)
-end
-
-function M.setup_snippet_source(name)
-	return {
-		name = name,
-		entry_filter = function(entry, _)
-			return require("cmp.types").lsp.CompletionItemKind[entry:get_kind()] ~= "Text"
-		end,
-	}
 end
 
 return {
-	"VonHeikemen/lsp-zero.nvim",
-	dependencies = {
-		{ "williamboman/mason.nvim" },
-
-		{ "williamboman/mason-lspconfig.nvim" },
-		{ "WhoIsSethDaniel/mason-tool-installer.nvim" },
-		-- LSP Support
-		{ "neovim/nvim-lspconfig" },
-
-		-- Autocompletion
-		{
-			"hrsh7th/nvim-cmp",
-			dependencies = {
-				{ "hrsh7th/cmp-buffer" },
-				{ "hrsh7th/cmp-nvim-lsp" },
-				{ "hrsh7th/cmp-nvim-lua" },
-				{ "hrsh7th/cmp-path" },
-				{ "hrsh7th/cmp-cmdline" },
-				{ "saadparwaiz1/cmp_luasnip" },
-				{
-					"L3MON4D3/LuaSnip",
-				},
-				{ "rafamadriz/friendly-snippets" },
+	{
+		"Wansmer/symbol-usage.nvim",
+		event = "LspAttach",
+		config = function()
+			require("symbol-usage").setup()
+		end,
+	},
+	{
+		"towolf/vim-helm",
+		ft = "helm",
+	},
+	{
+		"j-hui/fidget.nvim",
+		config = function()
+			require("fidget").setup()
+		end,
+	},
+	{
+		"VonHeikemen/lsp-zero.nvim",
+		branch = "v3.x",
+		lazy = true,
+		config = false,
+		init = function()
+			-- Disable automatic setup, we are doing it manually
+			vim.g.lsp_zero_extend_cmp = 0
+			vim.g.lsp_zero_extend_lspconfig = 0
+		end,
+	},
+	{
+		"williamboman/mason.nvim",
+		lazy = false,
+		config = true,
+		opts = {
+			registries = {
+				"github:mason-org/mason-registry",
+				"github:Crashdummyy/mason-registry",
 			},
 		},
-
-		{ "pmizio/typescript-tools.nvim" },
-
-		-- C# Support
-		{ "Hoffs/omnisharp-extended-lsp.nvim" },
 	},
-	config = function()
-		local lsp_zero = require("lsp-zero")
-		local cmp = require("cmp")
-		local cmp_lsp = require("cmp_nvim_lsp")
-		local lsp_config = require("lspconfig")
+	-- Autocompletion
+	{
+		"hrsh7th/nvim-cmp",
+		event = "InsertEnter",
+		dependencies = {
+			{ "L3MON4D3/LuaSnip" },
+			{ "hrsh7th/cmp-buffer" },
+			{ "hrsh7th/cmp-path" },
+			{ "hrsh7th/cmp-nvim-lsp-signature-help" },
+			{ "saadparwaiz1/cmp_luasnip" },
+		},
+		config = function()
+			-- Here is where you configure the autocompletion settings.
+			local lsp_zero = require("lsp-zero")
+			lsp_zero.extend_cmp()
 
-		M.init(lsp_zero, cmp_lsp, lsp_config)
-		M.lsp_zero.extend_lspconfig()
-		M.lsp_zero.on_attach(M.on_attach)
+			-- And you can configure cmp even more, if you want to.
+			local cmp = require("cmp")
+			local cmp_action = lsp_zero.cmp_action()
 
-		vim.filetype.add({ extension = { ejs = "ejs" } })
-		local pyright_config = require("lazy-setup.configs.ls.pyright")
-		local tsserver_config = require("lazy-setup.configs.ls.tsserver")
-		local volar_config = require("lazy-setup.configs.ls.volar")
+			cmp.setup({
+				snippet = {
+					expand = function(args)
+						require("luasnip").lsp_expand(args.body)
+					end,
+				},
+				sources = {
+					{ name = "path" },
+					{ name = "nvim_lsp" },
+					{ name = "nvim_lua" },
+					{ name = "luasnip" },
+					{ name = "buffer" },
+					{ name = "nvim_lsp_signature_help" },
+					per_filetype = {
+						codecompanion = { "codecompanion" },
+					},
+				},
+				window = {
+					completion = cmp.config.window.bordered(),
+					documentation = cmp.config.window.bordered(),
+				},
+				formatting = lsp_zero.cmp_format(),
+				mapping = cmp.mapping.preset.insert({
+					["<Tab>"] = cmp_action.luasnip_supertab(),
+					["<S-Tab>"] = cmp_action.luasnip_shift_supertab(),
+					["<CR>"] = cmp.mapping.confirm({ select = true }),
+					["<C-u>"] = cmp.mapping.scroll_docs(-4),
+					["<C-d>"] = cmp.mapping.scroll_docs(4),
+				}),
+			})
+			require("luasnip.loaders.from_vscode").load({ paths = { "~/.config/snippets" } })
+		end,
+	},
+	-- LSP
+	{
+		"neovim/nvim-lspconfig",
+		cmd = { "LspInfo", "LspInstall", "LspStart" },
+		event = { "BufReadPre", "BufNewFile" },
+		dependencies = {
+			{ "hrsh7th/cmp-nvim-lsp" },
+			{ "williamboman/mason-lspconfig.nvim" },
+		},
+		config = function()
+			local lsp_zero = require("lsp-zero")
+			lsp_zero.extend_lspconfig()
 
-		require("mason").setup(M.ui)
-
-		require("mason-lspconfig").setup({
-			ensure_installed = { "lua_ls", "ts_ls", "clangd" },
-			handlers = {
-				M.lsp_zero.default_setup,
-				function(server)
-					lsp_config[server].setup({
-						capabilities = M.capabilities(),
-						on_attach = M.lsp_zero.on_attach,
-					})
-				end,
-				["omnisharp"] = function()
-					require("omnisharp_extended").lsp_definitions()
-					lsp_config.omnisharp.setup({
-						cmd = { "dotnet", "/home/art/.local/share/nvim/mason/packages/omnisharp/libexec/OmniSharp.dll" },
-						capabilities = M.capabilities(),
-						on_attach = M.lsp_zero.on_attach,
-					})
-				end,
-				["eslint"] = function()
-					lsp_config.eslint.setup({
-						capabilities = M.capabilities(),
-						settings = {
-							workingDirectories = { mode = "location" },
+			lsp_zero.on_attach(function(client, bufnr)
+				on_lsp_attach(client, bufnr)
+			end)
+			lsp_zero.set_server_config({
+				capabilities = {
+					textDocument = {
+						foldingRange = {
+							dynamicRegistration = false,
+							lineFoldingOnly = true,
 						},
-					})
-				end,
-				["pyright"] = function()
-					lsp_config.pyright.setup({
-						capabilities = M.capabilities(),
-						on_attach = M.lsp_zero.on_attach,
-						default_config = pyright_config.default_config,
-						commands = pyright_config.commands,
-					})
-				end,
-				["ts_ls"] = function()
-					lsp_config.ts_ls.setup({
-						capabilities = M.capabilities(),
-						on_attach = M.lsp_zero.on_attach,
-						init_options = tsserver_config.init_options(false),
-						filetypes = tsserver_config.filetypes,
-					})
-				end,
-				["volar"] = function()
-					-- Directly setup Volar outside mason-lspconfig handlers if issues persist
-					lsp_config.volar.setup({
-						cmd = volar_config.cmd,
-						filetypes = volar_config.filetypes,
-						capabilities = M.capabilities(),
-						on_attach = M.lsp_zero.on_attach,
-						init_options = volar_config.init_options,
-					})
-				end,
-				["clangd"] = function()
-					lsp_config.clangd.setup({
-						capabilities = M.capabilities(),
-						on_attach = M.lsp_zero.on_attach,
-						root_dir = lsp_config.util.root_pattern("compile_commands.json", "compile_flags.txt", ".git"),
-					})
-				end,
-				["html"] = function()
-					lsp_config.html.setup({
-						capabilities = M.capabilities(),
-						on_attach = M.lsp_zero.on_attach,
-						filetypes = { "html", "ejs" },
-					})
-				end,
-				["angularls"] = function()
-					lsp_config.angularls.setup({
-						capabilities = M.capabilities(),
-						on_attach = M.lsp_zero.on_attach,
-						root_dir = lsp_config.util.root_pattern("angular.json", "package.json"),
-					})
-				end,
-				["lua_ls"] = function()
-					local lua_opts = M.lsp_zero.nvim_lua_ls()
-					lsp_config.lua_ls.setup({
-						capabilities = M.capabilities(),
-						on_attach = M.lsp_zero.on_attach,
-						settings = {
-							Lua = {
-								diagnostics = {
-									globals = { "vim", "it", "describe", "before_each", "after_each" },
+					},
+				},
+			})
+
+			local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+			require("mason-lspconfig").setup({
+				ensure_installed = {},
+				handlers = {
+					lsp_zero.default_setup,
+					helm_ls = function()
+						require("lspconfig").helm_ls.setup({
+							capabilities = lsp_capabilities,
+							settings = {
+								["helm-ls"] = {
+									yamlls = {
+										path = "yaml-language-server",
+									},
 								},
 							},
+						})
+					end,
+				},
+			})
+		end,
+	},
+	{
+		"seblj/roslyn.nvim",
+		ft = "cs",
+		-- enabled = false,
+		opts = {
+			config = {
+				on_attach = function(client, bufnr)
+					-- let client know we got this
+					client.server_capabilities = vim.tbl_deep_extend("force", client.server_capabilities, {
+						semanticTokensProvider = {
+							full = true,
 						},
 					})
-					require("lspconfig").lua_ls.setup(lua_opts)
-				end,
-			},
-		})
 
-		-- TODO: refactor this to a separate module
-		M.lsp_zero.setup()
-		local cmp_action = M.lsp_zero.cmp_action()
-		local ls = require("luasnip")
-		local vs_code_snip = require("luasnip.loaders.from_vscode").lazy_load()
+					-- Save the original request method
+					local original_request = client.request
 
-		cmp.setup({
-			snippet = {
-				expand = function(args)
-					if vs_code_snip ~= nil then
-						vs_code_snip.expand_or_jump(args.body)
-					else
-						ls.lsp_expand(args.body)
+					-- Override the client's request method
+					client.request = function(method, params, handler, ctx, config)
+						-- Log all LSP requests to a file
+						-- local log_file = io.open("/tmp/nvim_lsp_debug.log", "a")
+						-- if log_file then
+						--   log_file:write(string.format("\n=== LSP Client Request at %s ===\n", os.date()))
+						--   log_file:write("method: " .. method .. "\n")
+						--   log_file:write("params: " .. vim.inspect(params) .. "\n")
+						--   log_file:write("================================\n")
+						--   log_file:close()
+						-- end
+
+						if method == "textDocument/semanticTokens/full" then
+							-- Modify the request to a range request covering the entire document
+
+							-- Convert URI to buffer number
+							local target_bufnr = vim.uri_to_bufnr(params.textDocument.uri)
+
+							-- Ensure the buffer is loaded
+							if not vim.api.nvim_buf_is_loaded(target_bufnr) then
+								vim.notify(
+									"[LSP] Buffer not loaded for URI: " .. params.textDocument.uri,
+									vim.log.levels.WARN
+								)
+								return original_request(method, params, handler, ctx, config)
+							end
+
+							-- Get the total number of lines in the buffer
+							local line_count = vim.api.nvim_buf_line_count(target_bufnr)
+
+							-- Get the last line's content
+							local last_line = vim.api.nvim_buf_get_lines(target_bufnr, line_count - 1, line_count, true)[1]
+								or ""
+
+							-- Calculate the end character (0-based index)
+							local end_character = #last_line
+
+							-- Construct the range
+							local range = {
+								start = { line = 0, character = 0 },
+								["end"] = { line = line_count - 1, character = end_character },
+							}
+
+							-- Construct the new params for the range request
+							local new_params = {
+								textDocument = params.textDocument,
+								range = range,
+							}
+
+							-- Log the modification
+							-- local log_file_range = io.open("/tmp/nvim_lsp_debug.log", "a")
+							-- if log_file_range then
+							--   log_file_range:write("Modified to 'textDocument/semanticTokens/range' with range: " .. vim.inspect(range) .. "\n")
+							--   log_file_range:close()
+							-- end
+
+							-- Send the modified range request
+							return original_request(
+								"textDocument/semanticTokens/range",
+								new_params,
+								handler,
+								ctx,
+								config
+							)
+						end
+
+						-- Call the original request method for all other methods
+						return original_request(method, params, handler, ctx, config)
 					end
-					-- vim.snippet.expand(args.body)
 				end,
+				settings = {
+					["csharp|inlay_hints"] = {
+						csharp_enable_inlay_hints_for_implicit_object_creation = true,
+						csharp_enable_inlay_hints_for_implicit_variable_types = true,
+						csharp_enable_inlay_hints_for_lambda_parameter_types = true,
+						csharp_enable_inlay_hints_for_types = true,
+						dotnet_enable_inlay_hints_for_indexer_parameters = true,
+						dotnet_enable_inlay_hints_for_literal_parameters = true,
+						dotnet_enable_inlay_hints_for_object_creation_parameters = true,
+						dotnet_enable_inlay_hints_for_other_parameters = true,
+						dotnet_enable_inlay_hints_for_parameters = true,
+						dotnet_suppress_inlay_hints_for_parameters_that_differ_only_by_suffix = true,
+						dotnet_suppress_inlay_hints_for_parameters_that_match_argument_name = true,
+						dotnet_suppress_inlay_hints_for_parameters_that_match_method_intent = true,
+					},
+					["csharp|code_lens"] = {
+						dotnet_enable_references_code_lens = true,
+						dotnet_enable_tests_code_lens = true,
+					},
+					["csharp|completion"] = {
+						dotnet_show_completion_items_from_unimported_namespaces = true,
+						dotnet_show_name_completion_suggestions = true,
+					},
+					["csharp|background_analysis"] = {
+						background_analysis_dotnet_compiler_diagnostics_scope = "fullSolution",
+					},
+					["csharp|symbol_search"] = {
+						dotnet_search_reference_assemblies = true,
+					},
+				},
 			},
-			sources = {
-				M.setup_snippet_source("luasnip"),
-				M.setup_snippet_source("nvim_lsp"),
-				M.setup_snippet_source("nvim_lua"),
-				M.setup_snippet_source("buffer"),
-				M.setup_snippet_source("path"),
-			},
-			mapping = cmp.mapping.preset.insert({
-				["<Tab>"] = cmp_action.luasnip_supertab(),
-				["<S-Tab>"] = cmp_action.luasnip_shift_supertab(),
-				["<CR>"] = cmp.mapping.confirm({ select = true }),
-				["<C-j>"] = cmp.mapping.scroll_docs(5),
-				["<C-k>"] = cmp.mapping.scroll_docs(-5),
-				["<C-e>"] = cmp.mapping.abort(),
-			}),
-			window = {
-				completion = cmp.config.window.bordered(),
-				documentation = cmp.config.window.bordered(),
-			},
-		})
-
-		-- `/` cmdline setup.
-		cmp.setup.cmdline("/", {
-			mapping = cmp.mapping.preset.cmdline(),
-			sources = {
-				{ name = "buffer" },
-				{ name = "path" },
-			},
-		})
-	end,
+		},
+	},
 }

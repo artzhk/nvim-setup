@@ -34,7 +34,9 @@ return {
 					},
 					mappings = {
 						i = {
-							["<C-p>"] = action_layout.toggle_preview,
+							["<C-p>"] = actions.move_selection_previous,
+							["<C-n>"] = actions.move_selection_next,
+							["<C-e>"] = action_layout.toggle_preview,
 							["<C-o>"] = function(p_bufnr)
 								actions.send_selected_to_qflist(p_bufnr)
 								vim.cmd.cfdo("edit")
@@ -51,8 +53,9 @@ return {
 								vim.cmd.cfdo("edit")
 							end,
 							["<C-r>"] = actions.delete_buffer,
-							["<C-p>"] = action_layout.toggle_preview,
-							["<C-n>"] = action_layout.cycle_layout_next,
+							["<C-e>"] = action_layout.toggle_preview,
+							["<C-p>"] = actions.move_selection_previous,
+							["<C-n>"] = actions.move_selection_next,
 						},
 					},
 				},
