@@ -1,3 +1,13 @@
+local hover = vim.lsp.buf.hover
+---@diagnostic disable-next-line: duplicate-set-field
+vim.lsp.buf.hover = function()
+    return hover({
+        max_width = 100,
+        max_height = 14,
+        border = "single",
+    })
+end
+
 -- much appreciation to https://github.com/ryanthedev
 local on_lsp_attach = function(client, bufnr)
 	local opts = { buffer = bufnr, remap = false }
@@ -26,10 +36,10 @@ local on_lsp_attach = function(client, bufnr)
 	vim.keymap.set("n", "gp", function()
 		vim.diagnostic.goto_prev()
 	end, opts)
-	vim.keymap.set("n", "<leader>xca", function()
+	vim.keymap.set("n", "<leader>va", function()
 		vim.lsp.buf.code_action()
 	end, opts)
-	vim.keymap.set("n", "<leader>xrn", function()
+	vim.keymap.set("n", "<leader>rn", function()
 		vim.lsp.buf.rename()
 	end, opts)
 end
@@ -80,7 +90,6 @@ return {
 		event = "InsertEnter",
 		dependencies = {
 			{ "L3MON4D3/LuaSnip" },
-			{ "hrsh7th/cmp-buffer" },
 			{ "hrsh7th/cmp-path" },
 			{ "hrsh7th/cmp-nvim-lsp-signature-help" },
 			{ "saadparwaiz1/cmp_luasnip" },
@@ -105,7 +114,6 @@ return {
 					{ name = "nvim_lsp" },
 					{ name = "nvim_lua" },
 					{ name = "luasnip" },
-					{ name = "buffer" },
 					{ name = "nvim_lsp_signature_help" },
 					per_filetype = {
 						codecompanion = { "codecompanion" },
@@ -139,6 +147,11 @@ return {
 		config = function()
 			local lsp_zero = require("lsp-zero")
 			lsp_zero.extend_lspconfig()
+
+                        vim.lsp.buf.handler = vim.lsp.with(
+                          vim.lsp.handlers["textDocument/hover"],
+                          { border = "rounded" }
+                        )
 
 			lsp_zero.on_attach(function(client, bufnr)
 				on_lsp_attach(client, bufnr)
