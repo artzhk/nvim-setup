@@ -6,8 +6,7 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.encoding = "utf-8"
 
--- vim.opt.statusline = "%f%M %L, L:%l|C:%c %p%%"
-vim.opt.statusline = "%f"
+vim.opt.statusline = "%<%f %h%m%r%=%-14.(%l,%c%V%) %P"
 
 vim.opt.nu = true
 vim.opt.relativenumber = false
@@ -49,14 +48,6 @@ vim.api.nvim_create_user_command("Cp", function()
 	local path = vim.fn.expand("%:p")
 	vim.fn.setreg("+", path)
 	vim.notify('Copied "' .. path .. '" to the clipboard!')
-end, {})
-
-vim.api.nvim_create_user_command("Bnr", function()
-	vim.opt.statusline = "%f"
-end, {})
-
-vim.api.nvim_create_user_command("Br", function()
-	vim.opt.statusline = "%<%f %h%m%r%=%-14.(%l,%c%V%) %P"
 end, {})
 
 -- Copy file name command
